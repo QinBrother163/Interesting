@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+<title>购买支付</title>
+</head>
+
+<body>
+<script>
+!(function(c,b,d,a){c[a]||(c[a]={});c[a].config={pid:"cii0tb5lvo@4e8a2a6f9e73432",imgUrl:"https://arms-retcode.aliyuncs.com/r.png?"};
+with(b)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("crossorigin","",src=d)
+})(window,document,"https://retcode.alicdn.com/retcode/bl.js","__bl");
+</script>
+<h1 style="text-align: center;  font-weight: normal; font-size: 18px; color: #666; margin-top: 80px;">正在发起支付请求....</h1>
+<script type="text/javascript">
+    var url = '{$url}';
+    $(function(){  
+    pushHistory();  
+    window.addEventListener("popstate", function(e) {  //回调函数中实现需要的功能
+        //alert("我监听到了浏览器的返回按钮事件啦"); 
+        location.href=url;  //在这里指定其返回的地址
+    }, false);  
+    });  
+    function pushHistory() {  
+        var state = {  
+            title: "title",  
+            url: url  
+        };  
+        window.history.pushState(state, state.title, state.url);  
+    }
+</script> 
+<script type="text/javascript">
+
+        //调用微信JS api 支付
+        //125c38a78f79a7eda1c337c0054381e4
+        //广州致好网络科技有限公司
+
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                {$json},
+                function(res){
+                    //WeixinJSBridge.log(res.err_msg);
+                    //alert(res.err_code+res.err_desc+res.err_msg);
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {  
+                        //alert('支付成功。');  
+                       //var url = '/cms/pay/index';
+                      {if $cxid}
+                      var url = '/cms/user/index';
+                      {else}
+                       var url = '{$url}';
+                      {/if}
+                       location.href = url;
+                    }else{  
+                        //alert(res.errMsg);
+                        if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+                            //alert('125c38a78f79a7eda1c337c0054381e4!');  
+                            {if $cxid}
+                           var url = '{$url}';
+                          {else}
+                           var url = '/cms/pay/index/error/1';
+                          {/if}
+                            location.href = url;
+                            //window.history.go(-1);
+                        }else{  
+                            //alert("支付失败，请返回重试。");  
+                            {if $cxid}
+                           var url = '{$url}';
+                          {else}
+                           var url = '/cms/pay/index/error/1';
+                          {/if}
+                            location.href = url;
+                            //window.history.go(-1);
+                        }    
+                    }  
+                }
+            );
+        }
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+        callpay();
+    </script>
+<div style="display: none">
+    {:config('web_site_statistics')}
+</div>
+</body>
+</html>

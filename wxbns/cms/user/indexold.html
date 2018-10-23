@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+    <style type="text/css">
+     .user-container3 .user-info .info-right{
+          height: 100%;
+      }
+    .user-container3 .user-info .info-right .date{
+        align-items: center;
+        font-size: .32rem;
+        color: #a7a7a7;
+        margin-top: .09rem;
+    }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="user-container3">
+            <div class="component-header-wrap-3">
+                <a href="/cms/index/index"><span class="imgicon nav-left"></span></a>
+
+                <div class="title">个人中心</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="user-info">
+                <div class="user-avatar-item">
+                    <img src="{$user['avatar']}">
+                    <div class="info-right">
+                        <div class="name">{$user['nickname']}</div>
+                        <div class="subname"><!-- react-text: 12 -->ID:<!-- /react-text --><!-- react-text: 54 -->
+                            88{$user['id']}  <!-- /react-text --></div>
+                      <div class="date">{$vip}</div>
+                    </div>
+                </div>
+                <div class="user-info-recharge" to="/readHistory?account_id=2437">
+                    <img src="__MODULE_IMG__/../images/account-icon@2x.png" alt="">
+                    <span class="right-ctn clearfix"><span>我的账户</span></span>
+                    <a href="{:url('cms/pay/index')}" class="chong-btn">
+                        <span class="primary-btn-2">充值</span>
+                    </a>
+                </div>
+                <div class="reset-coin"><!-- react-text: 20 -->剩余书币：<!-- /react-text --><span
+                        class="color-gray2">{$user['score']}</span></div>
+            </div>
+            <a class="no-open-vip" href="{:url('cms/pay/index',['vip'=>1])}">
+                <div class="vip-icon"></div>
+                <div class="info-right">
+                    <div class="name"><!-- react-text: 26 -->开通<!-- /react-text --><span>年费VIP</span><!-- react-text: 28 -->会员<!-- /react-text --></div>
+                    <div class="subname">365天畅读书城所有小说</div>
+                </div>
+                <span class="arrow-right"></span></a>
+            <div class="user-bottom-ctn clearfix">
+                <a class="weui-tabbar__item" href="{:url('cms/user/readhistory')}">
+                    <img src="__MODULE_IMG__/../images/read-history-icon@2x.png" alt="">
+                    <span class="right-ctn">阅读历史<span class="arrow-right"></span></span>
+                </a>
+                <a class="weui-tabbar__item" href="{:url('cms/user/free')}">
+                    <img src="__MODULE_IMG__/../images/coin-icon@2x.png" alt="">
+                    <span class="right-ctn">签到有礼<span class="arrow-right"></span></span>
+                </a>
+              <a class="weui-tabbar__item" href="{:url('cms/user/cz')}">
+                  <img src="__MODULE_IMG__/../images/coin-icon@2x.png" alt="">
+                <span class="right-ctn">充值记录<span class="arrow-right"></span></span>
+              </a>
+              <a class="weui-tabbar__item" href="{:url('cms/user/xfjl')}">
+                    <img src="__MODULE_IMG__/../images/coin-icon@2x.png" alt="">
+                <span class="right-ctn">消费记录<span class="arrow-right"></span></span>
+              </a>
+             <!--   <a class="weui-tabbar__item" href="userBookCOINS.html">
+                    <img src="//s.weituibao.com/static/1507792333094/coin-icon%402x.png" alt="">
+                    <span class="right-ctn">&lt;!&ndash; react-text: 40 &ndash;&gt;书币明细
+                &lt;!&ndash; /react-text &ndash;&gt;<span class="arrow-right"></span>
+                    </span>
+                </a>
+                <a class="weui-tabbar__item" href="userTopUpRecord.html">
+                    <img src="//s.weituibao.com/static/1507792333094/recharge-icon%402x.png" alt="">
+                    <span class="right-ctn">&lt;!&ndash; react-text: 45 &ndash;&gt;充值记录
+                &lt;!&ndash; /react-text &ndash;&gt;<span class="arrow-right"></span>
+                    </span>
+                </a>-->
+                <a id="artificial" class="weui-tabbar__item"  href="javascript:;">
+                    <img src="__MODULE_IMG__/../images/personal-service-icon@2x.png" alt="">
+                    <span class="right-ctn"><!-- react-text: 50 -->联系客服<!-- /react-text -->
+                        <span class="arrow-right"></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="reward_con noMenu">
+    <div data-reactroot="">
+        <div class="am-modal-mask"></div>
+        <div tabindex="-1" class="am-modal-wrap " role="dialog" aria-labelledby="rcDialogTitle0">
+            <div role="document" class="am-modal am-modal-transparent" style="width: 5.4rem; height: auto;">
+                <div class="am-modal-content">
+                    <button aria-label="Close" class="am-modal-close"><span class="am-modal-close-x"></span></button>
+
+                    <div class="am-modal-header">
+                        <div class="am-modal-title" id="rcDialogTitle0">
+                            <div style="text-align: center;">联系客服</div>
+                        </div>
+                    </div>
+
+                    <div class="am-modal-body">
+                        <div class="contact-service-ctn"><p>长按识别二维码，添加客服微信</p>
+                            <img  src="/public/static/wechat/kefu/2.jpg" alt="" id="img_ku">
+                        </div>
+                    </div>
+                </div>
+                <div tabindex="0" style="width: 0px; height: 0px; overflow: hidden;">sentinel</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function onGoPage() {
+        var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var openMenu = root.querySelector('.openMenu');
+        var reward = document.querySelector('.reward_con');
+        var right_ctn = document.querySelector('#artificial');
+        var am_modal_close = document.querySelector('.am-modal-close');
+        var page_style3 = root.querySelector('.page-style3');
+      
+        page_style3.className = 'page-style3 page-style3-female';//女版
+//        page_style3.className = 'page-style3 page-style3-male';//男版
+
+        root.querySelector('.nav-left').onclick = function (){
+            window.history.go(-1);
+        };
+
+        right_ctn.onclick = function (){
+            // $.ajax({
+            //     url: "{:url('user/index')}",
+            //     type: 'POST',
+            //     dataType: "json",
+            //     contentType: 'application/json',
+            //     success: function (res) {
+            //         alert(res);
+            //     }
+            // })
+
+            //document.getElementById('img_ku').src = '/public/static/wechat/kefu/2.jpg';
+
+            // var i = reward.className == 'reward_con noMenu';
+            // reward.className = i?'reward_con':'reward_con noMenu';
+
+        };
+        am_modal_close.onclick = function () {
+            reward.className = 'reward_con noMenu';
+        };
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+        };
+    })();
+</script>
+</body>
+</html>

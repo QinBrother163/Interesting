@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#root .style-topPage .top-wrap {
+    padding: .2rem .4rem;
+    background-color: #f53e71;
+    z-index: 999;
+    min-height: 16.15rem;
+}
+
+.top-list{
+    text-align: center;
+}
+.info-item-con{
+    margin: 4rem 0;
+}
+.top-list .img1{
+    width: 8rem;
+    height: 4rem;
+}
+.top-list .p-agency{
+    font-size: .4rem;
+    color: #ff6b6b;
+    margin-top: .5rem;
+}
+.top-list .p-get{
+    color: #999;
+    font-size: .3rem;
+    margin-top: .2rem;
+}

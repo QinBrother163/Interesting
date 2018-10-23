@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 常用技巧</title>
+</head>
+<body>
+<!--图片垂直水平居中-->
+<figure class="logo">
+    <img class="photo" src="images/123.jpg" alt="">
+</figure>
+<!--图片垂直水平居中样式-->
+<style type="text/css">
+    .logo {
+        display: block;
+        text-align: center;
+        vertical-align: middle;
+        border: 4px solid #dddddd;
+        padding: 4px;
+        height: 100px;
+        width: 300px;
+    }
+
+    .logo .photo {
+        height: auto; /*important*/
+        width: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+<br>
+<br>
+<br>
+<!--box 外阴影-->
+<br>
+<br>
+<!--box 内阴影-->
+<div class="shadow_n">内阴影</div>
+<br>
+<div class="shadow_w">外阴影</div>
+<br>
+<style type="text/css">
+    .shadow_w, .shadow_n {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        border: 1px solid #eee;
+    }
+
+    .shadow_w {
+        -moz-box-shadow: 5px 5px 5px #ccc;
+        -webkit-box-shadow: 5px 5px 5px #ccc;
+        box-shadow: 5px 5px 5px #ccc;
+
+        animation: spin 10s linear infinite;
+        animation-play-state: paused;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+
+    .shadow_w:hover {
+        animation-play-state: running;
+    }
+
+    .shadow_n {
+        -moz-box-shadow: inset 0 0 10px #000000;
+        -webkit-box-shadow: inset 0 0 10px #000000;
+        box-shadow: inset 0 0 10px #000000;
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+
+<!--clip-->
+<div class="box_content">
+    <p>111</p>
+</div>
+
+<style type="text/css">
+    .box_content {
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation-name: drive;
+        /*持续2秒*/
+        animation-duration: 2s;
+        /*结合ease-in和ease-out的概念，我们得到了ease-in-out，这个值会让对象在中点的时候速度上升到最快*/
+        animation-iteration-count: 1;
+        /*animation-fill-mode: forwards;*/
+        animation-fill-mode: both;
+        /*延迟三秒*/
+        animation-delay: 2s;
+    }
+
+    @keyframes drive {
+        from {
+            opacity: .5;
+            transform: translate(0);
+        }
+        50% {
+            opacity: .1;
+            animation-timing-function: ease-in-out;
+        }
+        to {
+            opacity: 1;
+            transform: translate(400px);
+        }
+    }
+
+    /*除了 .shadow_n  的应用下面的样式*/
+    div:not(.shadow_n) {
+        /*width: 500px;*/
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="mol"></div>
+<style type="text/css">
+    .mol {
+        width: 174px;
+        height: 174px;
+        position: absolute;
+        left: 400px;
+        border: 1px solid #eee;
+        background-color: rgba(45, 121, 54, .3);
+        animation-name: roll-in, scale-up;
+        animation-duration: 1s, 0.75s;
+        animation-delay: 0s, 1s;
+        animation-timing-function: ease-in, linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes roll-in {
+        0% {
+            transform: translateX(-200px) rotate(0deg);
+        }
+        100% {
+            transform: translateX(0px) rotate(360deg);
+        }
+    }
+
+    @keyframes scale-up {
+        0% {
+            transform: scale(1);
+            animation-timing-function: ease-in;
+        }
+        25% {
+            transform: scale(1.15);
+            animation-timing-function: ease-out;
+        }
+        60% {
+            transform: scale(0.9);
+            animation-timing-function: ease-in;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="width: 100px;height: 100px;position: absolute;left: 500px;top: 300px" class="box_box">C====》》》》》》》</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div id="div1" style="width: 100px;height: 100px;border: 3px solid red;position: absolute"></div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="loading">
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+    <div><span></span></div>
+</div>
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+
+    var a = [1, 2, 3, 5, 41, 5, 6, 4, 1, 3, 1, 3, 13, 1, 5];
+
+    function des(arr) {
+        var newArray = arguments[0];
+        var list = [];
+
+        for (var i = 0; i < arguments.length; i++) {
+            list.push(arguments[i])
+        }
+
+        function isFalse(val) {
+            return list.indexOf(val) === -1;
+        }
+
+        return newArray.filter(isFalse);
+    }
+    console.log(des(a));
+
+    //    sss--------------------------------------->
+
+    function moveDiv(div, fps) {
+        var left = 0;
+        var param = 1;
+
+        function loop() {
+            update();
+            draw();
+        }
+
+        function update() {
+            left += param * 2;
+            if (left > 300) {
+                left = 300;
+                param = -1;
+            } else if (left < 0) {
+                left = 0;
+                param = 1;
+            }
+        }
+
+        function draw() {
+            div.style.left = left + "px";
+        }
+
+        setInterval(loop, 1000 / fps);
+    }
+
+    moveDiv(document.getElementById("div1"), 60);
+
+
+    //------------------------------------------------------------------------------
+    var arr = [1, 2, 3, 4, 5, 6, 7];
+
+    arr.sort(mathArr);
+    console.log(arr.sort(mathArr)[0])
+
+
+    function mathArr(a, b) {
+        return Math.random() > 0.5 ? -1 : 1;
+    }
+
+    !(function () {
+        var num = 0;
+        for (var i = 0; i < arr.length; i++) {
+            num += parseInt(arr[i])
+        }
+        console.log('数值 ：' + num)
+    })();
+
+
+    //------------------------------------------------------------------------------
+    var dot = document.querySelector('.box_box');
+    var frames = [{transform: 'rotate(0deg) translate(80px)'}, {transform: 'rotate(210deg) translate(80px) '},];
+    var timing = {
+        duration: 2500,
+        delay: 0,
+        iterations: Infinity,
+        direction: 'alternate',
+        easing: 'ease-in-out',
+        fill: 'forwards'
+    };
+
+
+    dot.animate(frames, timing);
+
+    //    document.body.animate( [{'background': 'red'}, {'background': 'green'}, {'background': 'blue'}] , 3000);
+</script>
+</body>
+</html>

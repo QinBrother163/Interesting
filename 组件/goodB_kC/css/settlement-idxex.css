@@ -1,0 +1,101 @@
+@charset "UTF-8";
+.top-list {
+    text-align: center;
+}
+
+.list-item-no {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.list-item-no img {
+    width: 3rem;
+}
+
+.list-item-no p {
+    color: #ccc;
+    font-size: .4rem;
+    margin-top: .5rem;
+}
+
+.top-list .info-title {
+    position: relative;
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.top-list .info-title span {
+    display: inline-block;
+    width: 45%;
+    font-size: .4rem;
+}
+
+.top-list .info-title .focus {
+    position: absolute;
+    bottom: 0;
+    /*左边*/
+    left: 1.4499rem;
+    /*右边*/
+    /*left: 5.67rem;*/
+    width: 2.1rem;
+    height: .0761rem;
+}
+
+.male .focus {
+    background-color: #366092;
+}
+
+.female .focus {
+    background-color: #ff87ba;
+}
+
+.male .s_focus {
+    color: #366092;
+}
+
+.female .s_focus {
+    color: #ff87ba;
+}
+
+.item-btn-wrap{
+    text-align: center;
+    margin-top: 1rem;
+}
+.female .item-btn-wrap span{
+    background-color: #ff87ba;
+}
+.male .item-btn-wrap span{
+    background-color: #366092;
+}
+.item-btn-wrap span{
+    padding: .15rem .3rem;
+    color: #fff;
+    border-radius: .1rem;
+    font-size: .38rem;
+}
+.item-con .txt-span1, .item-con .txt-span2 {
+    display: inline-block;
+    position: relative;
+    font-size: .38rem;
+}
+
+.item-con .txt-span1 {
+    float: left;
+    color: #333;
+}
+
+.item-con .txt-span2 {
+    float: right;
+    padding-right: .6rem;
+}
+
+.item-con .txt-span2:after {
+    content: "";
+    width: .75rem;
+    height: .75rem;
+    background: url("../images/right@2x.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: .03rem;
+    right: -.18rem;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>女人言情书架</title>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <link rel="stylesheet" href="../css/app.css">
+
+</head>
+<body>
+<div id="rootApp">
+    <div class="container b_fff">
+        <header class="header_v3">
+            <div class="header_top">
+                <p class="wleft">
+                    <img src="../images/public-left-arrows.png" alt="" class="back">
+                </p>
+                <p class="overhidden title">充值记录</p>
+                <a href="../index.html" class="wright"></a>
+            </div>
+        </header>
+        <ul class="tab_box">
+            <li class="clicked">充值记录</li>
+            <li class="">签到记录</li>
+        </ul>
+        <div class="content" style="">
+            <!--充值记录-->
+            <div class="detail" style="display: block">
+                <!--有数据-->
+                <ul class="recordbox box_ul_p" id="getNode_cz">
+                    <li class="clearfix p020 flex_box flex_bt flex_items_ct line">
+                        <p class="clearfix flex_box flex_col">
+                            <span class="re_name2">30元</span>
+                            <span class="re_time">2018-08-03 11:07:53</span>
+                        </p>
+                        <p class="clearfix"><span class="re_money"> + 3000阅读币</span></p>
+                    </li>
+                    <li class="clearfix p020 flex_box flex_bt flex_items_ct line">
+                        <p class="clearfix flex_box flex_col">
+                            <span class="re_name2">50元</span>
+                            <span class="re_time">2018-08-03 11:07:53</span>
+                        </p>
+                        <p class="clearfix"><span class="re_money"> + 5000阅读币送3000阅读币</span></p>
+                    </li>
+                </ul>
+                <!--没有数据-->
+                <div class="quesheng_box" style="display: none">
+                    <div class="iconfont icon-quesheng pt90"></div>
+                    <div class="c999">暂无记录~</div>
+                </div>
+                <p class="catalog_li load_more" style="padding: .5rem 0">点击加载更多</p>
+            </div>
+            <!--签到记录-->
+            <div class="detail" style="display:none">
+                <p class="cl-purple t_center" style="font-size: 0.24rem;padding: .1rem 0;">签到记录从<span> 2017.10.13 </span>开始记录</p>
+                <!--有数据-->
+                <ul class="recordbox" id="getNode_qd">
+                    <li class="clearfix flex_box flex_bt flex_items_ct line ptb24">
+                        <p class="re_name">签到+40阅读币</p>
+                        <p class="re_attime">2018-08-01 09:09:05</p>
+                    </li>
+                    <li class="clearfix flex_box flex_bt flex_items_ct line ptb24">
+                        <p class="re_name">签到+30阅读币</p>
+                        <p class="re_attime">2018-07-31 17:59:20</p>
+                    </li>
+                </ul>
+                <!--没有数据-->
+                <div class="quesheng_box" style="display: none">
+                    <div class="iconfont icon-quesheng pt90"></div>
+                    <div class="c999">暂无记录~</div>
+                </div>
+                <p class="catalog_li load_more" style="padding: .5rem 0">点击加载更多</p>
+            </div>
+        </div>
+    </div>
+    <p id="msg" class="msg" style="display: none;">删除成功</p>
+    <!--加载中-->
+    <div class="loading_jump loading_jump2" style="display: none">
+        <div class="loading_jump1"></div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/setFont.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/rechargeRecord.js"></script>
+</body>
+</html>

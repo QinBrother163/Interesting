@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>好书云</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../css/personal.css">
+    <style type="text/css">
+        .cont_li_book {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            padding: 0 .3rem;
+        }
+
+        .payStatus_wrap {
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            margin-top: 2.5rem;
+        }
+
+        .payStatus_wrap .btn_go {
+            padding: .16rem .36rem;
+            border-radius: .25rem;
+            margin: 0 .6rem;
+            color: #fff;
+        }
+
+        .payStatus_wrap .go_home {
+            text-align: left;
+            margin: .5rem 0 0 1.7rem;
+            font-size: .36rem;
+        }
+
+        .payStatus_wrap .go_home a {
+            color: #666;
+            font-size: .4rem;
+        }
+
+        .page-style3-male .payStatus_wrap .btn_go {
+            background-color: #3a5ca2;
+        }
+
+        .page-style3-female .payStatus_wrap .btn_go {
+            background-color: #ff87ba;
+        }
+        .mtb30{
+            margin: .5rem 0 .5rem 0;
+        }
+        .mb20{
+            margin-bottom: 2rem;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        !function () {
+            var a = "@charset \"utf-8\";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ins,a{text-decoration:none}",
+                b = document.createElement("style");
+            if (document.getElementsByTagName("head")[0].appendChild(b), b.styleSheet) b.styleSheet.disabled || (b.styleSheet.cssText = a); else try {
+                b.innerHTML = a
+            } catch (c) {
+                b.innerText = a
+            }
+        }();
+        !function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+
+            var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'),
+                h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {});
+            if (g) {
+                console.warn("将根据已有的meta标签来设置缩放比例");
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                    q = a.devicePixelRatio;
+                i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g)if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+            a.addEventListener("resize", function () {
+                clearTimeout(d), d = setTimeout(c, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+            }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () {
+                    e.body.style.fontSize = 12 * i + "px"
+                }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                var b = parseFloat(a) * this.rem;
+                return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+            }, k.px2rem = function (a) {
+                var b = parseFloat(a) / this.rem;
+                return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+            }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+</head>
+<body>
+<div id="root">
+    <div class="page-style3 page-style3-female">
+        <div class="my-bookshelf-container">
+            <div class="component-header-wrap-3"><span class="imgicon nav-left"></span>
+                <div class="title">书籍推荐</div>
+                <div class="menu-btn"></div>
+                <div class="menu-modal-bg openMenu noMenu">
+                </div>
+            </div>
+
+            <div class="cont_li_book">
+                <div class="payStatus_wrap">
+                    <a class="btn_go" href="javascript:;">充值完成</a>
+                    <a class="btn_go" href="javascript:;">继续充值</a>
+                    <p class="go_home"><a href="javascript:;">返回书城再看看</a></p>
+                </div>
+            </div>
+
+            <div class="home3-block home3-top-list  mtb30">
+                <h3 class="clearfix h3after">其他人正在读：</h3>
+            </div>
+            <div class="recommends-main cont_li_book mb20">
+                <a class="home3-top-item" href="javascript:void(0);">
+                    <div class="img"><img
+                            src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg">
+                    </div>
+                    <span class="name">都市透视高手</span>
+                </a>
+                <a class="home3-top-item" href="javascript:void(0);">
+                    <div class="img"><img
+                            src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg">
+                    </div>
+                    <span class="name">男技师的指尖诱情</span>
+                </a>
+                <a class="home3-top-item" href="javascript:void(0);">
+                    <div class="img"><img
+                            src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg">
+                    </div>
+                    <span class="name">男技师的指尖诱情</span>
+                </a>
+                <a class="home3-top-item" href="javascript:void(0);">
+                    <div class="img"><img
+                            src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg">
+                    </div>
+                    <span class="name">男技师的指尖诱情</span>
+                </a>
+                <a class="home3-top-item" href="javascript:void(0);">
+                    <div class="img"><img
+                            src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg">
+                    </div>
+                    <span class="name">男技师的指尖诱情</span>
+                </a>
+            </div>
+
+
+            <div class="style3-home-nav">
+                <a href="javascript:;">
+                    <img src="../images/home-nav/1.png"><span>书库</span>
+                </a>
+                <a href="javascript:;">
+                    <img src="../images/home-nav/2.png"><span>排行榜</span>
+                </a>
+                <a href="javascript:;">
+                    <img src="../images/home-nav/3.png"><span>书架</span>
+                </a>
+                <a href="javascript:;">
+                    <img src="../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function createNode() {
+        var menu = document.querySelector('.menu-modal-bg');
+        var menu_content = document.querySelector('.menu-content');
+
+        if (!menu_content) {
+            var node = document.createElement('div');
+            node.className = 'menu-content';
+            node.innerHTML =
+                '<a href="../index.html"><img src="../images/home@2x.png" alt="icon"><span>首页</span></a>' +
+                '<a href="bookcase.html"><img src="../images/bookshelf-icon@2x.png" alt="icon"><span>书架</span></a>' +
+                '<a href="readingHistory.html"><img src="../images/history@2x.png" alt="icon"><span>阅读历史</span></a>' +
+                '<a href="bookWarehouse.html"><img src="../images/stacks-icon@2x.png" alt="icon"><span>书库</span></a>' +
+                '<a href="ranking.html"><img src="../images/trophy@2.png" alt="icon"><span>排行榜</span></a>' +
+                '<a href="search.html"><img src="../images/search@2x.png" alt="icon"><span>搜索</span></a>' +
+                '<a href="userTopUp.html"><img src="../images/chong@2x.png" alt="icon"><span>充值</span></a>' +
+                '<a href="personal.html"><img src="../images/user@4.png" alt="icon"><span>个人中心</span></a>';
+            menu.appendChild(node);
+        }
+    })();
+    var root = document.getElementById('root');
+    var menu_btn = root.querySelector('.menu-btn');
+    var openMenu = root.querySelector('.openMenu');
+
+    menu_btn.onclick = function () {
+        var open = menu_btn.className == 'menu-btn';
+        menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+        var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+        openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+    };
+</script>
+</body>
+</html>

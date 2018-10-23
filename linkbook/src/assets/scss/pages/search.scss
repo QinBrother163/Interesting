@@ -1,0 +1,78 @@
+.search {
+  justify-content: space-between;
+  margin: 0 0 .3rem 0;
+  padding: .15rem 0;
+
+  .search_right {
+    padding: .15rem .36rem;
+    border: .02rem solid #eee;
+    border-radius: .36rem;
+    font-size: .32rem;
+    color: #fff;
+  }
+  .search_left {
+    width: 7.4rem;
+    border: .02rem solid #eee;
+    border-radius: .36rem;
+    padding: .15rem 0;
+    color: #666;
+
+    i {
+      font-size: .36rem;
+    }
+    input {
+      border: none;
+      padding-left: .15rem;
+      font-size: .32rem;
+      width: 6rem;
+    }
+  }
+}
+
+.male .search_right {
+  background: -webkit-linear-gradient(#50c8e2, #6aa8f0);
+  background: -o-linear-gradient(#50c8e2, #6aa8f0);
+  background: -moz-linear-gradient(#50c8e2, #6aa8f0);
+  background: linear-gradient(#50c8e2, #6aa8f0);
+}
+
+.female .search_right {
+  background: -webkit-linear-gradient(#ff8d81, #fb4e74);
+  background: -o-linear-gradient(#ff8d81, #fb4e74);
+  background: -moz-linear-gradient(#ff8d81, #fb4e74);
+  background: linear-gradient(#ff8d81, #fb4e74);
+}
+
+.search_hot {
+  p:first-child {
+    font-size: .4rem;
+  }
+
+  ul {
+    margin-top: .36rem;
+
+    li{
+      display: inline-block;
+      padding: .26rem .46rem;
+      background-color: #f7f7f7;
+      text-align: center;
+      margin: 0 .36rem .36rem;
+      border-radius: .16rem;
+      font-size: .32rem;
+      box-sizing: border-box;
+    }
+
+
+  }
+}
+@media screen and (max-width: 320px) {
+  .search_hot ul li{
+    margin: 0 .28rem .36rem;
+  }
+}
+.mescroll{
+  position: fixed;
+  top: 1.5rem;
+  bottom: 0;
+  height: auto;
+}

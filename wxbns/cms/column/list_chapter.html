@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     style="position: absolute; width: 0; height: 0" id="__SVG_SPRITE_NODE__">
+    <symbol viewBox="0 0 44 44" id="down"><title>Operation Icons Copy 4</title>
+        <path d="M22.355 28.237l-11.483-10.9c-.607-.576-1.714-.396-2.48.41l.674-.71c-.763.802-.73 2.071-.282 2.496l11.37 10.793-.04.039 2.088 2.196 1.098-1.043 12.308-11.682c.447-.425.48-1.694-.282-2.496l.674.71c-.766-.806-1.873-.986-2.48-.41L22.355 28.237z"
+              fill-rule="evenodd"></path>
+    </symbol>
+    <symbol viewBox="0 0 44 44" id="up"><title>Operation Icons Copy 4</title><title>background</title>
+        <path fill="none" d="M-1-1h46v46H-1z"></path>
+        <g><title>Layer 1</title>
+            <defs>
+                <path id="up_a" d="M-129-845h24v24h-24z"></path>
+            </defs>
+            <clipPath id="up_b">
+                <use xlink:href="#up_a"></use>
+            </clipPath>
+            <g clip-path="url(#up_b)">
+                <defs>
+                    <path id="up_c" d="M-903-949H947V996H-903z"></path>
+                </defs>
+                <clipPath id="up_d">
+                    <use xlink:href="#up_c"></use>
+                </clipPath>
+            </g>
+            <path d="M23.417 14.229L11.184 26.462l2.121 2.12 10.12-10.117 10.117 10.118 2.121-2.121L23.43 14.229l-.006.006z"></path>
+        </g>
+    </symbol>
+</svg>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="directory3-container">
+            <div class="directory-header-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title"><span id="text-center" class="text-center"><span>章节目录</span>
+                    <!-- react-text: 8 -->
+                    <!-- /react-text --><!--svg class="am-icon am-icon-down am-icon-md icon">
+                        <use id="am-icon-use" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#down"></use>
+                    </svg-->
+                </span>
+                </div>
+                <div class="menu-btn"></div>
+            </div>
+            <div class="chapter-select-bg noMenu">
+                <div class="chapter-select">
+                    <div class="text-center">1-15章</div>
+                </div>
+            </div>
+            <div class="chapter-list">
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+			<div id="block-loading" style="display: block">
+                    <div class="block-loading">
+                        <div class="am-activity-indicator am-activity-indicator-lg">
+                            <span class="am-activity-indicator-spinner am-activity-indicator-spinner-lg" aria-label="loading"></span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var cursor = 0;
+    var isForceFollow = {$moshi};
+    var forceFollowChapterIdx = {$chapteridx};
+    var memberSubscribed = {$isguanzhu};
+    var isFree = {$free};
+    var from = '';
+
+    $("#text-center").click(function () {
+        var icon_ = $("#am-icon-use").attr("xlink:href");
+        switch (icon_) {
+            case '#down':
+                $("#am-icon-use").attr({"xlink:href": "#up"});
+                break;
+            case '#up':
+                $("#am-icon-use").attr({"xlink:href": "#down"});
+                break;
+            default:
+                break;
+        }
+    });
+
+    (function () {
+        var cookie = {
+            set: function (key, val, time) {
+                var date = new Date();
+                var expiresDays = time;
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+            },
+            get: function (key) {
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+                var arrCookie = getCookie.split(";");
+                var tips;
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    if (key == arr[0]) {
+                        tips = arr[1];
+                        break;
+                    }
+                }
+                return tips;
+            },
+            delete: function (key) {
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+            }
+        };
+        var root = document.getElementById('root');
+        var text_center = root.querySelector('#text-center');
+        var menu_btn = root.querySelector('.menu-btn');
+        var chapter_select_bg = root.querySelector('.chapter-select-bg');
+        var am_icon = document.querySelector('.am-icon');
+        var page_style3 = root.querySelector('.page-style3');
+        var sex_type = cookie.get("ieasynet_home_s");
+
+        if (sex_type == 3){
+            //女版
+            page_style3.className = 'page-style3 page-style3-female';
+        }else {
+            //男版
+            page_style3.className = 'page-style3 page-style3-male';
+        }
+
+        root.querySelector('.nav-left').onclick = function () {
+            window.history.go(-1);
+        };
+
+        menu_btn.onclick = function () {
+            var i = menu_btn.className == 'menu-btn';
+            menu_btn.className = i ? 'menu-btn open' : 'menu-btn';
+
+            if(i){
+                $('.chapter-list').html('');
+                cursor = 0;
+                request(cursor, 1);
+            }else{
+                $('.chapter-list').html('');
+                cursor = 0;
+                request(cursor, 0);
+            }
+
+        };
+
+        text_center.onclick = function () {
+            var open = am_icon.className == 'am-icon am-icon-down am-icon-md icon';
+            am_icon.className = open ? 'am-icon am-icon-up am-icon-md icon' : 'am-icon am-icon-down am-icon-md icon';
+
+            var i = chapter_select_bg.className == 'chapter-select-bg noMenu';
+            chapter_select_bg.className = i ? 'chapter-select-bg' : 'chapter-select-bg noMenu';
+        };
+
+
+    })();
+
+    // <a class="chapter-item active" href="https://wxf58a44d9e1aa6aa6.wx.mxs.com/read/index?account_id=2437&amp;novel_id=1865&amp;chapter=1&amp;souce_scene=20">
+    //     <p>第1章外面的世界</p><span class="need-coin"></span></a>
+    //
+    // <a class="chapter-item" href="https://wxf58a44d9e1aa6aa6.wx.mxs.com/read/index?account_id=2437&amp;novel_id=1865&amp;chapter=24&amp;souce_scene=20">
+    //     <p>第24章美女老师</p>
+    //     <span>
+    //     <span class="diamond"></span>
+    //     <span class="need-coin">20</span>
+    //     </span>
+    //     </a>
+
+    //--------------上拉加载更多---------------
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可视范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+
+    //滚动事件触发
+    window.onscroll = function () {
+      	var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var i = menu_btn.className == 'menu-btn';
+      
+        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+            cursor++;
+            var block_loading = document.getElementById('block-loading');
+            block_loading.style.display = 'block';
+			if(window.loading==false){
+				 if(i){
+                    setTimeout('request('+cursor+', 0)',100);
+                }else{
+                    setTimeout('request('+cursor+', 1)',100);
+                }
+				window.loading=true;
+			}
+			
+        }
+    }
+
+
+    request(cursor, 0);
+    function request(start, sort) {
+        var nid = {$bid};
+        $.get('/cms/column/doajaxidx/', {
+            bid: nid,
+            start: start * 15,
+            fetch_novel: 0,
+            sort:sort
+        }, function (result) {
+            var entries = result.data.catalog;
+			if(entries==undefined){
+				$(".block-loading").html("<font style='text-align:center; font-size:14px;display:block;color:#ccc;'>全部章节加载完成</font>");
+			}
+            var html = '';
+            var count = result.data.count;
+            var num = parseInt(count / 15);
+            var hhtml = '';
+            var a = 1;
+            var b = 1;
+            for (var i = 1; i <= num; i++) {
+                b = i*15;
+                hhtml += '<div class="text-center">'+a+'-'+b+'章</div>';
+                a = b+1;
+            }
+            $('.chapter-select').html(hhtml);
+            $.each(entries, function () {
+                var entry = this;
+                var followRequried = isForceFollow && entry.idx >= forceFollowChapterIdx && !memberSubscribed;
+                var url = followRequried ? '{:url("cms/document/jumperweima", ["id" => $sxid])}' : '/cms/document/detail/id/' + entry.id + '?from=' + from;
+                var style = followRequried ? 'style="color:#ccc"' : '';
+              
+                entry.title = entry.title || '第' + entry.idx + '章';
+                entry.welth = parseInt(entry.welth);
+
+                if(entry.idx == 1){
+                    html += '<a class="chapter-item active" href="'+url+'">';
+                }else{
+                    html += '<a class="chapter-item" href="'+url+'" '+style+' >';
+                }
+                html += '<p>' + entry.title + '</p>';
+
+                if(entry.welth > 0){
+                    html += '<span>';
+                    if(isFree){
+                        html += '<span style="font-size: 12px;">限时免费</span>';
+                    }
+
+                    if(isFree){
+                        html += '<span class="need-coin"></span>';
+                    }else{
+                        html += '<span class="diamond"></span>';
+                        html += '<span class="need-coin">'+entry.welth+'</span>';
+                    }
+
+                    html += '</span>';
+                }else{
+                    html += '<span class="need-coin"></span>';
+                }
+
+                html += '</a>';
+
+            });
+
+            $('.chapter-list').append(html);
+			
+			window.loading=false;
+            // cursor = cursor + entries.length;
+            // completed = entries.length === 0;
+            //
+            // loading = false;
+            //
+            // if (completed) {
+            //     $(document.body).destroyInfinite();
+            //     $('.weui-infinite-scroll').remove();
+            // }
+        });
+    }
+
+</script>
+</body>
+</html>

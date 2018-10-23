@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <link rel="stylesheet" href="__MODULE_CSS__/swipeslider.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+<body style="font-size: 12px;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     style="position: absolute; width: 0; height: 0" id="__SVG_SPRITE_NODE__">
+    <symbol viewBox="0 0 44 44" id="right"><title>Operation Icons Copy 4</title>
+        <defs>
+            <path id="right_a" d="M-129-845h24v24h-24z"></path>
+        </defs>
+        <clipPath id="right_b">
+            <use xlink:href="#right_a" overflow="visible"></use>
+        </clipPath>
+        <g clip-path="url(#right_b)">
+            <defs>
+                <path id="right_c" d="M-903-949H947V996H-903z"></path>
+            </defs>
+            <clipPath id="right_d">
+                <use xlink:href="#right_c" overflow="visible"></use>
+            </clipPath>
+        </g>
+        <path d="M30.601 21.399L18.368 9.166l-2.121 2.121 10.118 10.119-10.118 10.118 2.121 2.121 12.233-12.233-.006-.006z"></path>
+    </symbol>
+</svg>
+<div id="root">
+
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="home3 home3-male">
+            <div class="home3-top-block">
+                <div class="top-search clearfix">
+                    <div class="style3-sex-tab">
+                        <a href="{:url('cms/index/index', ['s' => 2])}"><span class="channel-item {$_COOKIE["ieasynet_home_s"]==2 ? '' : 'bg-active_girl'}" id="girl">女生</span></a>
+                        <a href="{:url('cms/index/index', ['s' => 1])}"><span id="boy" class="channel-item  {$_COOKIE["ieasynet_home_s"]==3 ? '' : 'bg-active'}">男生</span></a>
+                    </div>
+                    <span class="search-icon"></span>
+                </div>
+                <div class=" ">
+                    <div class="slide-wrap">
+                        <figure id="full_feature" class="swipslider">
+                            <ul class="sw-slides">
+                                {volist name="bannerList" id="item"}
+                                {neq name="item.zid" value="0"}
+                                <li class="sw-slide" data-url="{:url('cms/document/detail', ['id' => $item.zid])}">
+                                    {else/}
+                                <li class="sw-slide" data-url="{:url('cms/column/book', ['id' => $item.bid])}">
+                                    {/neq}
+                                    <img src="{$item.pic|get_file_path}" alt="{$item.title}">
+                                </li>
+                                {/volist}
+                            </ul>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="home3-block home3-new-book"><h3 class="clearfix h3after">主编推荐</h3>
+                <div class="block-content clearfix">
+                    <div class="recommends-main">
+                        {volist name="zhubian_list" id="vo" offset="0" length='4'}<a class="home3-book-item" href="{:url('cms/column/book', ['id' => $vo['id']])}"><div class="img"><img src="{$vo.image|get_thumb}"></div><span class="name">{$vo.title}</span></a>{/volist}
+                    </div>
+                    <div class="recommends-more">
+                        {volist name="zhubian_list" id="vo" offset="4" length='6'}
+                        <a class="recommends-text" href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                        <h4>{$vo.title}</h4>
+                        <p>{$vo.desc}</p>
+                        </a>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="home3-block home3-new-book"><h3 class="clearfix h3after">新书推荐</h3>
+                <div class="block-content clearfix">
+                    <div class="recommends-main">
+                        {volist name="newBook" id="vo" offset="0" length='4'}<a class="home3-book-item" href="{:url('cms/column/book', ['id' => $vo['id']])}"><div class="img"><img src="{$vo.image|get_thumb}"></div><span class="name">{$vo.title}</span></a>{/volist}
+                    </div>
+                    <div class="recommends-more">
+                        {volist name="newBook" id="vo" offset="4" length='6'}
+                        <a class="recommends-text" href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                            <h4>{$vo.title}</h4>
+                            <p>{$vo.desc}</p>
+                        </a>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="home3-block home3-top-list">
+                <h3 class="clearfix h3after">排行榜
+                    <a class="more active" href="{:url('cms/column/ranking')}">更多
+                        <svg class="am-icon am-icon-right am-icon-xs">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#right"></use>
+                        </svg>
+                    </a>
+                </h3>
+                <div></div>
+                <div class="btn-groups am-segment" role="tablist">
+                    <div class="am-segment-item" role="tab" aria-selected="false" aria-disabled="false">
+                        <div class="am-segment-item-inner" style="background-color: rgb(58, 92, 162);"></div>
+                        点击榜
+                    </div>
+                    <div class="am-segment-item am-segment-item-selected" role="tab" aria-selected="true"
+                         aria-disabled="false">
+                        <div class="am-segment-item-inner" style="background-color: rgb(58, 92, 162);"></div>
+                        畅销榜
+                    </div>
+                    <div class="am-segment-item" role="tab" aria-selected="false" aria-disabled="false">
+                        <div class="am-segment-item-inner" style="background-color: rgb(58, 92, 162);"></div>
+                        打赏榜
+                    </div>
+                </div>
+
+                <div class="block-content clearfix tab-content" style="display: none">
+                    {volist name="viewOrder" id="item"}
+                    <div class="home3-top-item hom3-top-item-male">
+                        <div class="img">
+                            <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                                <img src="{$item.image|get_thumb}">
+                            </a>
+                        </div>
+                        <div class="name">{$item.title}</div>
+                        <div class="style3-top-tag num-1">{$i}</div>
+                    </div>
+                    {/volist}
+                    <div class="list-bg"></div>
+                </div>
+                <!--内容2-->
+                <div class="block-content clearfix tab-content">
+                    {volist name="scoreOrder" id="item"}
+                    <div class="home3-top-item hom3-top-item-male">
+                        <div class="img">
+                            <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                                <img src="{$item.image|get_thumb}">
+                            </a>
+                        </div>
+                        <div class="name">{$item.title}</div>
+                        <div class="style3-top-tag num-1">{$i}</div>
+                    </div>
+                    {/volist}
+                    <div class="list-bg"></div>
+                </div>
+                <!--内容3-->
+                <div class="block-content clearfix tab-content" style="display: none">
+                    {volist name="tipsOrder" id="item"}
+                    <div class="home3-top-item hom3-top-item-male">
+                        <div class="img">
+                            <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                                <img src="{$item.image|get_thumb}">
+                            </a>
+                        </div>
+                        <div class="name">{$item.title}</div>
+                        <div class="style3-top-tag num-1">{$i}</div>
+                    </div>
+                    {/volist}
+                    <div class="list-bg"></div>
+                </div>
+            </div>
+            <div class="home3-block">
+                <h3 class="clearfix h3after"><!-- react-text: 96 -->小说精选<!-- /react-text -->
+                    <a class="more active" href="{:url('cms/column/selected')}">更多
+                        <svg class="am-icon am-icon-right am-icon-xs">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#right"></use>
+                        </svg>
+                    </a>
+                </h3>
+                <div class="block-content clearfix">
+                    {volist name="choicest" id="vo" length='6'}
+                    <div class="style3-book-item2 clearfix">
+                        <div class="img">
+                            <a href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                                <img src="{$vo.image|get_thumb}">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <a href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                                <span class="name">{$vo.title}</span>
+                            </a>
+                            <div class="desc">
+                                <a href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                                    {$vo.desc}
+                                </a>
+                            </div>
+                            <div class="count clearfix"><span class="author tag">{$vo.tstype}</span>
+                                <span class="status tag">{$vo.xstype}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="home3-block home3-timefree">
+                <h3 class="clearfix h3after">
+                    限时免费
+                </h3>
+                <div class="block-content clearfix">
+                    {volist name="free_list" id="vo" length='6'}<a class="home3-book-item large" href="{:url('cms/column/book', ['id' => $vo['id']])}"><i class="timeTag"></i><div class="img"><img src="{$vo.image|get_thumb}"></div><span class="name">{$vo.title}</span></a>{/volist}
+                </div>
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="__MODULE_JS__/swipeslider.min.js"></script>
+<script type="text/javascript" src="__MODULE_JS__/index.js"></script>
+<script type="text/javascript">
+
+    if (document.body.offsetWidth == 459){
+        document.getElementsByTagName('html')[0].style.fontSize = '45.5px';
+    }
+    var search_icon = document.querySelector('.search-icon');
+
+    search_icon.onclick = function () {
+        window.location.href = "{:url('cms/search/index')}";
+    };
+
+</script>
+</body>
+</html>

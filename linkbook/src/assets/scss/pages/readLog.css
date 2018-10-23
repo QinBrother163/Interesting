@@ -1,0 +1,73 @@
+.read_nav {
+  justify-content: space-between;
+  padding: .42rem 0;
+  text-align: center; }
+  .read_nav span {
+    width: 50%;
+    font-size: .4rem; }
+
+.male .focus_sex {
+  color: #6aa8f0 !important; }
+
+.female .focus_sex {
+  color: #fb4e74 !important; }
+
+.male .focus_sex:after {
+  background: #6aa8f0; }
+
+.female .focus_sex:after {
+  background: #fb4e74; }
+
+.focus_sex {
+  position: relative; }
+
+.focus_sex:after {
+  content: '';
+  position: absolute;
+  top: .64rem;
+  left: 1.98rem;
+  width: .8rem;
+  height: 2px; }
+
+.list_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: .35rem 0; }
+  .list_item .info {
+    margin-left: .46rem;
+    color: #666; }
+    .list_item .info .chapter {
+      font-size: .4rem;
+      font-weight: bold;
+      color: #333;
+      margin-top: .15rem; }
+    .list_item .info .title {
+      font-size: .32rem;
+      margin-top: .15rem; }
+    .list_item .info .info_status {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      margin-top: .15rem;
+      font-size: 0.28rem;
+      min-width: 6.4rem; }
+      .list_item .info .info_status span {
+        padding: .05rem .15rem;
+        font-size: .28rem; }
+
+.list_item img {
+  width: 1.8rem;
+  height: 2.3rem;
+  border-radius: .15rem;
+  margin-left: .3rem; }
+
+.delBtn {
+  display: inline-block;
+  margin-top: .15rem;
+  padding: .05rem .3rem; }
+
+/*# sourceMappingURL=readLog.css.map */

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提示框</title>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <script type="text/javascript">
+        !function () {
+            var a = "@charset \"utf-8\";html{color:#000;background:#fff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ins,a{text-decoration:none}",
+                b = document.createElement("style");
+            if (document.getElementsByTagName("head")[0].appendChild(b), b.styleSheet) b.styleSheet.disabled || (b.styleSheet.cssText = a); else try {
+                b.innerHTML = a
+            } catch (c) {
+                b.innerText = a
+            }
+        }();
+        !function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+
+            var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'),
+                h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {});
+            if (g) {
+                console.warn("将根据已有的meta标签来设置缩放比例");
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                    q = a.devicePixelRatio;
+                i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g)if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+            a.addEventListener("resize", function () {
+                clearTimeout(d), d = setTimeout(c, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+            }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () {
+                    e.body.style.fontSize = 12 * i + "px"
+                }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                var b = parseFloat(a) * this.rem;
+                return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+            }, k.px2rem = function (a) {
+                var b = parseFloat(a) / this.rem;
+                return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+            }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+    <style type="text/css">
+        .qrcode-wrap {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .qrcode-box {
+            position: relative;
+            margin: 25% auto 0;
+            background: #fff;
+            width: 90%;
+            border-radius: .3rem;
+            text-align: center;
+            padding: 0 .3rem;
+        }
+
+        .qrcode-box .d_title {
+            font-size: .42rem;
+            font-weight: bold;
+            padding-top: .5rem;
+        }
+
+        .qrcode-box .d_date {
+            font-size: .36rem;
+            color: #444;
+            padding: .2rem 0 .5rem 0;
+        }
+
+        .qrcode-box .d_txt {
+            font-size: .36rem;
+            color: #444;
+            padding-bottom: .5rem;
+        }
+
+        .qrcode-box .d_content {
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            width: 100%;
+            padding: .1rem 0;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: center;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+        }
+
+        .qrcode-box .d_content .d_content_item {
+            align-items: center;
+            box-sizing: border-box;
+            border-radius: .15rem;
+            border: 1px solid #eee;
+            background: #f9eee8;
+            width: 2rem;
+            height: auto;
+            margin-bottom: .5rem;
+        }
+
+        .qrcode-box .d_content .item_a_c {
+            margin-bottom: 0.3rem;
+            background: #fff;
+            color: #333;
+            font-size: 0.28rem;
+            position: relative;
+            display: -webkit-box;
+        }
+
+        .qrcode-box .d_content .item_a_c .lp_li_imgWrapimg {
+            width: 1.8rem;
+            height: 2rem;
+            margin-right: 15px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 4px 2px rgba(188, 188, 188, 0.3);
+            -moz-box-shadow: 0 2px 4px 2px rgba(188, 188, 188, 0.3);
+            -webkit-box-shadow: 2px 2px 8px 1px rgba(188, 188, 188, 0.3);
+        }
+
+        .qrcode-box .d_content .item_a_c .title_r {
+            -ms-box-flex: 1.0;
+            -webkit-box-flex: 1.0;
+            -moz-box-flex: 1.0;
+            padding-top: 0.15rem;
+        }
+
+        .qrcode-box .d_content .item_a_c .lp_li_name {
+            color: #333;
+            font-size: .4rem;
+            line-height: .45rem;
+            white-space: nowrap;
+            word-break: break-all;
+        }
+
+        .qrcode-box .d_content .item_a_c .Detail {
+            -ms-box-orient: vertical;
+            -webkit-box-orient: vertical;
+            font-size: .32rem;
+            color: #999;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            margin-top: .2rem;
+            height: 1.09rem;
+            line-height: .51rem;
+            max-height: 100%;
+        }
+
+        .qrcode-box .d_content .d_content_item + .d_content_item {
+            margin-left: .2rem;
+        }
+
+        .qrcode-box .d_content .d_p1 {
+            font-size: .36rem;
+            background: #f6e0d3;
+            width: 100%;
+            height: auto;
+            padding: .15rem 0;
+            color: #df8560;
+            border-top-left-radius: .15rem;
+            border-top-right-radius: .15rem;
+        }
+
+        .qrcode-box .d_content .d_content_item .d_bg {
+            display: inline-block;
+            width: .5rem;
+            height: .5rem;
+            margin: .15rem 0 .05rem 0;
+            background: url("images/xingxing.png") no-repeat;
+            background-size: contain;
+        }
+
+        .qrcode-box .d_content .d_content_item .d_bg.ok_bg {
+            background: url("images/bookfemale-no.png") no-repeat;
+            background-size: contain;
+        }
+
+        .qrcode-box .d_content .d_content_item .t_img {
+            width: 100%;
+            height: 2.5rem;
+            padding: 0;
+        }
+
+        .qrcode-box .d_content .d_p2 {
+            font-size: .32rem;
+            width: 100%;
+            height: auto;
+            padding-top: .15rem;
+            padding-bottom: .15rem;
+            color: #df8560;
+        }
+
+        .qrcode-box .read-code-close {
+            position: absolute;
+            width: .7rem;
+            height: .7rem;
+            margin-right: -0.35rem;
+            right: 50%;
+            bottom: -0.9rem;
+        }
+
+        .d_focus {
+            background: #df8560 !important;
+            color: #fff !important;
+        }
+
+        .pb3 {
+            padding-bottom: .3rem;
+        }
+
+        .clearBG {
+            background: none !important;
+            border: none !important;
+        }
+
+        .box_shadow {
+            box-shadow: 0 2px 4px 2px rgba(188, 188, 188, 0.3);
+            -moz-box-shadow: 0 2px 4px 2px rgba(188, 188, 188, 0.3);
+            -webkit-box-shadow: 0 2px 8px 1px rgba(188, 188, 188, 0.3);
+        }
+
+        .txt-align {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!--&lt;!&ndash;签到&ndash;&gt;-->
+<!--<div id="o_sign" class="qrcode-alert qrcode-wrap" style="display: block;">-->
+    <!--<div class="qrcode-box">-->
+        <!--<p class="d_title">本周签到</p>-->
+        <!--<p class="d_date"><span>08月27日</span>-<span>09月02日</span></p>-->
+        <!--<div class="d_content ">-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1 ">累计1天</p>-->
+                <!--<span class="d_bg "></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计2天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计3天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计4天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计5天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计6天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+            <!--<div class="d_content_item">-->
+                <!--<p class="d_p1">累计7天</p>-->
+                <!--<span class="d_bg"></span>-->
+                <!--<p class="d_p2">45赠币</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<p class="d_txt">签到赠送书币有效期七天</p>-->
+        <!--<img src="images/dialog-x.png" class="read-code-close">-->
+    <!--</div>-->
+<!--</div>-->
+<!--推荐--1-->
+<!--<div id="o_recommend" class="qrcode-alert qrcode-wrap" style="display: none;">-->
+    <!--<div class="qrcode-box">-->
+        <!--<p class="d_title pb3">精彩推荐</p>-->
+        <!--<div class="d_content " style="">-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="d_content_item clearBG">-->
+                <!--<a href="javascript:;">-->
+                    <!--<img class="t_img box_shadow" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                    <!--<p class="d_p2 txt-align">天下无敌</p>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<img src="images/dialog-x.png" class="read-code-close">-->
+    <!--</div>-->
+<!--</div>-->
+<!--推荐--2-->
+<!--<div id="o_recommend" class="qrcode-alert qrcode-wrap" style="display: none;">-->
+    <!--<div class="qrcode-box" style="margin: 20% auto 0;">-->
+        <!--<p class="d_title pb3">精彩推荐</p>-->
+        <!--<div class="d_content">-->
+            <!--<a href="javascript:;" class="item_a_c">-->
+                <!--<img class="lp_li_imgWrapimg" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                <!--<div class="title_r">-->
+                    <!--<div class="lp_li_name txt-align">热血教官</div>-->
+                    <!--<div class="Detail">铁拳所向，试问谁可争锋？义胆柔情，各色美人争宠！他，就是终极教官，当世大魔王！为美人无限张狂；为兄弟两肋插刀；为亲人誓死守护！尸山血海中杀伐，累累白骨中踏步，蓦然回首，已傲立巅峰，成就传奇霸业！</div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a href="javascript:;" class="item_a_c">-->
+                <!--<img class="lp_li_imgWrapimg" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                <!--<div class="title_r">-->
+                    <!--<div class="lp_li_name txt-align">热血教官</div>-->
+                    <!--<div class="Detail">铁拳所向，试问谁可争锋？义胆柔情，各色美人争宠！他，就是终极教官，当世大魔王！为美人无限张狂；为兄弟两肋插刀；为亲人誓死守护！尸山血海中杀伐，累累白骨中踏步，蓦然回首，已傲立巅峰，成就传奇霸业！</div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a href="javascript:;" class="item_a_c">-->
+                <!--<img class="lp_li_imgWrapimg" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                <!--<div class="title_r">-->
+                    <!--<div class="lp_li_name txt-align">热血教官</div>-->
+                    <!--<div class="Detail">铁拳所向，试问谁可争锋？义胆柔情，各色美人争宠！他，就是终极教官，当世大魔王！为美人无限张狂；为兄弟两肋插刀；为亲人誓死守护！尸山血海中杀伐，累累白骨中踏步，蓦然回首，已傲立巅峰，成就传奇霸业！</div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <!--<a href="javascript:;" class="item_a_c">-->
+                <!--<img class="lp_li_imgWrapimg" src="https://static.youshuge.com/book_img/2sZEILeQ8RJ6hESkH5Pc7yTOn3AOpDcxi4WGH61k.jpeg" alt="">-->
+                <!--<div class="title_r">-->
+                    <!--<div class="lp_li_name txt-align">热血教官</div>-->
+                    <!--<div class="Detail">铁拳所向，试问谁可争锋？义胆柔情，各色美人争宠！他，就是终极教官，当世大魔王！为美人无限张狂；为兄弟两肋插刀；为亲人誓死守护！尸山血海中杀伐，累累白骨中踏步，蓦然回首，已傲立巅峰，成就传奇霸业！</div>-->
+                <!--</div>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<img src="images/dialog-x.png" class="read-code-close">-->
+    <!--</div>-->
+<!--</div>-->
+
+<script type="text/javascript" rel="stylesheet" src="newDialog.js"></script>
+</body>
+</html>

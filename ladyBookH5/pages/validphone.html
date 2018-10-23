@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>女人言情书架</title>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+<div id="rootApp">
+    <div class="container b_f7 bindphone_v3">
+        <div class="ph_100">
+            <header class="header_v3">
+                <div class="header_top">
+                    <p class="wleft">
+                        <img src="../images/public-left-arrows.png" alt="" class="back"></p>
+                    <p class="overhidden title">验证手机号</p>
+                    <a href="../index.html" class="wright"></a>
+                </div>
+            </header>
+            <div>
+                <section class="p0">
+                    <ul>
+                        <li class="catalog_item prl30 flex_box flex_items_ct ">
+                            <img src="../images/icon-phone.png" alt="" class="icon30_36">
+                            <input type="text" placeholder="请输入已绑定的手机号" maxlength="11" class="input-phone">
+                        </li>
+                        <li class="catalog_item prl30 flex_box flex_items_ct flex_bt">
+                            <div class="lf_box">
+                                <img src="../images/icon-ok-pwd.png" alt="" class="icon30_36">
+                                <input type="text" placeholder="请输入验证码" maxlength="6"
+                                                                     class="input-phone">
+                            </div>
+                            <div class="rt_box" style="position: absolute; right: 0.3rem;">
+                                <span onclick="getTime(this)" class="get_vercode cl-purple flex_box flex_items_ct flex_con_ct">获取验证码</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <div class="pt50 pd0_3 pb30 bgc-f7">
+                    <div class="commit_btn bg-purple cfff flex_box flex_items_ct flex_con_ct">
+                        下一步
+                    </div>
+                    <span class="block mt5 tc" style="font-size: .32rem">若您的手机号已丢失，可以联系客服更换</span>
+                </div>
+            </div>
+        </div>
+        <!--成功提示-->
+        <div class="modal" style="display: none">
+            <div class="modal_position">
+                <div class="modal_box pd36 bd_box" style="">
+                    <img src="../images/dialog-gold-coin.png" alt="" style="width: 3.38rem; height: 2rem;">
+                    <b class="fs_34 mt3">绑定成功！</b>
+                    <div class="mt10" style="padding: .1rem 0;">恭喜您获得
+                        <span class="c_orange">50阅读币</span>
+                    </div>
+                    <div class="flex_box flex_evenly fs32 mt40 btn_group">
+                        <span class="cfff bgc_orange bind_btn bind_btn_2 tc matuo" style="text-align: center;">确定</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/setFont.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/validphone.js"></script>
+</body>
+</html>

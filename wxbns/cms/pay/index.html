@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<?php 
+  		if(!isset($_COOKIE["ieasynet_home_s"])){
+  			$_COOKIE["ieasynet_home_s"] = 3;
+  		};
+?>
+<script type="text/javascript">
+    $(function () {
+      	var recharge3 = $('.recharge3');
+        var sex = "{:$_COOKIE['ieasynet_home_s']}";
+
+        if (sex == 3) {
+            //女版
+            recharge3.attr("class","recharge3");
+        } else {
+            //男版
+            recharge3.attr("class","recharge3 recharge3-male");
+        }
+      
+        $('.change-theme-bottom').onclick = function () {
+            location.href = '/cms/pay/index/';
+        };
+        
+        if (typeof window.WeixinJSBridge == "undefined")
+        {
+            $(document).on('WeixinJSBridgeReady', function()
+            {
+                $('.btn-sure').click(function () {
+                    callpay();
+                })
+            });
+        }
+        else
+        {
+            $('.btn-sure').click(function () {
+                callpay();
+            })
+        }
+        
+    })
+</script>
+<script type="text/javascript">
+
+        //调用微信JS api 支付
+        //125c38a78f79a7eda1c337c0054381e4
+        //广州致好网络科技有限公司
+
+        function jsApiCall()
+
+        {
+          	if({$vipzc}=="1"){
+                var productId = 1;
+  			}else{
+            	var productId = $('.recharge-item-container .selected').data('pid');
+            }
+    		var url = '/cms/pay/pay/id/' + productId;
+			$.ajax({ url: url, dataType: "json",async:true, success: function(prepayinfo){
+                if(prepayinfo.appId && prepayinfo.paySign){
+                	WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',prepayinfo,
+                    function(res){
+                        //WeixinJSBridge.log(res.err_msg);
+                        //alert(res.err_code+res.err_desc+res.err_msg);
+                        if(res.err_msg == "get_brand_wcpay_request:ok" ) {  
+                          //alert('支付成功。');  
+                          {if $cxid}
+                          var url = '/cms/user/index';
+                          {else}
+                          var url = '{$url}';
+                          {/if}
+                          location.href = url;
+
+                        }else{  
+                            //alert(res.errMsg);
+                            if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+                              setTimeout("alert('您已取消支付，如需继续支付请重新点击确认充值按钮')",10);
+                            }else{  
+                              setTimeout("alert('您已取消支付，如需继续支付请重新点击确认充值按钮')",10); 
+                            }    
+                        }  
+                    });
+                }else{
+                	var url = '/cms/pay/newpay/id/' + productId;
+                	location.href = url;
+                }
+        		
+      		},error:function(res){
+            	var url = '/cms/pay/newpay/id/' + productId;
+                location.href = url;
+            }});
+        }
+
+
+        function callpay(){
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+
+            }else{
+                jsApiCall();
+            }
+
+        }
+</script>
+</head>
+<body>
+<script>
+!(function(c,b,d,a){c[a]||(c[a]={});c[a].config={pid:"cii0tb5lvo@4e8a2a6f9e73432",imgUrl:"https://arms-retcode.aliyuncs.com/r.png?"};
+with(b)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("crossorigin","",src=d)
+})(window,document,"https://retcode.alicdn.com/retcode/bl.js","__bl");
+</script>
+<div class="recharge3 ">
+    <div class="recharge-container3">
+        <div class="component-header-wrap-3">
+            <a href="https://{:$tgurl}/cms/user/index"><span class="imgicon nav-left"></span></a>
+            <div>充值</div>
+            <div class="menu-btn" id="J_navMenuBtn"></div>
+            <div class="menu-modal-bg openMenu noMenu">
+                <div class="menu-content">
+                    <a href="https://{:$tgurl}/cms/index/index">
+                        <img src="__MODULE_IMG__/../images/home@2x.png" alt="icon">
+                        <span>首页</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/user/bookmark">
+                        <img src="__MODULE_IMG__/../images/bookshelf-icon%402x.png" alt="icon">
+                        <span>书架</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/user/readhistory">
+                        <img src="__MODULE_IMG__/../images/history@2x.png" alt="icon">
+                        <span>阅读历史</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/column/index">
+                        <img src="__MODULE_IMG__/../images/stacks-icon%402x.png" alt="icon">
+                        <span>书库</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/column/ranking">
+                        <img src="__MODULE_IMG__/../images/2.png" alt="icon">
+                        <span>排行榜</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/search/index">
+                        <img src="__MODULE_IMG__/../images/search@2x.png" alt="icon">
+                        <span>搜索</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/pay/index">
+                        <img src="__MODULE_IMG__/../images/chong@2x.png" alt="icon">
+                        <span>充值</span>
+                    </a>
+                    <a href="https://{:$tgurl}/cms/user/index">
+                        <img src="__MODULE_IMG__/../images/4.png" alt="icon">
+                        <span>个人中心</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="J_tips">
+            
+            <div class="recharge-info-has-coin">{if $shubi>1}<div class="intitle" >书币余额不足</div>{if $shubi>100}购买当前书籍需要{else}阅读当前章节需要{/if}<span class="active">{$shubi}</span>书币，{/if}您的余额<span class="active">{$user['score']}</span>书币</div>
+        </div>
+
+        <div class="recharge-body-3">
+            <div class="recharge-body-3-info clearfix">
+              	{if $vipzc==1}
+                <h3 style="color:#c7903e">开通年费会员</h3>
+                <span style="margin:0px;padding:0px;color:#777" class="ml30">每天1元，所有书籍，全年畅读。</span>
+                {else}
+                <h3>充书币</h3>
+                <span class="ml30">1元=100书币</span>
+                {/if}
+            </div>
+            <div class="recharge-item-container clearfix">
+                {volist name="pro" id="vo" key="k" }
+
+                {eq name="k" value="2"}
+                <div class="recharge-item selected" {if $vipzc==1} style="display:none" {/if} data-pid="{$vo.id}" data-welth="{$vo.score}">
+                    <span class="fire"></span>
+                    {else/}
+                    <div class="recharge-item {if $vo.id == 1 && $vipzc==1}selected{/if}" {if $vipzc==1 && $vo.id != 1} style="display:none" {/if} data-pid="{$vo.id}" data-welth="{$vo.score}">
+                        {/eq}
+                        <div class="title">{$vo.titilea}</div>
+                        <div class="subtitle">{$vo.titileb}</div>
+                        <span class="desc">{$vo.titilec}</span>
+                    </div>
+                    {/volist}
+
+                </div>
+                <div class="btn-sure">确认充值</div>
+
+                <div class="notice">
+                    <p>书币充值实时到账，如有其他问题请联系在线客服，客服微信号：zhihao908 客服电话：020-82028072</p>
+                    <p>工作时间：9:00 - 21:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="change-theme-container dialog-rewards" style="display: none;">
+    <div class="change-theme" style="margin-top: -93.5px;">
+        <div class="change-theme-title">支付提示</div>
+        <div class="change-theme-main"><p>如果支付失败请重试</p ></div>
+        <div class="change-theme-bottom close-btn">确定</div>
+    </div>
+</div>
+<script type="text/javascript" src="__MODULE_JS__/payIndex.js"></script>
+</body>
+</html>

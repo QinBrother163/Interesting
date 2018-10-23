@@ -1,0 +1,46 @@
+.type_item_title{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0.36rem;
+  color: #333;
+}
+.type_item{
+  padding-top: .3rem;
+}
+.type_item_list{
+  display: inline-block;
+  width: 8.5rem;
+  font-size: 0.3rem;
+}
+.type_item_list li{
+  float: left;
+  padding: .05rem 0.2rem 0;
+  text-align: center;
+  height: 0.48rem;
+  line-height: 0.48rem;
+  margin: 0 0.1rem .3rem 0.23rem;
+  overflow: hidden;
+  font-size: 0.36rem;
+  color: #333;
+  border: solid 1px #cccccc;
+  border-radius: .15rem;
+}
+.male .type_item_list .Cselected {
+  border-color: #5fb5ea;
+  color: #fff;
+  background: -webkit-linear-gradient(#50c8e2, #6aa8f0);
+  background: -o-linear-gradient(#50c8e2, #6aa8f0);
+  background: -moz-linear-gradient(#50c8e2, #6aa8f0);
+  background: linear-gradient(#50c8e2, #6aa8f0);
+  border-radius: .1rem;
+}
+.female .type_item_list .Cselected {
+  border-color: #fb4e74;
+  color: #fff;
+  background: -webkit-linear-gradient(#ff8d81, #fb4e74);
+  background: -o-linear-gradient(#ff8d81, #fb4e74);
+  background: -moz-linear-gradient(#ff8d81, #fb4e74);
+  background: linear-gradient(#ff8d81, #fb4e74);
+  border-radius: .15rem;
+}
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo {
+            width: 100px;
+            height: 100px;
+            display: block;
+            overflow: hidden;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+            background: red;
+            background-size: 100% 100%;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .demo .focus {
+            content: "";
+            position: absolute;
+            left: -65px;
+            top: -60px;
+            width: 110px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, .4);
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-animation: searchLights 1s ease-in 1s infinite;
+            -o-animation: searchLights 1s ease-in 1s infinite;
+            animation: searchLights 1s ease-in 1s infinite;
+        }
+
+        @keyframes searchLights {
+            0% {
+                left: -50px;
+                top: 0;
+            }
+            to {
+                left: 60px;
+                top: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="demo" class="demo">
+    <div id="focus" class="focus"></div>
+</div>
+
+<script type="text/javascript">
+    function SetFocus(el, node) {
+        this.el = el;
+        this.node = node;
+    }
+
+    SetFocus.prototype = {
+        start: function() {
+            console.log('this start APP');
+            this.setFocus();
+        },
+        setFocus: function() {
+            let that = this;
+            this.el.onmouseover = function() {
+                that.node.className = 'focus';
+            };
+            this.el.onmouseout = function() {
+                that.node.className = '';
+            };
+        }
+    };
+
+    let P1 = new SetFocus(document.getElementById("demo"),document.getElementById("focus"));
+    P1.start();
+
+</script>
+</body>
+</html>

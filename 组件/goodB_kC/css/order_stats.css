@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+
+.top-wrap .list-info-no {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.top-wrap .list-info-no img {
+    width: 3rem;
+}
+
+.top-wrap .list-info-no p {
+    color: #ccc;
+    font-size: .4rem;
+    margin-top: .5rem;
+}
+
+/*订单统计*/
+.list-info {
+    padding-bottom: 2rem;
+}
+.list-info input{
+    width: 3rem;
+    border: none;
+}
+.list-info .info-date-head {
+    padding: .3rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.list-info .info-date-head .p-date {
+    position: relative;
+    color: #333;
+    font-size: .4rem;
+}
+
+.list-info .info-date-head .p-money {
+    color: #999;
+    font-size: .26rem;
+}
+
+.list-info .info-date-head .arrows-down {
+    position: absolute;
+    top: -.1rem;
+    left: 2.2rem;
+    display: inline-block;
+    width: .8rem;
+    height: .8rem;
+    background: url("../images/arrows-down.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.list-info .info-date-head .p2-date {
+    position: relative;
+    color: #333;
+    font-size: .35rem;
+    padding-left: .55rem;
+}
+
+.list-info .info-date-head .p2-date:after {
+    content: " ";
+    width: 1rem;
+    height: 1rem;
+    background: url("../images/order-date@2x.png") no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.list-info .info-wrap-con {
+    width: 100%;
+    height: 1.2rem;
+}
+
+.list-info .info-left-img {
+    width: 13%;
+    height: 1.2rem;
+}
+
+.list-info .info-info-title-wrap {
+    width: 80%;
+    display: inline-block;
+    position: relative;
+    margin-left: .3rem;
+}
+.list-info .info-info-title-wrap .info-title1{
+    font-size: .4rem;
+}
+.list-info .info-info-title-wrap .info-title2{
+    font-size: .26rem;
+    color: #999;
+    margin-bottom: .2rem;
+}
+
+.list-info .info-info-title-wrap .info-title2, .list-info .info-info-title-wrap .info-title1 {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.list-info .info-info-title-wrap .info-title3{
+    position: absolute;
+    top: .2rem;
+    right: 0;
+    color: #333;
+    font-size: .4rem;
+    font-weight: bold;
+}
+.list-info-item:last-child .info-date-head:last-child{
+    border-bottom: 0px solid #ccc;
+}

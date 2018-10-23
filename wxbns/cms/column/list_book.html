@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="library3-container">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">书库</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="option">
+                <div class="line cate"><span class="label">分类：</span>
+                    <div class="values">
+                        <a href="{:url('cms/column/index', ['ts' => 0, 'xs' => $xsx])}">
+                            {eq name="tsx" value="0"}
+                            <span class="active">全部</span>
+                            {else/}
+                            <span>全部</span>
+                            {/eq}
+                        </a>
+                        {eq name="sex" value="1"}
+                        {volist name="tstype" id="ts" offset="0" length="6"}
+                        <a href="{:url('cms/column/index', ['ts' => ($key+1), 'xs' => $xsx])}">
+                            {eq name="($tsx-1)" value="$key"}
+                            <span class="active">{$ts}</span>
+                                {else/}
+                            <span class="">{$ts}</span>
+                            {/eq}
+                        </a>
+                        {/volist}
+                        {else/}
+                        {volist name="tstype" id="ts" offset="6" length="10"}
+                        <a href="{:url('cms/column/index', ['ts' => ($key+1), 'xs' => $xsx])}">
+                            {eq name="($tsx-1)" value="$key"}
+                            <span class="active">{$ts}</span>
+                            {else/}
+                            <span class="">{$ts}</span>
+                            {/eq}
+                        </a>
+                        {/volist}
+                        {/eq}
+                    </div>
+                </div>
+                <div class="line status"><span class="label">状态：</span>
+                    <div class="values">
+                        <a href="{:url('cms/column/index', ['ts' => $tsx, 'xs' => 0])}">
+                            {eq name="xsx" value="0"}
+                            <span class="active">全部</span>
+                            {else/}
+                            <span>全部</span>
+                            {/eq}
+                        </a>
+                        {volist name="xstype" id="xs"}
+                        <a href="{:url('cms/column/index', ['ts' => $tsx, 'xs' => $i])}">
+                            {eq name="xsx" value="$i"}
+                            <span class="active">{$xs}</span>
+                            {else/}
+                            <span class="">{$xs}</span>
+                            {/eq}
+                        </a>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            <div class="book-list">
+                {if condition="count($data_list) > 0 "}
+                {volist name="data_list" id="item"}
+                <div class="style3-book-item2 clearfix style3-book-item2-font">
+                    <div class="img">
+                        <a href="{:url('cms/column/book', ['id' => $item['id']])}" class="home3-book-item">
+                            {eq name="item.is_time_limited_free" value="1"}
+                            <i class="timeTag"></i>
+                            {/eq}
+                            <img src="{$item.avatar}">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                            <span class="name">{$item.title}</span>
+                        </a>
+                        {eq name="item.is_time_limited_free" value="1"}
+                        <div class="desc_span">
+                            <span class="status tag">限免时间：</span><span>{$item.free_time_start|date="Y-m-d",###}</span> <span>{$item.free_time_end|date="Y-m-d",###}</span>
+                        </div>
+                        {/eq}
+                        <div class="desc">
+                            <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                                {$item.summary}
+                            </a>
+                        </div>
+                        <div class="count clearfix">
+                            <span class="author tag">{$item.tstype}</span>
+                            <span class="status tag">{$item.xstype}</span>
+                        </div>
+                    </div>
+                </div>
+                {/volist}
+                {else /}
+                <!--p style="color: #ccc;text-align: center">暂时没有这类书籍，换别的试试吧!</p-->
+                {/if}
+                
+            </div>
+			<div id="block-loading" style="background: #fff;">
+                <div class="block-loading">
+                  {php} $num = count($data_list);{/php}
+                  {if condition="$num >= 20 "}
+                    <div class="am-activity-indicator am-activity-indicator-lg">
+                        <span class="am-activity-indicator-spinner am-activity-indicator-spinner-lg" aria-label="loading"></span>
+                    </div>
+                  {else}
+                    <font style='text-align:center; font-size:14px;display:block;color:#ccc;'>没有更多了</font>
+                  {/if}
+                </div>
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+        <div class="style3-go-top style3-go-top2" style="display: none;"></div>
+    </div>
+</div>
+<!--提示-->
+<div id="am-toast-reward" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>数据已经加载完成！</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="__MODULE_JS__/list_book.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".style3-go-top").hide();
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 600) {
+                    $(".style3-go-top").fadeIn(500);
+                } else {
+                    $(".style3-go-top").fadeOut(500);
+                }
+            });
+            $(".style3-go-top").click(function () {
+                $('body,html').animate({scrollTop: 0}, 500);
+                return false;
+            });
+        });
+    });
+
+    //--------------上拉加载更多---------------
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可视范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    var am_toast_reward = document.querySelector('#am-toast-reward');
+
+    function showToastNotice(node, boolean) {
+        node.style.display = boolean;
+        var timer = setTimeout(function () {
+            node.style.display = 'none';
+        }, 100)
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+
+    var start = 20;
+    var j = 0;
+    var limit = 20;
+    var gender = {$sex} == 1 ? 'male' : 'female';
+
+    //滚动事件触发
+    window.onscroll = function () {
+        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+            var book_list = document.querySelector('.book-list');
+            // let boolean_ = false;
+            j++;
+            limit = j * start;
+
+           
+            $.get('/cms/column/doajax', {
+
+                start: limit,
+                limit: start,
+                status: {$xsx} == 1 ? 'ongoing' : 'completed',
+                gender: gender,
+                category: {$tsx}
+            }).always(function () {
+
+            }).then(function (res) {
+                var data = res.data;
+
+                if(data.length <= 0){
+//                    let boolean = 'block';
+					$(".block-loading").html("<font style='text-align:center; font-size:14px;display:block;color:#ccc;'>没有更多了</font>");
+//                    showToastNotice(am_toast_reward, boolean);
+                    return false;
+                }
+
+                for (var i = 0 in data) {
+                    var node = document.createElement('div');
+                    node.className = 'style3-book-item2 clearfix';
+                    if (data[i].is_time_limited_free) {
+                        node.innerHTML =
+                                '<div class="style3-book-item2 clearfix style3-book-item2-font">' +
+                                '<div class="img">' +
+                                '<a class="home3-book-item" href="/cms/column/book/id/'+data[i].id+'">' +
+                                '<i class="timeTag"></i>' +
+                                '<img src="' + data[i].avatar + '">' +
+                                '</a>' +
+                                '</div>' +
+                                '<div class="info">' +
+                                '<a href="/cms/column/book/id/'+data[i].id+'">' +
+                                '<span class="name">' + data[i].title + '</span>' +
+                                '</a>' +
+                                '<div class="desc_span">' +
+                                '<span class="status tag">限免时间：</span><span>' + fontDate(data[i].free_time_start) + '</span><span>' + fontDate(data[i].free_time_end) + '</span>' +
+                                '</div>' +
+                                '<div class="desc desc_a">' +
+                                '<a href="/cms/column/book/id/'+data[i].id+'">' + data[i].summary + '</a>' +
+                                '</div>' +
+                                '<div class="count clearfix">' +
+                                '<span class="author tag">' + data[i].tstype + '</span>' +
+                                '<span class="status tag">' + data[i].xstype + '</span>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+                    } else {
+                        node.innerHTML =
+                            '<div class="style3-book-item2 clearfix">' +
+                            '<div class="img">' +
+                            '<a class="home3-book-item" href="/cms/column/book/id/'+data[i].id+'">' +
+                            '<img src="' + data[i].avatar + '">' +
+                            '</a>' +
+                            '</div>' +
+                            '<div class="info">' +
+                            '<a href="/cms/column/book/id/'+data[i].id+'">' +
+                            '<span class="name">' + data[i].title + '</span>' +
+                            '</a>' +
+                            '<div class="desc">' +
+                            '<a href="/cms/column/book/id/'+data[i].id+'">' + data[i].summary + '</a>' +
+                            '</div>' +
+                            '<div class="count clearfix">' +
+                            '<span class="author tag">' + data[i].tstype + '</span>' +
+                            '<span class="status tag">' + data[i].xstype + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                    book_list.appendChild(node);
+                }
+
+                return res;
+            });
+
+        }
+    };
+
+    function fontDate(times) {
+        var time = new Date(times);
+        var y = time.getFullYear();//年
+        var m = time.getMonth() + 1;//月
+        var d = time.getDate();//日
+        var h = time.getHours();//时
+        var mm = time.getMinutes();//分
+        var s = time.getSeconds();//秒
+        return y + '-' + m + '-' + d;
+    }
+
+</script>
+</body>
+</html>

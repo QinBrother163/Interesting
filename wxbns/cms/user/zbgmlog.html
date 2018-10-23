@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+  <title>{$htitle}</title>
+  <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <style type="text/css">
+        .user-container3 .user-info .info-right .date{
+            align-items: center;
+            font-size: .32rem;
+            color: #a7a7a7;
+            margin-top: .09rem;
+      }
+
+        .user-info {
+            padding: 0 .5rem;
+      }
+
+        .notice-tit {
+            position: relative;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            padding: .3rem 0;
+      }
+
+        .notice-tit .tit_link {
+            position: absolute;
+            left: 3.8rem;
+            bottom: 0;
+            width: 15%;
+            height: 3px;
+      }
+
+        .notice-tit span {
+            padding: 0 .5rem;
+          font-size: .38rem;
+      }
+
+        .female .tit_link {
+            background-color: #ff87ba;
+      }
+
+        .male .tit_link {
+            background-color: #3a5ca2;
+      }
+
+        .date {
+            color: #ccc;
+
+            float: right;
+      }
+
+
+        .dis_sign .list-item {
+            padding: .5rem 0;
+            border-bottom: 1px solid #eee;
+      }
+
+        .dis_sign .list-item:nth-child(1) {
+            margin: .5rem 0 0 0;
+      }
+
+        .dis_sign .dis_sign_item .list-item:last-child {
+            border-bottom: 0px solid #eee;
+      }
+
+        .info {
+            font-size: .34rem;
+            height: .8rem;
+      }
+
+        .list-item {
+            padding: .6rem 0;
+            border-bottom: 1px solid #eee;
+      }
+
+  </style>
+  </head>
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="user-container3">
+            <div class="component-header-wrap-3">
+              <a href="/cms/user/index"><span class="imgicon nav-left"></span></a>
+
+              <div class="title">消费记录</div>
+              <div class="menu-btn"></div>
+                {include file="public/header" /}
+          </div>
+
+            <div class="user-info" id="cc">
+
+                <div class="notice-tit" id="notice-tit">
+                  <span class="xf" id="xf_xf">消费记录</span>
+                  <span class="xf focus" id="xf_zb" >全本购买记录</span>
+                  <span class="xf" id="xf_ds">打赏记录</span>
+                  <div class="tit_link"></div>
+              </div>
+
+                <div class="dis" >
+                    {volist name="zbgm" id="item"}
+                    <div class="list-item">
+                        <div class="info">
+                            <div class="xfjl">
+                                <div class="date">
+                                    {$item.add_time|date="Y/m/d H:i", ###}
+                              </div>
+                          </div>
+                            <div class="xfjl">
+                                {$item.title}
+                          </div>
+                            <div class="xfjl color_eee">
+                                <div class="date">
+                                    {$item.zbsb}阅读币
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    {/volist}
+              </div>
+              <p style="text-align: center;padding: 1rem 0" class="pay_jz">加载更多</p>
+          </div>
+
+      </div>
+
+  </div>
+  </div>
+
+<div class="reward_con noMenu">
+
+  </div>
+
+
+<script type="text/javascript">
+    function formatDate(time) {
+
+        // 将当前时间换成时间格式字符串
+        var newDate = new Date();
+        newDate.setTime(time * 1000);
+
+        Date.prototype.format = function(format) {
+            var date = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S+": this.getMilliseconds()
+            };
+            if (/(y+)/i.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+            }
+            for (var k in date) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                        ? (date[k]<10 ? '0'+date[k] : date[k]) : ("00" + date[k]).substr(("" + date[k]).length));
+                }
+            }
+            return format;
+        };
+        return newDate.format('YYYY-MM-dd h:m:s');
+    }
+    $('#xf_xf').click(function () {
+        window.location.href="xfjl";
+    });
+    $('#xf_zb').click(function () {
+        window.location.href="zbgmlog";
+    });
+    $('#xf_ds').click(function () {
+        window.location.href="tips";
+    });
+
+    var start = 20;
+    var j = 0;
+    var limit = 20;
+    var ispost = 1;
+
+    $(".pay_jz").click(function () {
+
+        var book_list = document.querySelector('.dis');
+        j++;
+        limit = j * start;
+        if (!ispost) {
+            return false;
+        }
+        $.ajax({
+            url: "{:url('zbgmlog')}/page/" + limit,
+            type: 'POST',
+            dataType: "json",
+            traditional: true,
+            contentType: 'application/json',
+            success: function (res) {
+                var data = res.data;
+                var va = document.getElementsByTagName("p");
+                if(data.length <= 0){
+                    ispost = 0;
+                    for(i=0; i<va.length; i++){
+                        va[i].innerHTML = "数据加载完毕";
+                    }
+                }
+                for (var i = 0 in data) {
+                    var node = document.createElement('div');
+                    node.className = 'list-item';
+
+                        node.innerHTML =
+                            '<div class="info">' +
+                            '<div class="xfjl">' +
+                            '<div class="date">' +formatDate(data[i].add_time)+
+                            '</div>' +
+                            '</div>' +
+                            '<div class="xfjl">' +data[i].title+
+                            '</div>' +
+                            '<div class="xfjl color_eee">'  +
+                            '<div class="date">'+
+                            +data[i].zbsb+
+                            '阅读币' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        if(data.length<20){
+                            for(i=0; i<va.length; i++){
+                                va[i].innerHTML = "数据加载完毕";
+                }
+                        }else{
+                            va[0].innerHTML = "加载更多";
+                     }
+
+                    book_list.appendChild(node);
+            }
+
+                return res;
+
+        }
+        })
+    });
+
+    !(function () {
+
+        var cookie = {
+
+            set: function (key, val, time) {
+
+                var date = new Date();
+
+                var expiresDays = time;
+
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+
+            },
+
+            get: function (key) {
+
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+
+                var arrCookie = getCookie.split(";");
+
+                var tips;
+
+                for (var i = 0; i < arrCookie.length; i++) {
+
+                    var arr = arrCookie[i].split("=");
+
+                    if (key == arr[0]) {
+
+                        tips = arr[1];
+
+                        break;
+
+                    }
+
+                }
+
+                return tips;
+
+            },
+
+            delete: function (key) {
+
+                var date = new Date();
+
+                date.setTime(date.getTime() - 10000);
+
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+
+            }
+
+        };
+
+        var root = document.getElementById('root');
+
+        var menu_btn = root.querySelector('.menu-btn');
+
+        var openMenu = root.querySelector('.openMenu');
+
+        var sex_type = cookie.get("ieasynet_home_s");
+
+        console.log(sex_type)
+        if (sex_type == 3) {
+
+            //女版
+            document.getElementById('notice-tit').className = 'notice-tit female';
+
+        } else {
+
+            //男版
+            document.getElementById('notice-tit').className = 'notice-tit male';
+            
+        }
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+            if (i) {
+                document.getElementsByTagName('body')[0].className = 'banRolling';
+            } else {
+                document.getElementsByTagName('body')[0].className = '';
+            }
+        };
+
+
+    })();
+  </script>
+  </body>
+</html>

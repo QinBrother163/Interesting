@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3 Animations</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<!-- 点击DIV 展开 -->
+<div class="my-animation"></div><span id="start" style="padding: 10px 20px;background: #eee">点击</span>
+
+
+<!-- 移入 透明    移出 还原 -->
+<a href="javascript:;" class="caption">
+    <img src="../HappyYear/images/music_disc.png" alt="">
+</a>
+
+
+<!--------------  眼球  -------------------->
+
+<section class="stage">
+    <figure class="ball">
+        <span class="shadow"></span>
+        <span class="iris"></span>
+    </figure>
+</section>
+<!----------------  input  ------------------>
+
+
+    <div style="text-align: center;width: 100px">
+        <input type="radio" checked id="radio-front" name="select-face"/>
+        <input type="radio" id="radio-left" name="select-face"/>
+        <input type="radio" id="radio-right" name="select-face"/>
+        <div class="boxBG"></div>
+    </div>
+
+
+
+<script type="text/javascript">
+    $("#start").click(function(){
+        $(".my-animation").animate({
+            opacity: 0.5,
+            height:"100px",
+        } , 2000);
+    });
+</script>
+
+</body>
+</html>

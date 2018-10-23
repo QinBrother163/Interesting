@@ -1,0 +1,152 @@
+@keyframes btnName {
+  form {
+    background: rgba(96, 203, 27, 0.5);
+    -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3) inset, 0 0 3px rgba(220, 120, 200, 0.5);
+    color: red; }
+  25% {
+    background: rgba(196, 203, 27, 0.8);
+    -webkit-box-shadow: 0 0 10px rgba(255, 155, 255, 0.5) inset, 0 0 8px rgba(120, 120, 200, 0.8);
+    color: blue; }
+  50% {
+    background: #c4cb7f;
+    -webkit-box-shadow: 0 0 5px rgba(155, 255, 255, 0.3) inset, 0 0 3px #dc7864;
+    color: orange; }
+  75% {
+    background: rgba(196, 203, 27, 0.8);
+    -webkit-box-shadow: 0 0 10px rgba(255, 155, 255, 0.5) inset, 0 0 8px rgba(120, 120, 200, 0.8);
+    color: black; }
+  to {
+    background: rgba(96, 203, 27, 0.5);
+    -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.3) inset, 0 0 3px rgba(220, 120, 200, 0.5);
+    color: green; } }
+@keyframes QinName {
+  form {
+    -webkit-transform: rotate(36deg);
+    -webkit-border-radius: 2px; }
+  10% {
+    -webkit-transform: rotate(72deg);
+    -webkit-border-radius: 4px; }
+  20% {
+    -webkit-transform: rotate(108deg);
+    -webkit-border-radius: 6px; }
+  30% {
+    -webkit-transform: rotate(144deg);
+    -webkit-border-radius: 9px; }
+  40% {
+    -webkit-transform: rotate(180deg);
+    -webkit-border-radius: 12px; }
+  50% {
+    -webkit-transform: rotate(216deg);
+    -webkit-border-radius: 14px; }
+  60% {
+    -webkit-transform: rotate(252deg);
+    -webkit-border-radius: 16px; }
+  70% {
+    -webkit-transform: rotate(288deg);
+    -webkit-border-radius: 19px; }
+  80% {
+    -webkit-transform: rotate(324deg);
+    -webkit-border-radius: 22px; }
+  to {
+    -webkit-transform: rotate(360deg);
+    -webkit-border-radius: 25px; } }
+.qin {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin-bottom: 20px; }
+
+.round {
+  border-radius: 10px;
+  background: green;
+  animation: QinName 10s ease infinite; }
+
+.btn {
+  background: #60cb1b;
+  font-size: 16px;
+  padding: 10px 15px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.6) inset, 0 0 3px rgba(220, 120, 200, 0.8);
+  animation: btnName 5s infinite; }
+
+.menu ul {
+  border-top: 15px solid black;
+  padding: 0 10px;
+  list-style: none; }
+  .menu ul li {
+    float: left; }
+  .menu ul li a::selection {
+    background: red;
+    color: #fff; }
+  .menu ul li a {
+    color: #fff;
+    float: left;
+    margin: 0 5px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 65px;
+    padding: 10px 5px;
+    background: #151515;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    -moz-box-shadow: 0 0 1px #ccc, inset 0 0 2px #fff;
+    -webkit-box-shadow: 0 0 1px #ccc, inset 0 0 2px #fff;
+    box-shadow: 0 0 1px #ccc, inset 0 0 2px #fff;
+    text-shadow: 0 1px 1px #686868;
+    text-decoration: none;
+    transition: transform 300ms linear; }
+  .menu ul li.translate a {
+    background: #2ec7d2; }
+  .menu ul li.translate a:hover {
+    transform: translate(-10px, -10px); }
+  .menu ul li.translate-x a {
+    background: #8FDD21; }
+  .menu ul li.translate-x a:hover {
+    transform: translateX(-10px); }
+  .menu ul li.translate-y a:hover {
+    transform: translateY(-10px); }
+  .menu ul li.translate-y a {
+    background: #F45917; }
+  .menu ul li.rotate a:hover {
+    transform: rotate(45deg); }
+  .menu ul li.rotate a {
+    background: #D50E19; }
+  .menu ul li.scale a:hover {
+    transform: scale(0.8, 0.8); }
+  .menu ul li.scale a {
+    background: #cdddf2; }
+  .menu ul li.scale-x a:hover {
+    transform: scaleX(0.8); }
+  .menu ul li.scale-x a {
+    background: #0fDD21; }
+  .menu ul li.scale-y a:hover {
+    transform: scaleY(1.2); }
+  .menu ul li.scale-y a {
+    background: #cd5917; }
+  .menu ul li.skew a:hover {
+    transform: skew(45deg, 15deg); }
+  .menu ul li.skew a {
+    background: #519; }
+  .menu ul li.skew-y a:hover {
+    transform: skewY(30deg); }
+  .menu ul li.skew-y a {
+    background: #D50; }
+  .menu ul li.skew-x a:hover {
+    transform: skewX(-30deg); }
+  .menu ul li.skew-x a {
+    background: #E19; }
+  .menu ul li.matrix a:hover {
+    transform: skewY(30deg); }
+  .menu ul li.matrix a {
+    background: #919; }
+
+/*# sourceMappingURL=falls_flex.css.map */

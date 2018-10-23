@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.list-info-item{
+    padding: .5rem 0;
+    border-bottom: 1px solid #eee;
+}
+.list-info-item .title-p1{
+    font-size: .32rem;
+    font-weight: bold;
+}
+.list-info-item .title-p2{
+    font-size: .4rem;
+    margin: .3rem 0;
+}
+.list-info-item .title-p3{
+    font-size: .3rem;
+}
+
+.list-info-con .title-p1{
+    font-size: .32rem;
+    font-weight: bold;
+    margin: .5rem 0;
+}
+.list-info-con span{
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    font-size: .32rem;
+    color: #666;
+    font-weight: bold;
+}
+.item-span-wrap{
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+.item-span-wrap span{
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    font-size: .32rem;
+    color: #666;
+    overflow: hidden;
+}

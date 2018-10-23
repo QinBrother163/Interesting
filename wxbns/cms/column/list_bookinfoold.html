@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css?t=1">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+<body>
+
+<div id="root">
+    <div data-reactroot="" class="page-style3">
+        <div class="style3-page-book">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">小说主页</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="base-info">
+                <div class="img">
+                    <img alt="" src="{$book['image']|get_thumb}">
+                   {eq name="book.isfree" value="1"}
+                    <span class="free-icon"></span>
+                    {/eq}
+                </div>
+                <div class="info">
+                    <div class="name">{$book.title}</div>
+                    <div class="status">
+                        <span class="status-tag">{$book['tstype']}</span>
+                        <span class="category">{$book['xstype']}</span>
+                    </div>
+                    <p class="count">
+                        <span><!-- react-text: 20 -->{$book['zishu']/10000|floor}<!-- /react-text --><!-- react-text: 21 -->万字
+                        <!-- /react-text --></span>
+                    </p>
+                    {eq name="book.iszb" value="1"}
+                    <p class="count">
+                        <span>整本购买</span>
+                    </p>
+                    {/eq}
+
+                </div>
+            </div>
+            <div class="book-actions">
+                <a href="{:url('cms/document/detail', ['id' => $chapter['0']['id']])}" class="bg-active">开始阅读</a>
+                <span class="ghost-btn" data-id="{$chapter['0']['id']}">加入书架</span>
+            </div>
+            <div class="book-des">
+                <div class="des-con">
+                    <div><p>{$book.desc}</p></div>
+                </div>
+                <span class="expand-icon"><span>...</span><i></i></span></div>
+            <div class="home3-block book-category"><h3 class="clearfix">书籍目录</h3>
+                <div class="block-content clearfix">
+                    <a class="category-item item-latest clearfix" href="{:url('cms/document/detail', ['id' => $newchapter['id']])}">
+                        <span class="new">新</span>
+                        <span>{$newchapter['title']}</span>
+                        <span class="update-time">{$newchapter['update_time']|date="Y.m.d", ###}</span>
+                    </a>
+                    {volist name="chapter" id="vo" length='5'}
+                    <a class="category-item" href="{:url('cms/document/detail', ['id' => $vo['id']])}">{$vo['title']}</a>
+                    {/volist}
+                    <a href="{:url('cms/column/indexidx', ['bid' => $book['id']])}" class="to-all active">全部目录</a></div>
+            </div>
+            <div class="home3-block dashang-list" style="margin-bottom: 1.2rem">
+                <div class="shang-head"><h3 class="clearfix"><!-- react-text: 46 -->打赏记录<!-- /react-text --><span
+                        class="count">(收到打赏{$tips}书币)</span></h3><span class="dashang-btn"></span></div>
+                <div class="people-list">
+                    <div id="people-list">
+
+                    </div>
+                    <a href="{:url('cms/column/tipsList', ['bid' => $book['id']])}" class="load-more"><span>更多打赏</span>
+                        <svg class="am-icon am-icon-right am-icon-md">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#right"></use>
+                        </svg>
+                    </a></div>
+            </div>
+
+            <!--打赏金币不足-->
+            <div class="dashang-dialog2-mask" style="display:none;">
+                <div class="dashang-dialog2">
+                    <div class="con">
+                        <div class="l1">您的余额不足，无法打赏</div>
+                        <div class="l2">请您充值后再进行打赏</div>
+                    </div>
+                    <div class="l3">
+                        <div class="cancel-btn btn">取消</div>
+                        <a class="ok-btn btn active" href="/cms/pay/index/">立即充值</a>
+                    </div>
+                </div>
+                <div class="dialog_bg"></div>
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reward_con noMenu">
+    <div data-reactroot>
+        <div class="am-modal-mask"></div>
+        <div tabindex="-1" class="am-modal-wrap " role="dialog" aria-labelledby="rcDialogTitle2">
+            <div role="document" class="am-modal reward-modal2 am-modal-transparent"
+                 style="width: 5.4rem; height: auto;">
+                <div class="am-modal-content">
+                    <button aria-label="Close" class="am-modal-close"><span class="am-modal-close-x"></span></button>
+                    <div class="am-modal-header">
+                        <div class="am-modal-title" id="rcDialogTitle2">打赏作品</div>
+                    </div>
+                    <div class="am-modal-body">
+                        <div class="style3-dashang-dialog active-blue2">
+                            <div class="goods clearfix">
+
+                            </div>
+                            <div id="ok-btn" class="ok-btn">确定</div>
+                        </div>
+                    </div>
+                </div>
+                <div tabindex="0" style="width: 0px; height: 0px; overflow: hidden;">sentinel</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加书架-->
+<div id="am-toast-notice" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text" role="alert" aria-live="assertive">
+                        <div>加入书架成功!</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<!--打赏-->
+<div id="am-toast-reward" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>打赏成功!</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<div style="display:none"> {:config('web_site_statistics')} </div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        var cookie = {
+            set: function (key, val, time) {
+                var date = new Date();
+                var expiresDays = time;
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+            },
+            get: function (key) {
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+                var arrCookie = getCookie.split(";");
+                var tips;
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    if (key == arr[0]) {
+                        tips = arr[1];
+                        break;
+                    }
+                }
+                return tips;
+            },
+            delete: function (key) {
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+            }
+        };
+
+        var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var openMenu = root.querySelector('.openMenu');
+        var dashang_btn = root.querySelector('.dashang-btn');
+        var reward = document.querySelector('.reward_con');
+        var am_modal_close = document.querySelector('.am-modal-close');
+        var ok_btn = document.querySelector('#ok-btn');
+        var am_toast_notice = document.querySelector('#am-toast-notice');
+        var ghost_btn = document.querySelector('.ghost-btn');
+        var dashang_dialog2_mask = document.querySelector('.dashang-dialog2-mask');
+        var cancel_btn = document.querySelector('.cancel-btn');
+        var page_style3 = root.querySelector('.page-style3');
+        var am_toast_reward = document.querySelector('#am-toast-reward');
+
+        var gifts = [{"id":1,"title":"\u9c9c\u82b1","img_url":"\/public\/static\/cms\/img\/gift_1.jpg","wealth":100},{"id":2,"title":"\u638c\u58f0","img_url":"\/public\/static\/cms\/img\/gift_2.jpg","wealth":388},{"id":3,"title":"\u94bb\u6212","img_url":"\/public\/static\/cms\/img\/gift_3.jpg","wealth":588},{"id":4,"title":"\u6e38\u8f6e","img_url":"\/public\/static\/cms\/img\/gift_4.jpg","wealth":888}];
+
+
+        var sex_type = cookie.get("ieasynet_home_s");
+
+        if (sex_type == 3){
+            //女版
+            ok_btn.style.backgroundColor = '#ff808f';
+            page_style3.className = 'page-style3 page-style3-female';
+        }else {
+            //男版
+            ok_btn.style.backgroundColor = '#366092';
+            page_style3.className = 'page-style3 page-style3-male';
+        }
+
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+            var timer = setTimeout(function () {
+                node.style.display = 'none';
+            }, 1500)
+        }
+
+        root.querySelector('.nav-left').onclick = function () {
+            window.history.go(-1);
+        };
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open?'menu-btn open':'menu-btn';
+
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i?'menu-modal-bg openMenu':'menu-modal-bg openMenu noMenu';
+            if(i){
+                document.getElementsByTagName('body')[0].className = 'banRolling';
+            }else{
+                document.getElementsByTagName('body')[0].className = '';
+            }
+        };
+        dashang_btn.onclick = function () {
+            var j = reward.className == 'reward_con noMenu';
+            reward.className = j?'reward_con':'reward_con noMenu';
+            var html = '';
+            for (var i in gifts){
+                if(gifts[i].id == 1){
+                    html += '<div class="item checked" data-gift-id="'+gifts[i].id+'">';
+                }else{
+                    html += '<div class="item" data-gift-id="'+gifts[i].id+'">';
+                }
+                html += '<div class="img">';
+                html += '<img alt="" src="'+gifts[i].img_url+'" alt="'+gifts[i].title+'">';
+                html += '</div>';
+                html += '<div class="values"><em>'+gifts[i].wealth+'</em>书币</div>';
+                html += '</div>';
+            }
+            $('.goods').html(html);
+        };
+        am_modal_close.onclick = function () {
+            reward.className = 'reward_con noMenu';
+        };
+        ok_btn.onclick = function () {
+            var giftId = $('.goods .checked').data('gift-id');
+            $.ajax({
+                url: '/cms/document/tips',
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    gift_id: giftId,
+                    novel_id: '{$chapter['0']['id']}'
+                })
+            }).then(function (payload) {
+                var html = '';
+                var data = payload.data;
+
+                var boolean = 'block';
+                showToastNotice(am_toast_reward, boolean);
+
+				if($('.list-item').length <= 3) {
+                  html += '<div class="list-item">';
+                  html += '<div class="avatar">';
+                  html += '<img src="' + data.headimgurl + '" alt="' + data.nickname + '">';
+                  html += '</div>';
+                  html += '<div class="name">' + data.nickname + '</div>';
+                  html += '<div class="reward">' + data.gift_wealth + '书币</div>';
+                  html += '</div>';
+                  //$('#people-list .list-item').eq(-1).remove();
+                  $('#people-list').prepend(html);
+                }
+            }).fail(function (error) {
+                // 余额不足
+                if (error.responseJSON.code === 9999) {
+//                    recharge();
+
+                    var boolean = 'block';
+                    top_upDialog(dashang_dialog2_mask,boolean);
+
+                } else {
+                    $.toast(error.responseJSON.message, 'forbidden');
+                }
+            });
+
+            reward.className = 'reward_con noMenu';
+        };
+
+        function top_upDialog(node,boolean) {
+            node.style.display = boolean;
+        }
+
+        cancel_btn.onclick = function () {
+            var boolean = 'none';
+            top_upDialog(dashang_dialog2_mask,boolean)
+        };
+
+        $(".ghost-btn").click(function(){
+            var articleId = $(this).data('id');
+            $.ajax({
+                url: '/cms/document/addbookmark/id/' + articleId,
+                type: 'GET',
+                contentType: 'application/json'
+            }).then(function () {
+
+                if (ghost_btn.innerText == '加入书架'){
+                    var boolean = 'block';
+                    showToastNotice(am_toast_notice, boolean);
+                    ghost_btn.innerText = '已加入书架';
+                }
+
+
+            });
+        });
+
+
+
+        $(document).on('click', '.goods .item', function(){
+            $('.goods .item').removeClass('checked');
+            $(this).addClass('checked');
+        });
+
+        var html = '';
+        $.ajax({
+            url: '/cms/column/tips/id/{$book['id']}?page=0',
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json'
+        }).then(function (payload) {
+            var data = payload.data;
+
+
+            for(var i =0; i<data.length; i++){
+                html += '<div class="list-item">';
+                html += '<div class="avatar">';
+                html += '<img src="'+data[i].headimgurl+'" alt="'+data[i].nickname+'">';
+                html += '</div>';
+                html += '<div class="name">'+data[i].nickname+'</div>';
+                html += '<div class="reward">'+data[i].gift_wealth+'书币</div>';
+                html += '</div>';
+                if (i==2)break;
+            }
+            $('#people-list').html(html);
+        })
+    })();
+
+//    function recharge() {
+//        $.modal({
+//            title: "余额不足",
+//            text: " 是否前往充值?",
+//            buttons: [{
+//                text: "立即充值",
+//                onClick: function () {
+//                    window.onpageshow = function (e) {
+//                        if (e.persisted) {
+//                            location.reload();
+//                        }
+//                    };
+//                    location.assign('/cms/pay/index/');
+//                }
+//            }, {
+//                text: "取消",
+//                className: "default"
+//            }]
+//        });
+//    }
+</script>
+</body>
+</html>

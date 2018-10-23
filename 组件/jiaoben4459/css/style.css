@@ -1,0 +1,58 @@
+
+.section-project {
+  position: relative;
+}
+
+.project-carousel {
+  position: relative;
+  padding: 50px 0;
+}
+
+.project-strip {
+  display: flex;
+}
+.project-strip .project {
+  cursor: pointer;
+  margin: 0 .5rem;
+  display: inline-flex;
+}
+.project-strip img {
+  max-width: 100%;
+  width: 100%;
+  height: 2rem;
+  border-radius: .1rem;
+}
+
+.project-screen {
+  width: 7.7rem;
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: .2rem;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.project-screen .project-detail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 7.7rem;
+  height: 3rem;
+  margin: 0 auto 0;
+  z-index: 1;
+  background-color: #333;
+  border-radius: .2rem;
+}
+.project-screen .project-detail img{
+  width: 7.7rem;
+  height: 3rem;
+  border-radius: .12rem;
+}
+.project-screen .project {
+  margin-right: -100%;
+  float: left;
+  cursor: move;
+}

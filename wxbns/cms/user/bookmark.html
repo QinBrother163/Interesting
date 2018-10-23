@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="my-bookshelf-container">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+
+                <div class="title">
+                    <div class="header-link">
+                        <span class="active">我的书架</span>
+                        <a href="{:url('cms/user/readhistory')}">阅读历史</a></div>
+                </div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="manage">
+                <span class="manage-management">管理</span>
+                <span class="fr book-nums">共{$bookmark|count}本书</span>
+            </div>
+            <div class="book-list" style="margin-bottom: 1.2rem">
+
+                {volist name='bookmark' id='vo'}
+                <div style="position: relative;">
+                    <div class="edit-layer" style="display: none"><!--display：none全不选-->
+                        <div class="edit-layer-div" data-id="{$vo.id}"></div><!--choose全选-->
+                    </div>
+                    <a class="my-book-item" href="{:url('cms/column/book', ['id' => $vo['bid']])}">
+                        <img src="{$vo.book_image}">
+                        <span class="name">{$vo.book_title}</span>
+                    </a>
+                </div>
+                {/volist}
+
+            </div><!--disabled-->
+            <div id="del-btn" style="display: none">
+                <div id="del_btn_click" class="del-btn active">
+                    <span class="del-icon"></span>
+                    <span class="del_btn_span">删除(0)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加书架-->
+<div id="am-toast-notice" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text" role="alert" aria-live="assertive">
+                        <div>请选择要删除的书籍!</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        if (document.body.offsetWidth == 459){
+            document.getElementsByTagName('html')[0].style.fontSize = '45.5px';
+        }
+
+        var cookie = {
+            set: function (key, val, time) {
+                var date = new Date();
+                var expiresDays = time;
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+            },
+            get: function (key) {
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+                var arrCookie = getCookie.split(";");
+                var tips;
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    if (key == arr[0]) {
+                        tips = arr[1];
+                        break;
+                    }
+                }
+                return tips;
+            },
+            delete: function (key) {
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+            }
+        };
+        var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var openMenu = root.querySelector('.openMenu');
+        var manage_management = root.querySelector('.manage-management');
+        var fr_span = root.querySelector('.fr');
+        var del_btn = root.querySelector('#del-btn');
+        var del_btn_span = root.querySelector('.del_btn_span');
+        var del_btn_click = root.querySelector('#del_btn_click');
+        var edit_layer = document.getElementsByClassName('edit-layer');
+        var edit_layer_div = document.getElementsByClassName('edit-layer-div');
+        var page_style3 = root.querySelector('.page-style3');
+        var am_toast_reward = document.querySelector('#am-toast-notice');
+        var sex_type = cookie.get("ieasynet_home_s");
+
+        if (sex_type == 3){
+            //女版
+            manage_management.style.backgroundColor = '#ff808f';
+            manage_management.style.border = '0.8px solid #ff808f';
+            page_style3.className = 'page-style3 page-style3-female';
+        }else {
+            //男版
+            manage_management.style.backgroundColor = '#366092';
+            manage_management.style.border = '0.8px solid #366092';
+            page_style3.className = 'page-style3 page-style3-male';
+        }
+
+        root.querySelector('.nav-left').onclick = function () {
+            window.history.go(-1);
+        };
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+            var timer = setTimeout(function () {
+                node.style.display = 'none';
+            }, 1500)
+        }
+
+        function listBook(edit_layer, Boolean) {
+            for (var i = 0; i < edit_layer.length; i++) {
+                edit_layer[i].style.display = Boolean;
+            }
+        }
+
+        function listBookSelected(edit_layer_div, BooleanClass0) {
+            for (var i = 0; i < edit_layer_div.length; i++) {
+                edit_layer_div[i].className = BooleanClass0;
+            }
+        }
+
+        function getDelNode(indexNum,indexLen) {
+            var index = indexNum;
+            var index_ = indexLen;
+            for (var i = 0; i < edit_layer.length; i++) {
+                edit_layer[i].i = i;
+                edit_layer[i].onclick = function () {
+
+                    var management_ = manage_management.innerHTML;
+
+                    switch (management_) {
+                        case '全选':
+
+                            var j = edit_layer_div[this.i].className == 'edit-layer-div';
+                            edit_layer_div[this.i].className = j ? 'edit-layer-div choose' : 'edit-layer-div';
+
+                            if (edit_layer_div[this.i].className == 'edit-layer-div choose') {
+                                index++;
+                            }
+                            if (edit_layer_div[this.i].className == 'edit-layer-div') {
+                                index--;
+                            }
+
+                            if (index == edit_layer.length) {
+                                del_btn_span.innerHTML = '删除(' + index + ')';
+                            } else if (index < edit_layer.length) {
+                                del_btn_span.innerHTML = '删除(' + index + ')';
+                            }
+                            break;
+                        case '全不选':
+                            var j_ = edit_layer_div[this.i].className == 'edit-layer-div choose';
+                            edit_layer_div[this.i].className = j_ ? 'edit-layer-div' : 'edit-layer-div choose';
+
+                            if (edit_layer_div[this.i].className == 'edit-layer-div choose') {
+                                index_ ++;
+                            }
+                            if (edit_layer_div[this.i].className == 'edit-layer-div') {
+                                index_ --;
+                            }
+
+                            if (index == edit_layer.length) {
+                                del_btn_span.innerHTML = '删除(' + index_ + ')';
+                            } else if (index < edit_layer.length) {
+                                del_btn_span.innerHTML = '删除(' + index_ + ')';
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                };
+            }
+        }
+
+        getDelNode(0,edit_layer.length);
+
+        //管理按钮
+        manage_management.onclick = function () {
+            var management_ = manage_management.innerHTML;
+            var Boolean = 'block';
+            var BooleanClass0 = 'edit-layer-div choose';
+            var BooleanClass1 = 'edit-layer-div';
+
+            switch (management_) {
+                case '管理':
+                    manage_management.innerHTML = '全选';
+                    fr_span.innerHTML = '取消';
+                    fr_span.className = 'fr';
+                    del_btn.style.display = Boolean;
+                    listBook(edit_layer, Boolean);
+                    break;
+                case '全选':
+                    getDelNode(0,edit_layer.length);
+                    manage_management.innerHTML = '全不选';
+                    del_btn_span.innerHTML = '删除(' + edit_layer_div.length + ')';
+                    listBookSelected(edit_layer_div, BooleanClass0);
+
+
+                    break;
+                case '全不选':
+                    getDelNode(0,edit_layer.length);
+                    manage_management.innerHTML = '全选';
+                    del_btn_span.innerHTML = '删除(0)';
+                    listBookSelected(edit_layer_div, BooleanClass1);
+                    break;
+                default:
+                    break;
+            }
+        };
+        //取消按钮
+        fr_span.onclick = function () {
+            getDelNode(0,edit_layer.length);
+            var BooleanClass1 = 'edit-layer-div';
+            var Boolean = 'none';
+
+            manage_management.innerHTML = '管理';
+            fr_span.innerHTML = '共'+ edit_layer.length +'本书';
+            del_btn_span.innerHTML = '删除(0)';
+            fr_span.className = 'fr book-nums';
+            del_btn.style.display = Boolean;
+            listBook(edit_layer, Boolean);
+            listBookSelected(edit_layer_div, BooleanClass1);
+        };
+        del_btn_click.onclick = function () {
+            var book_list = document.querySelector('.book-list');
+            var delNode = $(".choose").parent().parent();
+
+
+            var ids = [];
+            for (var i=0; i<edit_layer_div.length;i++){
+                if (edit_layer_div[i].className == 'edit-layer-div choose'){
+                    ids.push(edit_layer_div[i].getAttribute('data-id'));
+                }
+            }
+
+
+            for (var q=0;q<delNode.length;q++){
+                book_list.removeChild(delNode[q]);
+            }
+            getDelNode(0,edit_layer.length);
+
+
+           if(ids.length <= 0){
+               var boolean = 'block';
+               showToastNotice(am_toast_reward, boolean);
+               return false;
+           }
+
+           $.ajax({
+               url: '/cms/user/delmark',
+               type: 'post',
+               data:{id:ids},
+           }).then(function (res) {
+               console.log(res.msg);
+               if(res.code){
+                   setTimeout(function(){
+                       location.reload();
+                   }, 1000);
+               }
+           });
+        };
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+            if(i){
+                document.getElementsByTagName('body')[0].className = 'banRolling';
+            }else{
+                document.getElementsByTagName('body')[0].className = '';
+            }
+        };
+
+    })();
+</script>
+</body>
+</html>

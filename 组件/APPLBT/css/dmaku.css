@@ -1,0 +1,36 @@
+
+.pc-banner {
+	background: #eee;
+}
+
+.swiper-slide {
+	-webkit-transition: transform 1.0s;
+	-moz-transition: transform 1.0s;
+	-ms-transition: transform 1.0s;
+	-o-transition: transform 1.0s;
+	-webkit-transform: scale(0.7);
+	transform: scale(0.7);
+
+}
+
+.swiper-slide-active,.swiper-slide-duplicate-active {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.none-effect {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-ms-transition: none;
+	-o-transition: none;
+}
+
+.swiper-slide img {
+	width: 100%;
+	border-radius: .1rem;
+	display: block;
+	padding: -1rem;
+}
+
+
+

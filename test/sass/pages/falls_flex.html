@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3 falls_flex瀑布流布局</title>
+    <link rel="stylesheet" href="../css/falls_flex.css">
+</head>
+<body>
+<!--记录目录-->
+<ul>
+    <li>选择文本，修改背景颜色，字体颜色</li>
+    <li>css3 各类动画效果</li>
+    <li>css3 制作切角</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--button 按钮icon-->
+
+<a href="javascript:;" class="button edit">点击</a>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--TAB 切角 CSS3-->
+<ul class="uiTabs">
+    <li><a href="javascript:;" title="tab1" class="current">TAB1</a></li>
+    <li><a href="javascript:;" title="tab2">TAB2</a></li>
+    <li><a href="javascript:;" title="tab3">TAB3</a></li>
+    <li><a href="javascript:;" title="tab4">TAB4</a></li>
+</ul>
+<div id="uiTabContent">
+    <div id="tab1" style="display: block">
+        <p>content for tab1</p>
+    </div>
+    <div id="tab2">
+        <p>content for tab2</p>
+    </div>
+    <div id="tab3">
+        <p>content for tab3</p>
+    </div>
+    <div id="tab4">
+        <p>content for tab4</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+//    <!--TAB-->
+    var uiTabs = document.querySelector('.uiTabs');
+    var list_a = uiTabs.querySelectorAll('a');
+
+//    TABContent
+    var uiTabContent = document.querySelector('#uiTabContent');
+    var list_div = uiTabContent.querySelectorAll('div');
+
+    function initClick() {
+
+        for(let i=0;i<list_a.length;i++){
+            list_a[i].onclick = setClick;
+            list_a[i].idx = i;
+        }
+
+    }initClick();
+
+    function setClick() {
+        for(let i=0;i<list_a.length;i++){
+            list_a[i].className = '';
+            list_div[i].style.display = 'none';
+        }
+        list_a[this.idx].className = 'current';
+        list_div[this.idx].style.display = 'block';
+    }
+
+
+</script>
+
+<br>
+<br>
+<!--旋转动画-->
+<a href="javascript:;" class="qin">
+    <div class="qin_content">嗨喽</div>
+</a>
+<br>
+<a class="btn" onclick="addClass()">点击按钮有惊喜</a>
+
+<script type="text/javascript">
+    var node = document.querySelector('.qin_content');
+
+    document.querySelector('.qin').onmouseover = function () {
+        node.style.transform = "translateY(0vw)";
+    };
+    document.querySelector('.qin').onmouseout  = function () {
+        node.style.transform = "translateY(-100px)";
+    }
+</script>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--菜单动画-->
+<div class="menu">
+    <ul class="clearfix">
+        <li class="item translate"><a href="#">Translate</a></li>
+        <li class="item translate-x"><a href="#">TranslateX</a></li>
+        <li class="item translate-y"><a href="#">TranslateY</a></li>
+        <li class="item rotate"><a href="#">Rotate</a></li>
+        <li class="item scale"><a href="#">Scale</a></li>
+        <li class="item scale-x"><a href="#">ScaleX</a></li>
+        <li class="item scale-y"><a href="#">ScaleY</a></li>
+        <li class="item skew"><a href="#">Skew</a></li>
+        <li class="item skew-x"><a href="#">SkewX</a></li>
+        <li class="item skew-y"><a href="#">SkewY</a></li>
+        <li class="item matrix"><a href="#">Matrix</a></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    function addClass() {
+        document.querySelector('.qin').className = 'qin round';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+    <style type="text/css">
+        .del-btn{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="read-history-container">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+
+                <div class="title">
+                    <div class="header-link">
+                        <a href="{:url('cms/user/bookmark')}">我的书架</a>
+                        <span class="active">阅读历史</span></div>
+                </div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="book-list" style="margin-bottom: 1.2rem">
+                {volist name='history' id='vo'}
+                <div class="style3-book-item-history clearfix" id="d_{$vo.id}">
+                    <a href="{:url('cms/document/detail', ['id' => $vo['zid']])}">
+                        <div class="img"><img src="{$vo.image|get_thumb}"></div>
+                        <div class="info">
+                            <span class="name">{$vo.ctitle}</span>
+                            <div class="desc">{$vo.btitle}</div>
+                            <div class="count clearfix">
+                                <span class="author tag">{$tstype[$vo.tstype]}</span>
+                                <span class="status tag">{$xstype[$vo.xstype]}</span>
+                              	<span class="status tag del-btn" data-id="{$vo['id']}">删除</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!--<div class="bookshelf-icon bookshelf-icon-active"></div>-->
+                </div>
+                {/volist}
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="__MODULE_JS__/readhistory.js"></script>
+<script type="text/javascript">
+    $(function(){
+      $('.del-btn').click(function(){
+        var id = $(this).data('id');
+        $.get("{:url('cms/user/delread')}/id/" + id).then(function (res) {
+          if(res != true){
+            alert('删除失败！');
+            return false;
+          }
+          alert('删除成功');
+          $('#d_'+id).remove();
+        }).fail(function (xhr) {
+          alert('删除失败！-1');
+        });
+
+        return false;
+      })
+    })
+  </script>
+</body>
+</html>

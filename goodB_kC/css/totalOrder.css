@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.list-info-item{
+    text-align: center;
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.list-info-item span{
+    display: inline-block;
+    width: 24%;
+    font-size: .2rem;
+    color: #666;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.list-info-item .item-money{
+    font-size: .4rem;
+    margin-top: .3rem;
+}
+
+.list-info-con .title-p1{
+    font-size: .32rem;
+    font-weight: bold;
+    margin: .5rem 0;
+}
+.list-info-con span{
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+    font-size: .32rem;
+    color: #666;
+    font-weight: bold;
+}
+.item-span-wrap{
+    padding: .4rem 0;
+    border-bottom: 1px solid #eee;
+}
+.item-span-wrap span{
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+    font-size: .32rem;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

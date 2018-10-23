@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小说阅读</title>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+
+    <style type="text/css">
+        .tip_signinbox{
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 3;
+            top: 0;
+            left: 0;
+        }
+        .tip_signinbox .whitbox{
+            width: 8.2rem;
+            height: auto;
+            background: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -2rem 0 0 -4.1rem;
+            border-radius: 0.15rem;
+        }
+        .tip_signinbox .whitbox p:nth-child(1) {
+            color: #333;
+            font-size: 0.45rem;
+            font-weight: bold;
+            margin-top: 0.3rem;
+        }
+        .tip_signinbox .whitbox p{
+            text-align: center;
+            padding: .1rem 0;
+            font-size: .32rem;
+            color: #999;
+        }
+        .tip_signinbox .whitbox div p:last-child {
+            margin-top: 0;
+            border-top: none;
+            font-size: 0.32rem;
+            height: 0.64rem;
+            line-height: 0.64rem;
+            color: #999;
+        }
+        .tip_signinbox .whitbox p:last-child {
+            color: #ff9524;
+            margin-top: 0.2rem;
+            border-top: 0.01rem solid #ccc;
+            font-size: 0.42rem;
+            line-height: 0.9rem;
+            height: 0.85rem;
+        }
+        .tip_signinbox .lastp{
+            position: relative;
+        }
+        .whitbox .w50, .whitbox .lastp{
+            margin-top: .2rem;
+            border-top: .01rem solid #ccc;
+            font-size: .4rem;
+            line-height: .9rem;
+            height: 1rem;
+        }
+        .tip_signinbox .lastp_right{
+            position: absolute;
+            bottom: .25rem;
+            right: 1rem;
+            border: 1px solid #eee;
+            color: #666;
+            padding: .1rem .3rem;
+            z-index: 3;
+            font-size: .28rem;
+            border-radius: .15rem;
+        }
+        .tip_signinbox .whitbox .w50 {
+            width: 50%;
+            float: left;
+            color: #666;
+            text-align: center;
+        }
+        .tip_signinbox .whitbox .bor_r {
+            border-right: .01rem solid #ccc;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #ff9524;
+        }
+    </style>
+    <script type="text/javascript">
+        !function () {
+            var a = "@charset \"utf-8\";html{color:#000;background:#fff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ins,a{text-decoration:none}",
+                b = document.createElement("style");
+            if (document.getElementsByTagName("head")[0].appendChild(b), b.styleSheet) b.styleSheet.disabled || (b.styleSheet.cssText = a); else try {
+                b.innerHTML = a
+            } catch (c) {
+                b.innerText = a
+            }
+        }();
+        !function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+
+            var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'),
+                h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {});
+            if (g) {
+                console.warn("将根据已有的meta标签来设置缩放比例");
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                    q = a.devicePixelRatio;
+                i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g)if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+            a.addEventListener("resize", function () {
+                clearTimeout(d), d = setTimeout(c, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+            }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () {
+                    e.body.style.fontSize = 12 * i + "px"
+                }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                var b = parseFloat(a) * this.rem;
+                return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+            }, k.px2rem = function (a) {
+                var b = parseFloat(a) / this.rem;
+                return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+            }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+</head>
+<body>
+<div class="tip_signinbox"  style="display: none;">
+    <div class="whitbox">
+        <div>
+            <p>充值成功</p>
+            <p>本次充值，<span style="color: #ff9524">&nbsp;5000&nbsp;</span>阅读币</p>
+            <p>充值赠送客官，<span style="color: #ff9524">&nbsp;3000&nbsp;</span>阅读币</p>
+            <p>您已成功充值阅读币，欢迎客官再次光临</p>
+        </div>
+        <a class="lastp_right" href="javascript:alert(111);">置顶</a>
+        <p class="lastp">我知道啦</p>
+    </div>
+</div>
+
+
+<div class="tip_signinbox">
+    <div class="whitbox">
+        <p>充值成功</p>
+        <p>本次充值，<span style="color: #ff9524">&nbsp;5000&nbsp;</span>阅读币</p>
+        <p>充值赠送客官，<span style="color: #ff9524">&nbsp;3000&nbsp;</span>阅读币</p>
+        <p>您已成功充值阅读币，欢迎客官再次光临</p>
+        <div class="w50 bor_r">我知道啦</div>
+       <a class="w50" href="javascript:alert(222);">置顶</a>
+    </div>
+</div>
+<script type="text/javascript">
+    document.querySelector('.lastp').onclick = function () {
+        document.querySelectorAll('.tip_signinbox')[0].style.display = 'none';
+    }
+
+
+    document.querySelector('.bor_r').onclick = function () {
+        document.querySelectorAll('.tip_signinbox')[1].style.display = 'none';
+    }
+</script>
+</body>
+</html>

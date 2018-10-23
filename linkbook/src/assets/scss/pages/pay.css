@@ -1,0 +1,29 @@
+.balanceShow {
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+  justify-content: center;
+  align-items: center; }
+  .balanceShow i {
+    font-size: .8rem; }
+  .balanceShow span {
+    font-size: .8rem; }
+  .balanceShow p {
+    font-size: .4rem;
+    color: #333;
+    margin-top: .3rem; }
+
+.pay_txt {
+  color: #666; }
+
+.pay_txt p {
+  position: relative;
+  padding-left: .3rem; }
+
+.pay_txt .left_icon:before {
+  content: '*';
+  position: absolute;
+  top: .112rem;
+  left: 0; }
+
+/*# sourceMappingURL=pay.css.map */

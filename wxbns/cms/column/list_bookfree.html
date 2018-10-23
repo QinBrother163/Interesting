@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <title>{$htitle}</title>
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+    <style type="text/css">
+        .style3-book-item2 .name {
+            font-size: .4rem;
+        }
+        .no-book-info{
+            text-align: center;
+        }
+        .no-book-info .p1{
+            font-size: 1rem;
+            color: #999;
+        }
+        .no-book-info .p2{
+            font-size: .5rem;
+            color: #fdd3df;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="library3-container">
+            <div class="component-header-wrap-3"><span class="imgicon nav-left"></span>
+                <div class="title">限时免费</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="book-list">
+                <!--有限免的状态-->
+              	{volist name="free_list" id="vo" length='10'}
+                <div class="style3-book-item2 clearfix style3-book-item2-font">
+                    <div class="img">
+                        <a class="home3-book-item" href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                            <i class="timeTag"></i>
+                            <img src="{$vo.image|get_thumb}">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <a href="{:url('cms/column/book', ['id' => $vo['id']])}">
+                            <span class="name">{$vo.title}</span>
+                        </a>
+                        <div class="desc_span">
+                            <span class="status tag">限免时间：</span><span>{$vo.free_stime|date="Y/m/d",###}</span>&nbsp;&nbsp;&nbsp;<span>{$vo.free_etime|date="Y/m/d",###}</span>
+                        </div>
+                        <div class="desc desc_a">
+                            <a href="{:url('cms/column/book', ['id' => $vo['id']])}">{$vo.desc}</a>
+                        </div>
+                        <div class="count clearfix">
+                            <span class="author tag">{$tstype[$vo.tstype]}</span>
+                            <span class="status tag">{$xstype[$vo.xstype]}</span>
+                        </div>
+                    </div>
+                </div>
+              {/volist}
+                <!--没有限免的状态-->
+                <div class="no-book-info" style="display: none">
+                    <p class="p1">暂时没有限免书籍!</p>
+                    <p class="p2">请关注我们后续会第一时间通知到您!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  !function () {
+    var root = document.getElementById('root');
+    var nav_left = root.querySelector('.nav-left');
+    var menu_btn = root.querySelector('.menu-btn');
+    var openMenu = root.querySelector('.openMenu');
+
+    var cookie = {
+        set: function (key, val, time) {
+            var date = new Date();
+            var expiresDays = time;
+            date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+            document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+        },
+        get: function (key) {
+
+            var getCookie = document.cookie.replace(/[ ]/g, "");
+            var arrCookie = getCookie.split(";");
+            var tips;
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (key == arr[0]) {
+                    tips = arr[1];
+                    break;
+                }
+            }
+            return tips;
+        },
+        delete: function (key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 10000);
+            document.cookie = key + "=v; expires =" + date.toGMTString();
+        }
+    };
+
+    var sex_type = cookie.get("sex_type");
+    // var style_topPage = document.querySelector('.style-topPage');
+    // if (sex_type == 3) {
+        //女版
+        // style_topPage.className = 'style-topPage female';
+    // } else {
+        //男版
+        // style_topPage.className = 'style-topPage male';
+    // }
+
+    nav_left.onclick = function () {
+        window.history.go(-1);
+    };
+
+    menu_btn.onclick = function () {
+        var open = menu_btn.className == 'menu-btn';
+        menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+        var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+        openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+    };
+}();
+</script>
+</body>
+</html>

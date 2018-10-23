@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.top-list .info-title{
+    padding: .3rem 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.top-list .info-title span{
+    display: inline-block;
+    width: 30%;
+    font-size: .4rem;
+}
+.top-list .info-item-no{
+    text-align: center;
+    padding: .3rem 0;
+    font-size: .36rem;
+    color: #ccc;
+}
+.top-list .info-item span{
+    display: inline-block;
+    width: 30%;
+    color: #666;
+    font-size: .3rem;
+}

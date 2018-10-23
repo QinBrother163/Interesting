@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <title>看书网 | 让快乐更简单</title>
+    <script type="text/javascript">
+        !function () {
+            var a = "@charset \"utf-8\";html{color:#000;background:#fff;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html,body{font-family:sans-serif}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}input,select,textarea{font-size:100%}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}abbr,acronym{border:0;font-variant:normal}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}q:before,q:after{content:''}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ins,a{text-decoration:none}",
+                b = document.createElement("style");
+            if (document.getElementsByTagName("head")[0].appendChild(b), b.styleSheet) b.styleSheet.disabled || (b.styleSheet.cssText = a); else try {
+                b.innerHTML = a
+            } catch (c) {
+                b.innerText = a
+            }
+        }();
+        !function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+
+            var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'),
+                h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {});
+            if (g) {
+                console.warn("将根据已有的meta标签来设置缩放比例");
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                    q = a.devicePixelRatio;
+                i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g)if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+            a.addEventListener("resize", function () {
+                clearTimeout(d), d = setTimeout(c, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+            }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () {
+                    e.body.style.fontSize = 12 * i + "px"
+                }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                var b = parseFloat(a) * this.rem;
+                return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+            }, k.px2rem = function (a) {
+                var b = parseFloat(a) / this.rem;
+                return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+            }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+    <style type="text/css">
+        /*<!--小弹框开始-->*/
+        .am-toast {
+            position: fixed;
+            width: 100%;
+            z-index: 1999;
+            font-size: .37333rem;
+            text-align: center
+        }
+
+        .am-toast > span {
+            max-width: 50%
+        }
+
+        .am-toast.am-toast-mask {
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            left: 0;
+            top: 0
+        }
+
+        .am-toast-notice-content .am-toast-text {
+            min-width: 1.2rem;
+            border-radius: .08rem;
+            color: #fff;
+            background-color: rgba(58, 58, 58, .9);
+            line-height: 1.5;
+            padding: .24rem .4rem
+        }
+
+        /*<!--小弹框结束-->*/
+
+        /*<!--中框开始-->*/
+
+        .change-theme-container {
+            display: none;
+            position: fixed;
+            background: rgba(0, 0, 0, .4);
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0
+        }
+
+        .change-theme-container .change-theme {
+            position: absolute;
+            left: 7%;
+            top: 50%;
+            width: 86%;
+            height: 4.53333rem;
+            margin-top: -2.26667rem;
+            background: #fafafc;
+            border-radius: .13333rem;
+            text-align: center
+        }
+
+        .change-theme-container .change-theme {
+            background: #fff
+        }
+
+        .change-theme-container .change-theme {
+            position: absolute;
+            left: 7%;
+            top: 50%;
+            width: 86%;
+            height: 4.53333rem;
+            margin-top: -2.26667rem;
+            background: #fafafc;
+            border-radius: .13333rem;
+            text-align: center
+        }
+
+        .change-theme-container .change-theme {
+            background: #fff
+        }
+
+        .dialog-rewards .change-theme {
+            height: auto;
+            margin-top: -2.56rem
+        }
+
+        .change-theme-title {
+            font-size: .42667rem;
+            margin-top: .66667rem;
+            margin-bottom: .26667rem
+        }
+
+        .dialog-rewards .change-theme-title {
+            font-size: .42667rem;
+            color: #222
+        }
+
+        .change-theme-main {
+            font-size: .37333rem;
+            margin-bottom: .56rem;
+            border: 1px solid #d5d5d6;
+            width: 86%;
+            margin-left: 7%;
+            height: 1.6rem;
+            overflow: hidden
+        }
+
+        .dialog-rewards .change-theme-main {
+            border: 0;
+            color: #a7a7a7;
+            font-size: .37333rem;
+            line-height: .64rem;
+            margin-bottom: .66667rem;
+            height: inherit
+        }
+
+        .dialog-rewards .val {
+            color: #ee7f57
+        }
+
+        .change-theme-bottom {
+            font-size: .42667rem;
+            padding: .18667rem 0;
+            color: #ee7f57;
+            border-radius: 0 0 .13333rem .13333rem;
+            margin: 0;
+            border-top: .01333rem solid #e5e5e5
+        }
+
+        /*<!--中框结束-->*/
+
+        /*<!--大框开始-->*/
+        .am-modal-mask {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, .4)
+        }
+        .am-modal-wrap {
+            position: fixed;
+            overflow: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            z-index: 999;
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center
+        }
+        .am-modal {
+            min-width: 70% !important;
+            max-width: 70% !important
+        }
+        .am-modal {
+            position: relative
+        }
+        .am-modal.am-modal-transparent .am-modal-content {
+            border-radius: .18667rem;
+            height: auto;
+            padding-top: .4rem
+        }
+
+        .am-modal-close {
+            border: 0;
+            padding: 0;
+            background-color: transparent;
+            outline: none;
+            position: absolute;
+            right: .4rem;
+            z-index: 999;
+            height: .56rem;
+            width: .56rem
+        }
+        .am-modal-close-x {
+            display: inline-block;
+            width: .4rem;
+            height: .4rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-rule='evenodd'%3E%3Cpath d='M1.414 0l28.284 28.284-1.414 1.414L0 1.414z'/%3E%3Cpath d='M28.284 0L0 28.284l1.414 1.414L29.698 1.414z'/%3E%3C/g%3E%3C/svg%3E")
+        }
+
+        .am-modal-title {
+            margin: 0;
+            font-size: .48rem;
+            line-height: 1;
+            color: #000;
+            text-align: center
+        }
+
+        .am-modal-body {
+            font-size: .4rem;
+            color: #888;
+            height: 100%;
+            line-height: 1.5;
+            overflow: auto
+        }
+
+        .contact-service-ctn {
+            font-size: .32rem;
+            color: #999;
+            text-align: center
+        }
+        .contact-service-ctn img {
+            width: 2.88rem;
+            margin-top: .4rem
+        }
+        .am-modal-content{
+            position: relative;
+            background-color: #fff;
+            border: 0;
+            background-clip: padding-box;
+            text-align: center;
+            height: 100%;
+            overflow: hidden;
+        }
+        .am-modal-header{
+            padding: .16rem .4rem .4rem;
+        }
+        /*<!--大框结束-->*/
+    </style>
+</head>
+<body>
+<!--添加书架-->
+<div id="am-toast-notice" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text" role="alert" aria-live="assertive">
+                        <div>加入书架成功!</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<!--首次登陆签到-->
+<div id="am-toast-notice2" class="change-theme-container dialog-rewards" style="display: none;">
+    <div class="change-theme" style="margin-top: -93.5px;">
+        <div class="change-theme-title">签到成功</div>
+        <div class="change-theme-main"><p>每日首次阅读，赠送 <span class="val">50</span> 书币<br>请明日继续签到哦</p></div>
+        <div class="change-theme-bottom close-btn">确 认</div>
+    </div>
+</div>
+
+<!--追书提示-->
+<div id="am-toast-notice3" class="reward_con" style="display: none;">
+    <div data-reactroot="">
+        <div class="am-modal-mask"></div>
+        <div tabindex="-1" class="am-modal-wrap " role="dialog" aria-labelledby="rcDialogTitle0">
+            <div role="document" class="am-modal am-modal-transparent" style="width: 5.4rem; height: auto;">
+                <div class="am-modal-content">
+                    <button aria-label="Close" class="am-modal-close"><span class="am-modal-close-x"></span></button>
+                    <div class="am-modal-header">
+                        <div class="am-modal-title" id="rcDialogTitle0">
+                            <div style="text-align: center;font-size: .45rem">关注公众号,方便下次阅读</div>
+                        </div>
+                    </div>
+                    <div class="am-modal-body">
+                        <div class="contact-service-ctn">
+                            <p>长按识别二维码关注</p>
+                            <img src="https://www.mxs.com/common/img/contact_qrcode.png?v=20171106" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div tabindex="0" style="width: 0px; height: 0px; overflow: hidden;">sentinel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div class="span-box">
+    <span onclick="showBxo(this.innerHTML)">小的</span>
+    <span onclick="showBxo(this.innerHTML)">中的</span>
+    <span onclick="showBxo(this.innerHTML)">大的</span>
+</div>
+<style>
+    .span-box span{
+        padding: 6px 10px;
+        background-color: #f50;
+        border: 1px solid #f50;
+        border-radius: 5px;
+        z-index: 8999!important;
+    }
+</style>
+<script type="text/javascript">
+    function showBxo(val) {
+        var node;
+        switch (val){
+            case '小的':
+                node = document.getElementById('am-toast-notice');
+                break;
+            case '中的':
+                node = document.getElementById('am-toast-notice2');
+                break;
+            default:
+            case '大的':
+                node = document.getElementById('am-toast-notice3');
+                break;
+        }
+        setShoe(node);
+    }
+    function setShoe(node) {
+        node.style.display = 'block';
+        setTimeout(function () {
+            node.style.display = 'none';
+        },1500)
+    }
+
+</script>
+</body>
+</html>

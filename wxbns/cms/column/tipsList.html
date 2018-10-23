@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="style3-page-reword">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">打赏记录</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="dashang-list" style="margin-bottom: 1rem">
+                <div class="people-list">
+                    {if condition="count($data) > 0 "}
+                    {volist name="data" id="item"}
+                    <div class="list-item">
+                        <div class="avatar">
+                            <img alt="{$item.nickname}" src="{$item.headimgurl}">
+                        </div>
+                        <div class="info">
+                            <div class="name">
+                                {$item.nickname}
+                                <div class="date">
+                                    {$item.created_at|date="Y/m/d H:i", ###}
+                                </div>
+                            </div>
+                            <div class="value">
+                                赠送：<img src="{$item.gift_img_url}">
+                                X1 个礼物给作者
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {else /}
+                    <p style="color: #ccc;text-align: center">这么好看的书，快来第一个支持它</p>
+                    {/if}
+                </div>
+                <div class="weui-loadmore">
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载</span>
+                </div>
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!--提示-->
+    <div id="am-toast-reward" style="display: none">
+        <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>数据已经加载完成！</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+    var root = document.getElementById('root');
+    var menu_btn = root.querySelector('.menu-btn');
+    var openMenu = root.querySelector('.openMenu');
+
+    var am_toast_reward = document.querySelector('#am-toast-reward');
+
+    function showToastNotice(node, boolean) {
+        node.style.display = boolean;
+        var timer = setTimeout(function () {
+            node.style.display = 'none';
+        }, 1800)
+    }
+
+    root.querySelector('.nav-left').onclick = function () {
+        window.history.go(-1);
+    };
+
+    menu_btn.onclick = function () {
+        var open = menu_btn.className == 'menu-btn';
+        menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+        var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+        openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+        if(i){
+            document.getElementsByTagName('body')[0].className = 'banRolling';
+        }else{
+            document.getElementsByTagName('body')[0].className = '';
+        }
+    };
+
+    var loading = false;  //状态标记
+    var p = 0;
+    $('.weui-loadmore').hide();
+    $(document.body).infinite().on("infinite", function () {
+        if (loading) return;
+        ++p;
+        loading = true;
+        $.ajax({
+            url: '/cms/column/tipsList/bid/{$bid}',
+            data: {page: p},
+            type: 'post',
+            dataType: 'JSON',
+        }).then(function (res) {
+
+            var html = '';
+            var data = res.data;
+
+            if (data.length <= 0) {
+                var boolean = 'block';
+                showToastNotice(am_toast_reward, boolean);
+
+                return true;
+            }
+            for (var i in data) {
+                html += '<div class="list-item">';
+                html += '<div class="avatar">';
+                html += '<img alt="' + data[i].nickname + '" src="' + data[i].headimgurl + '">';
+                html += '</div>';
+                html += '<div class="info">';
+                html += '<div class="name">';
+                html += data[i].nickname
+                html += '<div class="date">';
+                html += getHis(data[i].created_at);
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="value">赠送：';
+                html += '<img src="' + data[i].gift_img_url + '">X1 个礼物给作者';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+            }
+            $('.people-list').append(html);
+            loading = false;
+        });
+    });
+
+
+    function getHis(ns) {
+        var d, s;
+        d = new Date(parseInt(ns) * 1000);
+        s = d.getFullYear() + "/";
+        s += ("0" + (d.getMonth() + 1)).slice(-2) + "/";
+        s += ("0" + d.getDate()).slice(-2) + " ";
+        s += ("0" + d.getHours()).slice(-2) + ":";
+        s += ("0" + d.getMinutes()).slice(-2);
+        return s;
+
+    }
+</script>
+</body>
+
+</html>

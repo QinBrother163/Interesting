@@ -1,0 +1,48 @@
+.navMenu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  border-top: .01333rem solid #e5e5e5;
+  border-bottom: .01333rem solid #e5e5e5;
+  z-index: 50;
+  height: 1.18667rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: .1rem 0; }
+  .navMenu .item-list-icon {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+  .navMenu i {
+    font-size: .6rem;
+    color: #7e7e7e; }
+  .navMenu span {
+    display: block;
+    font-size: .32rem;
+    color: #7e7e7e;
+    line-height: .24rem;
+    margin-top: .13333rem; }
+
+/*# sourceMappingURL=NavMenu.css.map */

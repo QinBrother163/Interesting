@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <title>{$htitle}</title>
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css?t=2">
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <style type="text/css">
+        .special-link-wrap {
+            width: 100%;
+            height: 2.25rem;
+            display: block;
+            background-color: #eeeeee;
+           background-color:rgba(255,255,255,0.8);
+            /*background: url('../images/special.jpg') no-repeat;*/
+            background-size: 100%;
+            margin: .8rem 0 0;
+          border-radius: 1px;
+        }
+
+        .special-content-wrap {
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            margin: 0 auto;
+            float: left;
+        }
+
+        .special-user-name, .special-txt, .special-btnFocus {
+            float: left;
+        }
+
+        .special-user-name {
+            width: 1.7rem;
+            height: 1.7rem;
+            /*border-radius: 50%;*/
+            background-size: 100% 100%;
+            overflow: hidden;
+            margin: .25rem 0 0 .25rem;
+            border: 1px solid #fff;
+            float: left;
+        }
+
+        .special-user-name img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .special-txt {
+            width: 4.8rem;
+            height: 1rem;
+            margin: .3rem .2rem;
+            float: left;
+        }
+
+        .special-txt div:nth-child(1) {
+            font-size: .35rem;
+            color: #000;
+        }
+
+        .special-txt div:nth-child(2) {
+            font-size: .35rem;
+            color: #777;
+            line-height: .45rem;
+        }
+
+        .special-btnFocus {
+			float: right !important;
+            width: 1rem;
+            border: 1px solid #ff87ba;
+            padding: .05rem .1rem;
+            border-radius: .15rem;
+            text-align: center;
+            margin-top: .8rem;
+            float: left;
+			margin-right: .4rem;
+        }
+
+        .special-btnFocus-txt {
+            font-size: .3.3rem;
+            color: #ff87ba;
+        }
+    </style>
+
+</head>
+
+<body>
+<script>
+!(function(c,b,d,a){c[a]||(c[a]={});c[a].config={pid:"cii0tb5lvo@4e8a2a6f9e73432",imgUrl:"https://arms-retcode.aliyuncs.com/r.png?"};
+with(b)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("crossorigin","",src=d)
+})(window,document,"https://retcode.alicdn.com/retcode/bl.js","__bl");
+</script>
+<div class="container style3" id="container">
+    {php}
+  		if(!isset($_COOKIE["bookColor"])){
+  			$_COOKIE["bookColor"] = "white-mode";
+  		};
+  		if(!isset($_COOKIE["bookFont"])){
+  			$_COOKIE["bookFont"] = "font5";
+  		};
+    {/php}
+    <article class="middle-mode-list {$_COOKIE["bookColor"]} {$_COOKIE["bookFont"]}" id="J_read_detail">
+        <div class="article-head">
+            <div class="article-head-title">
+                <a class="anticon anticon-left" href="{:url('cms/column/indexidx', ['bid' => $document['bid']])}">
+                    <span class="arrow-left"></span>
+                    {$document.title} </a>
+                <div class="right-icon">
+                    <a class="tool link-bookshelf" href="{:url('cms/user/bookmark')}"></a>
+                    <a class="tool link-user" href="{:url('cms/user/index')}"></a>
+                    <a class="tool link-home" href="{:url('cms/index/index')}"></a>
+                </div>
+            </div>
+            <div class="tool-bar clearfix" style="font-size:12px; !important">
+                <span class="color-tool color1 {if $_COOKIE["bookColor"]=="white-mode"}selected{/if}" data-style="white-mode"></span>
+                <span class="color-tool color2 {if $_COOKIE["bookColor"]=="green-mode"}selected{/if}" data-style="green-mode"></span>
+                <span class="color-tool color3 {if $_COOKIE["bookColor"]=="brown-mode"}selected{/if}" data-style="brown-mode"></span>
+                <span class="color-tool color4 {if $_COOKIE["bookColor"]=="night-mode"}selected{/if}" data-style="night-mode"></span>
+                <span class="font-tool">
+                        <span class="book add-book">加入书架</span>
+                        <span class="font2">A-</span>
+                        <span class="font1">A+ </span>
+                    </span>
+            </div>
+        </div>
+		{if $iszb}
+        <style stype="text/css">
+          .zbcontent p{display:none}
+        .zbcontent p:nth-child(1),.zbcontent p:nth-child(2),.zbcontent p:nth-child(3),.zbcontent p:nth-child(4){
+         display:block; 
+         }
+        </style>
+        <span class="zbcontent" style="display:inline-block; text-overflow: ellipsis;">
+        {$document.content|default=""}
+        </span>
+        <p>......</p>
+        <p style="text-align:center; margin-top:15px; text-indent:0; padding:5px 0px;border-radius:5px;font-size:14px;">温馨提示：购买书籍后，继续阅读章节内容</p>
+        {else}
+        {$document.content|default=""}
+        {/if}
+      
+        {if $isgz["isguanzhu"] !=1 && $isgz["showqr"]==1}
+        <div style="display:none; text-align: center" id="subscribe-panel">
+            <a class="btn-subscribe"
+               style=" display:block; color:#ff87ba; font-size:15px; padding: 0.1rem 0px; text-align: center;  margin: 0.6rem 0.1rem -0.3rem 0.1rem; border-radius:5px;"
+               href="javascript:;">作者提示：点我关注公众号，追书更方便！
+            </a>
+        </div>
+      	{/if}
+        <div class="bottom-operation">
+            <a class="operate-btn operate-prev {if condition=" ($iszb== 1)"}show-zbbuy{/if}"
+            href="{$prev.url|default='javascript:void(0)'}" data-first="true"></a>
+            <a class="operate-btn operate-menu" href="{:url('cms/column/indexidx', ['bid' => $document['bid']])}"></a>
+           {if $isgz.showFollowPopupOnNext=="true"}
+            <a class="operate-btn operate-next" data-url="{$next.url|default='javascript:void(0)'}" href="javascript:;"
+               data-last="false"></a>
+           {else}
+           <a class="operate-btn" href="{$next.url|default='javascript:void(0)'}"
+               data-last="false"></a>
+           {/if}
+        </div>
+        {if $isgz["isguanzhu"] !=1 && $isgz["showqr"]==1}
+        <div class="special-link-wrap">
+            <div class="special-content-wrap">
+                <!--<div class="special-user-name" style="background: url('../images/special.jpg') no-repeat">-->
+                <div class="special-user-name">
+                    <img src="{$isgz.ewm}" alt="">
+                </div>
+                <div class="special-txt">
+                    <div>{$isgz.wechatName}</div>
+                    <div>关注后可每日签到，领取书币方便下次阅读</div>
+                </div>
+                <div class="special-btnFocus">
+                    <div class="special-btnFocus-txt">关注</div>
+                </div>
+            </div>
+        </div>
+        {/if}
+        <!--打赏金币不足-->
+        <div class="style3-page-book">
+            <div class="dashang-dialog2-mask" style="display:none;">
+                <div class="dashang-dialog2">
+
+                </div>
+                <div class="dialog_bg"></div>
+            </div>
+        </div>
+    </article>
+</div>
+<!--添加书架-->
+<div id="am-toast-notice" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text" role="alert" aria-live="assertive">
+                        <div>加入书架成功!</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<!--添加书架-->
+<div id="zbbuy-toast-notice" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text" role="alert" aria-live="assertive">
+                        <div id="zbbuy-notice"></div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<!--首次登陆签到-->
+<div class="change-theme-container dialog-rewards" style="display: none;">
+    <div class="change-theme" style="margin-top: -93.5px;">
+        <div class="change-theme-title">签到成功</div>
+        <div class="change-theme-main"><p>每日首次阅读，赠送 <span class="val">50</span> 书币<br>请明日继续签到哦</p></div>
+        <div class="change-theme-bottom close-btn">确 认</div>
+    </div>
+</div>
+
+<!--追书提示-->
+<div class="reward_con noMenu">
+    <div data-reactroot="">
+        <div class="am-modal-mask"></div>
+        <div tabindex="-1" class="am-modal-wrap " role="dialog" aria-labelledby="rcDialogTitle0">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var articleId = {$document.id};
+        var iszb = parseInt("{$iszb|default='0'}");
+        var strToday = getTodayString();
+
+        //底部按钮提示
+        var forceFollow = {$isgz.forceFollow};
+        //点击下一张是否提示
+        var showFollowPopupOnNext = {$isgz.showFollowPopupOnNext};
+
+        if (iszb) {
+            var node = document.createElement('div');
+            node.className = 'dashang-dialog2';
+            node.innerHTML =
+                    '<div class="con">' +
+                    '<div class="l1">该本小说需一次性购买</div>' +
+                    '<div class="l2">整本仅 <span style="color:orangered">{$zbsb|default="0"}</span> 书币, 是否使用？</div>' +
+                    '<div class="l2">您的余额：<span style="color:orangered">{$score|default="0"}</span> 书币</div>' +
+                    '</div>' +
+                    '<div class="l3">' +
+                    '<div id="cancelDeductionBtn" class="cancel-btn btn">取消</div>' +
+                    '<a id="okDeductionBtn" class="ok-btn btn active" href="javascript:void(0);">确定</a>' +
+                    '</div>';
+            document.querySelector('.dashang-dialog2-mask').style.display = 'block';
+            document.querySelector('.dashang-dialog2-mask').appendChild(node);
+
+
+            document.querySelector('#cancelDeductionBtn').onclick = function () {
+                document.querySelector('.dashang-dialog2-mask').style.display = 'none';
+                window.history.go(-1);
+            };
+
+            document.querySelector('.show-zbbuy').onclick = function () {
+                document.querySelector('.dashang-dialog2-mask').style.display = 'block';
+                return false;
+            };
+
+            document.querySelector('#okDeductionBtn').onclick = function () {
+                if (parseInt("{$score|default='0'}") >= parseInt("{$zbsb|default='1'}")) {
+                    $.ajax({
+                        url: "{:url('cms/document/ZBpayScore', ['bid' => $document['bid']])}",
+                        type: 'post',
+                        contentType: 'application/json'
+                    }).then(function (res) {
+                        var tipsType = res.code ? '1000' : 'forbidden';
+                        //$.toast(res.msg, tipsType);
+                        //alert(res.msg);
+                        $(".dashang-dialog2-mask").hide();
+                        $("#zbbuy-notice").html(res.msg);
+                        $("#zbbuy-toast-notice").show();
+
+                        setTimeout(function () {
+                            $("#zbbuy-toast-notice").hide();
+                            window.location.reload();
+                        }, 1500);
+                        // alert(JSON.stringify(result));
+                        return false;
+                    }).fail(function (xhr) {
+                        alert(JSON.stringify(xhr));
+                    });
+                    return true;
+                }
+                location.assign("{:url('/cms/pay/index/',['zid' =>$document['id'],'score'=>$zbsb])}");
+            };
+        }
+
+        if (forceFollow || !{$isgz.isguanzhu}) {
+            initSubscribePanel();
+        }
+
+        function createAuthorizationDialog(nodeTitle, nodeInfo, nodeImgUrl, nodeBottom) {
+
+            if (document.querySelector('.am-modal-transparent')) {
+                document.getElementById('node_title').innerHTML = nodeTitle;
+                document.getElementById('node_info').innerHTML = nodeInfo;
+                document.getElementById('node_imgUrl').scr = nodeImgUrl;
+            } else {
+                var node = document.createElement('div');
+                node.className = 'am-modal am-modal-transparent';
+                node.role = 'document';
+                node.style.width = '9.4rem';
+                node.style.height = 'auto';
+                node.innerHTML =
+                        '<div class="am-modal-content">' +
+                        '<button aria-label="Close" class="am-modal-close"><span class="am-modal-close-x"></span></button>' +
+                        '<div class="am-modal-header">' +
+                        '<div class="am-modal-title" id="rcDialogTitle0">' +
+                        '<div id="node_title" style="text-align: center;font-size: .45rem">' + nodeTitle + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="am-modal-body" style="padding: 0 .4rem 1rem">' +
+                        '<div class="contact-service-ctn">' +
+                        '<p id="node_info" style="color: red;font-size:15px">' + nodeInfo + '</p>' +
+                        '<img style="width: 4.88rem" id="node_imgUrl" src="' + nodeImgUrl + '" alt="">' +
+                        '<p id="node_info" style="font-size:16px;color:#333;">' + nodeBottom + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div tabindex="0" style="width: 0px; height: 0px; overflow: hidden;">sentinel</div>';
+
+                document.querySelector('.reward_con').className = 'reward_con';
+                document.querySelector('.am-modal-wrap').appendChild(node);
+            }
+        }
+
+
+        !function () {
+            $('.special-content-wrap').click(function () {
+
+                var t = '关注公众号追书更方便';
+                var con1 = '关注置顶公众号<br>方便您下次继续阅读';
+                var con2 = '长按上图二维码识别关注';
+                var imgUrl = '{$isgz.ewm}';
+                document.querySelector('.reward_con').className = 'reward_con';
+                createAuthorizationDialog(t, con1, imgUrl, con2);
+                am_modal_closeBtn();
+            });
+        }();
+
+        function initSubscribePanel() {
+
+            $('#subscribe-panel').show();
+            $('.btn-subscribe').click(function () {
+
+                var nodeTitle_1 = '关注公众号追书更方便';
+                var nodeInfo_1 = '关注置顶公众号<br>方便您下次继续阅读';
+                var nodeBottom_1 = '长按上图二维码识别关注';
+                var nodeImgUrl_1 = '{$isgz.ewm}';
+
+                document.querySelector('.reward_con').className = 'reward_con';
+                createAuthorizationDialog(nodeTitle_1, nodeInfo_1, nodeImgUrl_1, nodeBottom_1);
+                am_modal_closeBtn();
+
+                return false;
+            });
+        }
+
+
+        $('.operate-next').click(function () {
+
+            var nodeTitle = '关注授权公众号继续阅读';
+            var nodeInfo = '由于版权问题<br>请长按二维码识别关注继续阅读';
+            var nodeBottom = '长按上图二维码识别关注';
+            var nodeImgUrl = '{$isgz.ewm}';
+            //https://www.mxs.com/common/img/contact_qrcode.png?v=20171106';
+            var iszb = parseInt("{$iszb|default='0'}");
+            if (iszb) {
+                document.querySelector('.dashang-dialog2-mask').style.display = 'block';
+                return false;
+            }
+            if (showFollowPopupOnNext) {
+
+                document.querySelector('.reward_con').className = 'reward_con';
+                createAuthorizationDialog(nodeTitle, nodeInfo, nodeImgUrl, nodeBottom);
+                am_modal_closeBtn();
+            } else {
+                location.href = $(this).data('url');
+            }
+        });
+		/**
+        var lastCheckinDate = window.localStorage.getItem('last_checkin_date');
+        if (lastCheckinDate !== strToday) {
+            checkin();
+        }
+
+        function checkin() {
+            $.ajax({
+                url: '/cms/document/addcore/usecenter/1/',
+                type: 'POST',
+                contentType: 'application/json'
+            }).then(function (result) {
+                setCheckedIn();
+
+                document.querySelector('.change-theme-container').style.display = 'block';
+
+            }).fail(function (xhr) {
+                var result = JSON.parse(xhr.responseText);
+                // 如果是未关注用户, 第一天无需自动签到, 标记为已签到,以减少后续 API 请求
+                // 如果是重复签到, 说明用户可能是在新设备访问, 补充标记
+                if (result.code === 'not_subscribed' || result.code === 'already_checked_in') {
+                    setCheckedIn();
+                }
+            });
+        }
+		**/
+        function getTodayString() {
+            var date = new Date();
+            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        }
+
+        function setCheckedIn() {
+            window.localStorage.setItem('last_checkin_date', strToday);
+        }
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+            var timer = setTimeout(function () {
+                node.style.display = 'none';
+                document.querySelector('.add-book').style.display = 'none';
+            }, 1500)
+        }
+
+        document.querySelector('.change-theme-bottom').onclick = function () {
+            document.querySelector('.change-theme-container').style.display = 'none';
+        };
+
+        $('.add-book').click(function () {
+            $.ajax({
+                url: '/cms/document/addbookmark/id/' + articleId,
+                type: 'GET',
+                contentType: 'application/json'
+            }).then(function () {
+
+                var boolean = 'block';
+                showToastNotice(document.querySelector('#am-toast-notice'), boolean);
+
+            });
+        });
+        function am_modal_closeBtn() {
+            $('.am-modal-close').click(function () {
+                document.querySelector('.reward_con').className = 'reward_con noMenu';
+            });
+        }
+
+
+    });
+
+
+    $(function () {
+
+        var root = document.getElementById('root');
+        var nav_left = document.querySelector('.anticon-left');
+        var color_tool = document.getElementsByClassName('color-tool');
+        var middle_mode = document.querySelector('.middle-mode-list');
+        var font2 = document.querySelector('.font2');
+        var font1 = document.querySelector('.font1');
+
+
+        var cookie = {
+            set: function (key, val, time) {
+                var date = new Date();
+                var expiresDays = time;
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+            },
+            get: function (key) {
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+                var arrCookie = getCookie.split(";");
+                var tips;
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    if (key == arr[0]) {
+                        tips = arr[1];
+                        break;
+                    }
+                }
+                return tips;
+            },
+            delete: function (key) {
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+            }
+        };
+
+        var book_Color = cookie.get("bookColor");
+        var book_font = cookie.get("bookFont");
+
+//        function getQueryVariable(variable) {
+//            var query = window.location.search.substring(1);
+//            var vars = query.split("&");
+//            for (var i = 0; i < vars.length; i++) {
+//                var pair = vars[i].split("=");
+//                if (pair[0] == variable) {
+//                    return pair[1];
+//                }
+//            }
+//            return (false);
+//        }
+//
+//        let page_url = getQueryVariable("pageUrl");
+
+//        nav_left.onclick = function () {
+//            alert('111');
+        //            window.history.go(-1);
+        //            window.location.href = document.referrer;
+//            window.location.href = page_url;
+//        };
+
+
+        if (!book_Color) {
+            book_Color = 'white-mode';
+            cookie.set("bookColor", book_Color, 365);
+            book_Color = cookie.get("bookColor");
+        }
+
+        if (!book_font) {
+            book_font = 'font5';
+            cookie.set("bookFont", book_font, 365);
+            book_font = cookie.get("bookFont");
+        }
+
+        function InitializeClass(bg, font) {
+            var classList = 'middle-mode-list ' + bg + ' ' + font;
+            middle_mode.className = classList;
+            switch (bg) {
+                case 'white-mode':
+                    color_tool[0].className = 'color-tool color1 selected';
+                    break;
+                case 'green-mode':
+                    color_tool[1].className = 'color-tool color2 selected';
+                    break;
+                case 'brown-mode':
+                    color_tool[2].className = 'color-tool color3 selected';
+                    break;
+                default:
+                    color_tool[3].className = 'color-tool color4 selected';
+                    break;
+            }
+
+        }
+
+        var colorArr = [
+            'middle-mode-list white-mode ' + cookie.get("bookFont"),
+            'middle-mode-list green-mode ' + cookie.get("bookFont"),
+            'middle-mode-list brown-mode ' + cookie.get("bookFont"),
+            'middle-mode-list night-mode ' + cookie.get("bookFont")
+        ];
+
+
+        var arrStr0 = [];
+        var arrColor = [];
+        var arrFont = [];
+
+        function assignmentCookie() {
+            arrFont = middle_mode.className.split(' ');
+            book_font = arrFont[2];
+            cookie.set("bookFont", book_font, 365);
+            book_font = cookie.get("bookFont");
+        }
+
+        font2.onclick = function () {
+            arrStr0 = middle_mode.className.split(' ');
+            var fontArr = [
+                'middle-mode-list ' + arrStr0[1] + ' small-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font3',
+                'middle-mode-list ' + arrStr0[1] + ' middle-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font5',
+                'middle-mode-list ' + arrStr0[1] + ' big-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font7'
+            ];
+
+            switch (arrStr0[2]) {
+                case 'small-mode':
+                    break;
+                case 'font3':
+                    middle_mode.className = fontArr[0];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'middle-mode':
+                    middle_mode.className = fontArr[1];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'font5':
+                    middle_mode.className = fontArr[2];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'big-mode':
+                    middle_mode.className = fontArr[3];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'font7':
+                    middle_mode.className = fontArr[4];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                default:
+                    break;
+            }
+
+        };
+        font1.onclick = function () {
+            arrStr0 = middle_mode.className.split(' ');
+            var fontArr0 = [
+                'middle-mode-list ' + arrStr0[1] + ' small-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font3',
+                'middle-mode-list ' + arrStr0[1] + ' middle-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font5',
+                'middle-mode-list ' + arrStr0[1] + ' big-mode',
+                'middle-mode-list ' + arrStr0[1] + ' font7'
+            ];
+            switch (arrStr0[2]) {
+                case 'small-mode':
+                    middle_mode.className = fontArr0[1];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'font3':
+                    middle_mode.className = fontArr0[2];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'middle-mode':
+                    middle_mode.className = fontArr0[3];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'font5':
+                    middle_mode.className = fontArr0[4];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'big-mode':
+                    middle_mode.className = fontArr0[5];
+                    assignmentCookie();
+                    InitializeClass(book_Color, book_font);
+                    break;
+                case 'font7':
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        for (var i = 0; i < color_tool.length; i++) {
+            color_tool[i].i = i;
+            color_tool[i].onclick = function () {
+                for (var k = 0; k < color_tool.length; k++) {
+
+                    color_tool[k].className = 'color-tool color' + (k + 1);
+                }
+                middle_mode.className = colorArr[this.i];
+
+                arrColor = middle_mode.className.split(' ');
+                book_Color = arrColor[1];
+                cookie.set("bookColor", book_Color, 365);
+                book_Color = cookie.get("bookColor");
+                InitializeClass(book_Color, book_font);
+
+                this.className = 'color-tool ' + 'color' + (this.i + 1) + ' selected';
+            }
+        }
+
+
+        InitializeClass(book_Color, book_font);
+      
+          
+  //--------------上拉加载下一章---------------
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可视范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+    
+    var gonext = 0;
+    //滚动事件触发
+    /**
+    window.onscroll = function () {
+        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+            if(gonext==1){
+            $("#gonext-chapter").text("正在加载下一章...");
+          	$(".operate-next").click();
+            }else{
+            setTimeout("settips()",800);
+            }
+        }else if(getScrollTop() + getClientHeight() > getScrollHeight()){
+            if(gonext==1){
+        	$("#gonext-chapter").text("正在加载下一章...");
+            }
+        }
+    }
+    
+    function settips(){
+    	gonext=1;
+        $("#J_read_detail").append("<div id='gonext-chapter' style='color:#999;font-size:12px; text-align:center'>小提示：上拉即可加载下一章</div>");
+    }
+    **/
+    });
+
+</script>
+<div style="display:none"> {:config('web_site_statistics')}</div>
+</body>
+</html>

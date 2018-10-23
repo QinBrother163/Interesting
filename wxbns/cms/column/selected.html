@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+
+<body>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="style3-page-featured">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">小说精选</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="list-wrap" style="margin-bottom: 1.2rem">
+                {volist name="selected" id="item"}
+                <div class="style3-book-item2 clearfix">
+                    <div class="img">
+                        <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                            <img src="{$item.image}">
+                        </a>
+                    </div>
+                    <div class="info">
+                        <a href="{:url('cms/column/book', ['id' => $item['id']])}">
+                            <span class="name">{$item.title}</span>
+                        </a>
+                        <div class="desc">
+                            <a href="{:url('cms/column/book', ['id' => $item['id']])}">{$item.desc}</a>
+                        </div>
+                        <div class="count clearfix">
+                            <span class="author tag">{$item.tstype}</span>
+                            <span class="status tag">{$item.xstype}</span>
+                        </div>
+                    </div>
+                </div>
+                {/volist}
+
+            </div>
+
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+
+            <div class="weui-loadmore" style="display: none">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示-->
+<div id="am-toast-reward" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>数据已经加载完成！</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>-->
+<script type="text/javascript">
+    (function () {
+        var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var openMenu = root.querySelector('.openMenu');
+
+        var am_toast_reward = document.querySelector('#am-toast-reward');
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+            var timer = setTimeout(function () {
+                node.style.display = 'none';
+            }, 1800)
+        }
+
+        root.querySelector('.nav-left').onclick = function () {
+            window.history.go(-1);
+        };
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+
+            if(i){
+                document.getElementsByTagName('body')[0].className = 'banRolling';
+            }else{
+                document.getElementsByTagName('body')[0].className = '';
+            }
+        };
+
+//获取滚动条当前的位置
+        function getScrollTop() {
+            var scrollTop = 0;
+            if (document.documentElement && document.documentElement.scrollTop) {
+                scrollTop = document.documentElement.scrollTop;
+            } else if (document.body) {
+                scrollTop = document.body.scrollTop;
+            }
+            return scrollTop;
+        }
+
+        //获取当前可视范围的高度
+        function getClientHeight() {
+            var clientHeight = 0;
+            if (document.body.clientHeight && document.documentElement.clientHeight) {
+                clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+            } else {
+                clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+            }
+            return clientHeight;
+        }
+
+        //获取文档完整的高度
+        function getScrollHeight() {
+            return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        }
+
+        var loading = false;
+        //状态标记
+        var p = 0;
+
+        window.onscroll = function () {
+            if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+
+                if (loading) return;
+                p++;
+                loading = true;
+                $.post('/cms/column/selected', {
+                    p:p * 5,
+                }).then(function (res) {
+                    var html = '';
+                    var data = res.data;
+                    if(data.length <= 0){
+                        var boolean = 'block';
+                        showToastNotice(am_toast_reward, boolean);
+                        return true;
+                    }
+
+                    for (var i in data) {
+                        html += '<div class="style3-book-item2 clearfix">';
+                        html += '<div class="img">';
+                        html += '<a href="/cms/column/book/id/' + data[i].id + '">';
+                        html += '<img src="' + data[i].image + '">';
+                        html += '</a>';
+                        html += '</div>';
+                        html += '<div class="info">';
+                        html += '<a href="/cms/column/book/id/' + data[i].id + '">';
+                        html += '<span class="name">' + data[i].title + '</span>';
+                        html += '</a>';
+                        html += '<div class="desc">';
+                        html += '<a href="/cms/column/book/id/' + data[i].id + '">' + data[i].desc + '</a>';
+                        html += '</div>';
+                        html += '<div class="count clearfix">';
+                        html += '<span class="author tag">' + data[i].tstype + '</span>';
+                        html += '<span class="status tag">' + data[i].xstype + '</span>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
+
+                    $('.list-wrap').append(html);
+                    loading = false;
+
+                });
+            }
+        };
+
+//        var loading = false;  //状态标记
+//        var p = 0;
+//        $(document.body).infinite().on("infinite", function () {
+//            if (loading) return;
+//            p++;
+//            loading = true;
+//            $.post('/cms/column/selected', {
+//                p:p * 5,
+//            }).then(function (res) {
+//                var html = '';
+//                var data = res.data;
+//                if(data.length <= 0){
+//                    $('.weui-loadmore').hide();
+//                    return true;
+//                }
+//
+//                for (var i in data) {
+//                    html += '<div class="style3-book-item2 clearfix">';
+//                    html += '<div class="img">';
+//                    html += '<a href="/cms/column/book/id/' + data[i].id + '">';
+//                    html += '<img src="' + data[i].image + '">';
+//                    html += '</a>';
+//                    html += '</div>';
+//                    html += '<div class="info">';
+//                    html += '<a href="/cms/column/book/id/' + data[i].id + '">';
+//                    html += '<span class="name">' + data[i].title + '</span>';
+//                    html += '</a>';
+//                    html += '<div class="desc">';
+//                    html += '<a href="/cms/column/book/id/' + data[i].id + '">' + data[i].desc + '</a>';
+//                    html += '</div>';
+//                    html += '<div class="count clearfix">';
+//                    html += '<span class="author tag">' + data[i].tstype + '</span>';
+//                    html += '<span class="status tag">' + data[i].xstype + '</span>';
+//                    html += '</div>';
+//                    html += '</div>';
+//                    html += '</div>';
+//                }
+//
+//                $('.list-wrap').append(html);
+//                loading = false;
+//
+//            });
+//
+//        });
+    })();
+</script>
+</body>
+
+</html>

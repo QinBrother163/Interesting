@@ -1,0 +1,199 @@
+@charset "UTF-8";
+#root .style-topPage .top-wrap {
+    padding: 0;
+}
+
+.top-list .info-title {
+    position: relative;
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.top-list .info-title span {
+    display: inline-block;
+    width: 30%;
+    font-size: .4rem;
+}
+
+.top-list .info-title .focus {
+    position: absolute;
+    bottom: 0;
+    /*左边*/
+    /*left: 1.13rem;*/
+    /*中间*/
+    left: 3.999rem;
+    /*右边*/
+    /*left: 6.837rem;*/
+    width: 1.25rem;
+    height: .0761rem;
+}
+
+.male .focus {
+    background-color: #366092;
+}
+
+.female .focus {
+    background-color: #ff87ba;
+}
+
+.male .s_focus {
+    color: #366092;
+}
+
+.female .s_focus {
+    color: #ff87ba;
+}
+
+.info-con .info-con-item {
+    position: relative;
+    padding: .2rem .4rem;
+}
+
+.info-con .info-con-item .focus_img {
+    width: .7rem;
+    height: .7rem;
+}
+
+.info-con .info-con-item .focus_ok {
+    background: url("../images/focus_ok.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.info-con .info-con-item .focus_no {
+    background: url("../images/focus_no.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.info-con .info-con-item .user {
+    position: absolute;
+    top: .299rem;
+    left: 2rem;
+    font-size: .36rem;
+}
+.info-con .info-con-item .user:after{
+    content: "";
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/size-user.png")no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: .07rem;
+    left: -.6rem;
+}
+.info-con .info-con-con {
+    padding: .2rem 0;
+    background-color: #eee;
+}
+
+.info-con-con .info-left-img {
+    width: 13%;
+    height: 1.2rem;
+}
+
+.info-con-con .info-info-title-wrap {
+    width: 80%;
+    display: inline-block;
+    position: relative;
+    margin-left: .3rem;
+}
+
+.info-con-con .info-info-title-wrap .info-title1 {
+    font-size: .4rem;
+}
+
+.info-con-con .info-info-title-wrap .info-title2 {
+    font-size: .26rem;
+    color: #999;
+    margin-bottom: .2rem;
+}
+
+.info-con-con .info-info-title-wrap .info-title2, .info-con-con .info-info-title-wrap .info-title1 {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.info-con-con .info-info-title-wrap .info-title3 {
+    position: absolute;
+    top: .2rem;
+    right: 0;
+    font-size: .4rem;
+    font-weight: bold;
+}
+.female .info-con-con .info-info-title-wrap .info-title3{
+    color: #ff87ba;
+}
+.male .info-con-con .info-info-title-wrap .info-title3{
+    color: #366092;
+}
+.info-con-con .info-info-title-wrap .info-title4 {
+    position: absolute;
+    top: .9rem;
+    right: 0;
+    color: #666;
+    font-size: .1rem;
+}
+
+.top-list .border_b {
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}
+
+.cancel-btn {
+    position: fixed;
+    right: .4rem;
+    bottom: 1rem;
+    text-align: center;
+    width: 20%;
+    padding: .21rem .15rem;
+    border-radius: .16rem;
+    font-size: .36rem;
+    color: #fff;
+}
+.female .cancel-btn{
+    background-color: #ff87ba;
+}
+.male .cancel-btn{
+    background-color: #366092;
+}
+.top-list .border_b div {
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+    padding: .21rem .15rem;
+    margin: .3rem 0;
+    border-radius: .16rem;
+    font-size: .36rem;
+}
+
+.top-list .border_b .click-no {
+    border: 1px solid #888;
+    margin-right: .2rem;
+    color: #888;
+}
+
+.female .top-list .border_b .click-ok {
+    border: 1px solid #ff87ba;
+    color: #ff87ba;
+}
+.male .top-list .border_b .click-ok{
+    border: 1px solid #366092;
+    color: #366092;
+}
+
+
+.list-item-no {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.list-item-no img {
+    width: 3rem;
+}
+
+.list-item-no p {
+    color: #ccc;
+    font-size: .4rem;
+    margin-top: .5rem;
+}

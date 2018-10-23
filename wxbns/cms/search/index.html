@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+</head>
+
+<body style="font-size: 12px;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0; height: 0"
+     id="__SVG_SPRITE_NODE__">
+    <symbol viewBox="0 0 44 44" id="right">
+        <title>Operation Icons Copy 4</title>
+        <defs>
+            <path id="right_a" d="M-129-845h24v24h-24z"></path>
+        </defs>
+        <clipPath id="right_b">
+            <use xlink:href="#right_a" overflow="visible"></use>
+        </clipPath>
+        <g clip-path="url(#right_b)">
+            <defs>
+                <path id="right_c" d="M-903-949H947V996H-903z"></path>
+            </defs>
+            <clipPath id="right_d">
+                <use xlink:href="#right_c" overflow="visible"></use>
+            </clipPath>
+        </g>
+        <path d="M30.601 21.399L18.368 9.166l-2.121 2.121 10.118 10.119-10.118 10.118 2.121 2.121 12.233-12.233-.006-.006z"></path>
+    </symbol>
+</svg>
+<div id="root">
+    <div data-reactroot="" class="page-style3 page-style3-male">
+        <div class="style3-search-page">
+
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">搜索书籍</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+
+            <div class="con-input-wrap"  style="background-color: #fff;float: left;padding: .5rem .42rem 0 .42rem;">
+                <button class="keyboard" style="display: none">唤起软键盘</button>
+                <div class="style3-searchbar" style="float: left;width: 7.2rem">
+                    <span class="search-icon"></span>
+                    <div>
+                        <input type="search" class="am-search-value" placeholder="输入书名/关键词" value="">
+                    </div>
+                    <svg id="input-cross" style="display: none" class="am-icon am-icon-cross-circle-o am-icon-xxs cancel-icon">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross-circle-o">
+                            <svg viewBox="0 0 48 48" id="cross-circle-o" width="100%" height="100%">
+                                <title></title>
+                                <path d="M24 48c13.255 0 24-10.745 24-24S37.255 0 24 0 0 10.745 0 24s10.745 24 24 24zm.353-25.77l-7.593-7.593c-.797-.799-1.538-.822-2.263-.207-.724.614-.56 1.617-.124 2.067l7.852 7.847-7.721 7.723c-.726.728-.558 1.646-.065 2.177.494.532 1.554.683 2.312-.174l7.587-7.584 7.644 7.623c.796.799 1.608.725 2.211.146.604-.579.72-1.442-.075-2.24l-7.657-7.669 7.544-7.521c.811-.697.9-1.76.297-2.34-.92-.885-1.849-.338-2.264.078l-7.685 7.667z"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </use>
+                    </svg>
+                </div>
+                <div class="search-btn-wrap">搜索</div>
+            </div>
+
+            <div id="Initialize-novel-container " style="display: block;clear: left">
+                <div class="hot-keyword">
+                    <div class="hot-keyword-title">热门搜索</div>
+                    <div class="hot-keyword-body">
+                        {volist name="hotbook" id="vo" length='8'}
+                        <a href="{:url('cms/column/book', ['id' => $vo['id']])}"><span class="hot-key-item">{$vo.title}</span></a>
+                        {/volist}
+                    </div>
+                </div>
+                <!--历史记录-->
+                <div style="display: none" class="history-keyword">
+                    <div class="title history-title">历史记录</div>
+                </div>
+            </div>
+            <!--索搜结果的div-->
+
+            <div style="display: none" class="novel-container yes-novel-container">
+                <div class="novel-container">
+                    <div id="result-list" class="result-list">
+                    </div>
+                    <div id="block-loading" style="background: #fff;">
+                      <div class="block-loading">
+                          <div class="am-activity-indicator am-activity-indicator-lg">
+                              <span class="am-activity-indicator-spinner am-activity-indicator-spinner-lg" aria-label="loading"></span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+            <!--索搜没有内容的div-->
+            
+        </div>
+    </div>
+</div>
+</div>
+<!--提示-->
+<div id="am-toast-reward" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>没有索搜到相关书籍！</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<!--提示-->
+<div id="am-toast-reward-ajax" style="display: none">
+    <div class="am-toast am-toast-mask">
+        <span>
+            <div class="am-toast-notice">
+                <div class="am-toast-notice-content">
+                    <div class="am-toast-text am-toast-text-icon" role="alert" aria-live="assertive">
+                        <div>搜索结果加载完成！</div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<div style="display:none">
+    {:config('web_site_statistics')}
+</div>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var cookie = {
+        set: function (key, val, time) {
+            var date = new Date();
+            var expiresDays = time;
+            date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+            document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+        },
+        get: function (key) {
+
+            var getCookie = document.cookie.replace(/[ ]/g, "");
+            var arrCookie = getCookie.split(";");
+            var tips;
+            for (var i = 0; i < arrCookie.length; i++) {
+                var arr = arrCookie[i].split("=");
+                if (key == arr[0]) {
+                    tips = arr[1];
+                    break;
+                }
+            }
+            return tips;
+        },
+        delete: function (key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 10000);
+            document.cookie = key + "=v; expires =" + date.toGMTString();
+        }
+    };
+    var am_toast_reward = document.querySelector('#am-toast-reward');
+    var am_toast_reward_ajax = document.querySelector('#am-toast-reward-ajax');
+    var page_style3 = document.querySelector('.page-style3');
+    var sex_type = cookie.get("ieasynet_home_s");
+
+    if (sex_type == 3){
+        //女版
+        document.querySelector('.search-btn-wrap').style.backgroundColor = '#ff808f';
+        page_style3.className = 'page-style3 page-style3-female';
+    }else {
+        //男版
+        document.querySelector('.search-btn-wrap').style.backgroundColor = '#366092';
+        page_style3.className = 'page-style3 page-style3-male';
+    }
+
+    function showToastNotice(node, boolean) {
+        node.style.display = boolean;
+        var timer = setTimeout(function () {
+            node.style.display = 'none';
+        }, 1800)
+    }
+  
+  //--------------上拉加载更多---------------
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可视范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+  
+  
+    var start = 20;
+    var j = 0;
+    var limit = 20;
+    var total = 20;
+    window.onscroll = function () {
+      val = $.trim($('.am-search-value').val());
+      //($(document).scrollTop()+document.body.clientHeight)>=$(document).height()
+    	if(getScrollTop() + getClientHeight() == getScrollHeight() && val!="" && (total-(j * start))>=0){
+            j++;
+            limit = j * start;
+            
+
+                $.get("{:url('cms/search/search')}", {
+                    q: val,
+                    start: limit,
+                    limit: start
+                }).always(function () {
+                    loading = false;
+                }).then(function (res) {
+                    console.log(res);
+                    var html = '';
+                    var data = res.data;
+                    total = res.total;
+
+                    if (data.length<=0){
+                        var boolean = 'block';
+                        $(".block-loading").html("<font style='text-align:center; font-size:14px;display:block;color:#ccc;'>没有更多了</font>");
+                        showToastNotice(am_toast_reward_ajax, boolean);
+                    }else{
+                        for (var i in data){
+                            html += '<div class="style3-book-item2 clearfix">';
+                            html += '<div class="img">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">';
+                            html += '<img src="'+data[i].avatar+'">';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '<div class="info">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">'+data[i].title+'</a>';
+                            html += '<div class="desc">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">'+data[i].summary+'</a>';
+                            html += '</div>';
+                            html += '<div class="count clearfix">';
+                            html += '<span class="author tag">'+data[i].tstype+'</span>';
+                            html += '<span class="status tag">'+data[i].xstype+'</span>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        }
+                        $('#Initialize-novel-container').hide();
+                        $('.yes-novel-container').show();
+                        $('#result-list').append(html);
+                    }
+                });
+        }
+    
+    }
+
+    // step-48-错误-实心
+    $(function () {
+        var val = '';
+        var str = '';
+        var ent = 0;
+
+        function queryInputData() {
+//            $('.am-search-value').bind('search', function () {
+                val = $.trim($('.am-search-value').val());
+				j = 0;
+                $.get("{:url('cms/search/search')}", {
+                    q: val,
+                    start: 0,
+                    limit: 20
+                }).always(function () {
+                    loading = false;
+                }).then(function (res) {
+                    console.log(res);
+                    var html = '';
+                    var data = res.data;
+                    total = res.total;
+
+                    if (data.length<=0){
+                        
+                        var boolean = 'block';
+                        $(".block-loading").html("<font style='text-align:center; font-size:14px;display:block;color:#ccc;'>没有更多了</font>");
+                        showToastNotice(am_toast_reward, boolean);
+                    }else{
+                        if(res.total>20){
+                        	$(".block-loading").html('<div class="am-activity-indicator am-activity-indicator-lg"><span class="am-activity-indicator-spinner am-activity-indicator-spinner-lg" aria-label="loading"></span></div>');
+                        }else{
+                        	$(".block-loading").html("<font style='text-align:center; font-size:14px;display:block;color:#ccc;'>没有更多了</font>");
+                        }
+                        for (var i in data){
+                            html += '<div class="style3-book-item2 clearfix">';
+                            html += '<div class="img">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">';
+                            html += '<img src="'+data[i].avatar+'">';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '<div class="info">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">'+data[i].title+'</a>';
+                            html += '<div class="desc">';
+                            html += '<a href="/cms/column/book/id/'+data[i].id+'">'+data[i].summary+'</a>';
+                            html += '</div>';
+                            html += '<div class="count clearfix">';
+                            html += '<span class="author tag">'+data[i].tstype+'</span>';
+                            html += '<span class="status tag">'+data[i].xstype+'</span>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        }
+                        $('#Initialize-novel-container').hide();
+                        $('.yes-novel-container').show();
+                        $('#result-list').html(html);
+                    }
+                });
+//            });
+        }
+
+
+        $('.am-search-value').bind('search', function () {
+            queryInputData();
+        });
+        
+        document.querySelector('.search-btn-wrap').onclick = function () {
+            queryInputData();
+        };
+
+
+        // showHistory();
+
+        // $('.am-search-value').bind('search', function () {
+        //     str = get('history_log');
+        //     var val = $.trim($('.am-search-value').val());
+        //     ent = 1;
+        //     if (!val) {
+        //         return false;
+        //     }
+        //     set('history_log', str+'|'+val, 365);
+        // });
+
+        // $(document).on('click', '.search-keyword-item', function () {
+        //     var val = $(this).text();
+        //     var tem = '';
+        //     str = get('history_log');
+        //     var data = str.split('|');
+        //     for (var i in data){
+        //         if(data[i] == val){
+        //             data[i] = '';
+        //         }
+        //         if(data[i]){
+        //             tem+'|'+data[i]
+        //         }
+        //     }
+        //     set('history_log', tem, 365);
+        //     alert(tem);
+        // });
+
+        return false;
+    })
+
+    function set(key, val, expires){
+        $.cookie(key, val, { expires: expires });
+    }
+
+    function get(key){
+        return $.cookie(key);
+    }
+
+    function del(key){
+        $.cookie(key, null);
+    }
+
+    function showHistory(){
+        str = get('history_log');
+        var data = str != 'undefined' ? str.split('|') :'';
+
+        $('.history-keyword').show();
+        for (var i in data){
+            $('.history-title').after(
+                '<div class="search-keyword-item">'+data[i] +
+                '<svg class="am-icon am-icon-cross-circle-o am-icon-xxs delete-icon">' +
+                '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross-circle-o">' +
+                '<svg viewBox="0 0 48 48" id="cross-circle-o" width="100%" height="100%">' +
+                '<title></title>' +
+                '<path d="M24 48c13.255 0 24-10.745 24-24S37.255 0 24 0 0 10.745 0 24s10.745 24 24 24zm.353-25.77l-7.593-7.593c-.797-.799-1.538-.822-2.263-.207-.724.614-.56 1.617-.124 2.067l7.852 7.847-7.721 7.723c-.726.728-.558 1.646-.065 2.177.494.532 1.554.683 2.312-.174l7.587-7.584 7.644 7.623c.796.799 1.608.725 2.211.146.604-.579.72-1.442-.075-2.24l-7.657-7.669 7.544-7.521c.811-.697.9-1.76.297-2.34-.92-.885-1.849-.338-2.264.078l-7.685 7.667z" fill-rule="evenodd"></path>' +
+                '</svg>' +
+                '</use>' +
+                '</svg></div>');
+        }
+    }
+
+    var menu_btn = root.querySelector('.menu-btn');
+    var openMenu = root.querySelector('.openMenu');
+
+
+
+    root.querySelector('.nav-left').onclick = function () {
+        window.history.go(-1);
+    };
+
+    menu_btn.onclick = function () {
+        var open = menu_btn.className == 'menu-btn';
+        menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+        var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+        openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+        if(i){
+            $('html,body').addClass('banRolling');
+        }else{
+            $('html,body').removeClass('banRolling');
+        }
+    };
+
+</script>
+</body>
+</html>

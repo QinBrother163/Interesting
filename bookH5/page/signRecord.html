@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="../css/personal.css">
+    <title>看书网 | 让快乐更简单</title>
+    <script type="text/javascript" src="../js/setFont.js"></script>
+    <style type="text/css">
+        .sign-record-wrap{
+            min-height: 100%;
+        }
+        .sign-record-img{
+            text-align: center;
+            padding: 1.7rem 0;
+        }
+        .sign-record-img img{
+            width: 3rem;
+            height: 3rem;
+        }
+        .sign-record-img .p1{
+            padding: .7rem 0 .2rem 0;
+        }
+        .sign-record-img .p2{
+            font-size: .2112rem;
+            color: #777;
+        }
+        .sign-record-btn{
+            text-align: center;
+            padding: 0 .5rem;
+        }
+        .sign-record-btn .btn{
+            padding: .1rem 0;
+            color: #fff;
+            /*border: 1px solid #0099FF;*/
+            border-radius: .15rem;
+            background-color: #0099FF;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div class="page-style3 page-style3-male">
+        <div class="library3-container">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">送书币</div>
+                <div class="menu-btn"></div>
+                <div class="menu-modal-bg openMenu noMenu">
+                    <!--<div class="menu-content">-->
+                        <!--<a href="/home?account_id=2437">-->
+                            <!--<img src="../images/home@2x.png" alt="icon">-->
+                            <!--<span>首页</span>-->
+                        <!--</a>-->
+                        <!--<a href="/myBookshelf?account_id=2437">-->
+                            <!--<img src="../images/bookshelf-icon@2x.png" alt="icon">-->
+                            <!--<span>书架</span>-->
+                        <!--</a>-->
+                        <!--<a href="/readHistory?account_id=2437">-->
+                            <!--<img src="../images/history@2x.png" alt="icon">-->
+                            <!--<span>阅读历史</span>-->
+                        <!--</a>-->
+                        <!--<a href="/library?account_id=2437">-->
+                            <!--<img src="../images/stacks-icon@2x.png" alt="icon">-->
+                            <!--<span>书库</span>-->
+                        <!--</a>-->
+                        <!--<a href="/top?account_id=2437">-->
+                            <!--<img src="../images/trophy@2.png" alt="icon">-->
+                            <!--<span>排行榜</span>-->
+                        <!--</a>-->
+                        <!--<a href="/search?account_id=2437"><img src="../images/search@2x.png" alt="icon">-->
+                            <!--<span>搜索</span>-->
+                        <!--</a>-->
+                        <!--<a href="/pay/recharge?account_id=2437">-->
+                            <!--<img src="../images/chong@2x.png" alt="icon">-->
+                            <!--<span>充值</span>-->
+                        <!--</a>-->
+                        <!--<a href="/user?account_id=2437">-->
+                            <!--<img src="../images/user@4.png" alt="icon">-->
+                            <!--<span>个人中心</span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="sign-record-wrap">
+                <div class="sign-record-img">
+                    <img src="../images/sign-record-img.png" alt="">
+                    <p class="p1">签到送礼</p>
+                    <p class="p2">每日签到可获得 50 书币奖励</p>
+                </div>
+                <div class="sign-record-btn">
+                    <div class="btn">
+                        签到有奖励哦！
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--首次登陆签到-->
+<div class="change-theme-container dialog-rewards" style="display: none;">
+    <div class="change-theme" style="margin-top: -93.5px;">
+        <div class="change-theme-title">签到成功</div>
+        <div class="change-theme-main"><p>每日首次签到，赠送 <span class="val">50</span> 书币<br>请明日继续签到哦</p></div>
+        <div class="change-theme-bottom close-btn">确 认</div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function createNode() {
+        var menu = document.querySelector('.menu-modal-bg');
+        var menu_content = document.querySelector('.menu-content');
+
+        if (!menu_content) {
+            var node = document.createElement('div');
+            node.className = 'menu-content';
+            node.innerHTML =
+                    '<a href="../index.html"><img src="../images/home@2x.png" alt="icon"><span>首页</span></a>'+
+                    '<a href="bookcase.html"><img src="../images/bookshelf-icon@2x.png" alt="icon"><span>书架</span></a>'+
+                    '<a href="readingHistory.html"><img src="../images/history@2x.png" alt="icon"><span>阅读历史</span></a>'+
+                    '<a href="bookWarehouse.html"><img src="../images/stacks-icon@2x.png" alt="icon"><span>书库</span></a>'+
+                    '<a href="ranking.html"><img src="../images/trophy@2.png" alt="icon"><span>排行榜</span></a>'+
+                    '<a href="search.html"><img src="../images/search@2x.png" alt="icon"><span>搜索</span></a>'+
+                    '<a href="userTopUp.html"><img src="../images/chong@2x.png" alt="icon"><span>充值</span></a>'+
+                    '<a href="personal.html"><img src="../images/user@4.png" alt="icon"><span>个人中心</span></a>';
+            menu.appendChild(node);
+        }
+
+    })();
+    (function () {
+        let btn = document.querySelector('.btn');
+        let change_theme_bottom = document.querySelector('.change-theme-bottom');
+        let am_toast_notice = document.querySelector('.change-theme-container');
+        let nav_left = document.querySelector('.nav-left');
+        let x = false;
+
+        nav_left.onclick = function () {
+//            window.location.href = 'personal.html';
+            window.history.go(-1);
+        };
+
+        function modifyBtnTxt(txt) {
+            document.querySelector('.btn').innerText = txt;
+        }
+
+        function modifyTitleTxt(txt) {
+            document.querySelector('.change-theme-title').innerText = txt;
+        }
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+//            let timer = setTimeout(function () {
+//                node.style.display = 'none';
+//            }, 2000)
+        }
+
+
+        change_theme_bottom.onclick = function () {
+            let boolean_ = 'none';
+            showToastNotice(am_toast_notice, boolean_);
+
+            modifyTitleTxt('今天签过到啦！');
+            let txt = '您今天已签到过,明天再来吧！';
+            modifyBtnTxt(txt);
+            btn.style.color = '#ccc';
+        };
+
+        btn.onclick = function () {
+            if(!x){
+                let boolean_ = 'block';
+                showToastNotice(am_toast_notice, boolean_);
+            }
+            x = true;
+        };
+
+//        let timer = setInterval(function () {
+//
+//            if (x){
+//
+//        window.clearInterval(timer);
+//            }
+//            console.log('111');
+//        },100);
+
+
+
+
+    })();
+</script>
+</body>
+</html>

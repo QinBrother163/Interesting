@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3 瀑布流</title>
+    <link rel="stylesheet" href="../css/falls.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<button style="position: fixed;top: 100px;z-index: 10" onclick="addBox()">点击添加Box</button>
+<div class="masonry" style="margin-bottom: 400px">
+    <div class="item">
+        <div class="item__content">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--medium">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--medium">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--large">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--medium">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--large">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--large">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--medium">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--medium">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content">
+        </div>
+    </div>
+    <div class="item">
+        <div class="item__content item__content--small">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //获取滚动条当前的位置
+    function getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+
+    //获取当前可视范围的高度
+    function getClientHeight() {
+        var clientHeight = 0;
+        if (document.body.clientHeight && document.documentElement.clientHeight) {
+            clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+        } else {
+            clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+        }
+        return clientHeight;
+    }
+
+    //获取文档完整的高度
+    function getScrollHeight() {
+        return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+
+    //滚动事件触发
+    window.onscroll = function () {
+
+        if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+
+            for (var i = 0; i < 4; i++) {
+                addBox();
+            }
+        }
+    };
+
+
+    function addBox() {
+        var masonry = document.querySelector('.masonry');
+
+        var classArr = ['item__content item__content--medium', 'item__content', 'item__content item__content--large', 'item__content item__content--small'];
+        var idx = Math.floor((Math.random() * classArr.length));
+
+        //        创建节点
+        var node = document.createElement('div');
+        node.className = 'item';
+        node.innerHTML = `<div class="${classArr[idx]}"></div>`;
+        masonry.appendChild(node);
+
+    }
+</script>
+</body>
+</html>

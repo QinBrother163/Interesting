@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="keywords" content="奇幻小说,穿越小说,电子小书,看书网">
+    <meta name="description" content="看书网,用心为用户打造的快乐小说平台,拥有海量电子小说,奇幻小说,看小说更畅爽,让快乐更简单！">
+    <link rel="stylesheet" href="__MODULE_CSS__/personal.css">
+    <title>{$htitle}</title>
+    <script type="text/javascript" src="__MODULE_JS__/setFont.js"></script>
+    <style type="text/css">
+        .sign-record-wrap {
+            min-height: 100%;
+        }
+
+        .sign-record-img {
+            text-align: center;
+            padding: 2.1rem 0 1.2rem 0;
+        }
+
+        .sign-record-img img {
+            width: 2rem;
+            height: 2rem;
+            opacity: 0.2;
+        }
+
+        .sign-record-img .p1 {
+            padding: .7rem 0 .2rem 0;
+            color: #333;
+        }
+
+        .sign-record-img .p2 {
+            font-size: .4112rem;
+            color: #999;
+        }
+
+        .sign-record-btn {
+            text-align: center;
+            padding: 0 .5rem;
+        }
+
+        .sign-record-btn .btn {
+            padding: .14rem 0rem;
+            margin: 0px 10px;
+            color: #fff;
+            /*border: 1px solid #0099FF;*/
+            border-radius: .8rem;
+            /*background-color: #366092;*/
+        }
+    </style>
+
+</head>
+<body>
+<div id="root">
+    <div class="page-style3 page-style3-male">
+        <div class="library3-container" style=" background: #fff;">
+            <div class="component-header-wrap-3">
+                <a href="javascript:void(0);"><span class="imgicon nav-left"></span></a>
+                <div class="title">送书币</div>
+                <div class="menu-btn"></div>
+                {include file="public/header" /}
+            </div>
+            <div class="sign-record-wrap">
+                <div class="sign-record-img">
+                    <img src="__MODULE_IMG__/../images/free.png" alt="">
+                    <p class="p1">签到送书币</p>
+                    <p class="p2">点击公众号菜单 ﹥ 签到有礼 ﹥ 立即签到<br>或公众号回复关键词“签到”即可签到<br>每日签到可获得 50 书币奖励</p>
+                </div>
+                <div class="sign-record-btn">
+                  {if $onlog==1}
+                    <!--div class="btn" style="background-color: rgb(54, 96, 146); color: rgb(204, 204, 204);">您今天已签到过,明天再来吧！</div-->
+                  {else}
+                  <!--div class="btn">
+                        立即签到
+                    </div-->
+                  {/if}
+                </div>
+            </div>
+
+            <div class="style3-home-nav">
+                <a href="{:url('cms/index/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/1.png"><span>首页</span>
+                </a>
+                <a href="{:url('cms/column/ranking')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/2.png"><span>榜单</span>
+                </a>
+                <a href="{:url('cms/pay/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/3.png"><span>充值</span>
+                </a>
+                <a href="{:url('cms/user/index')}">
+                    <img src="__MODULE_IMG__/../images/home-nav/4.png"><span>个人中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--首次登陆签到-->
+<div class="change-theme-container dialog-rewards" style="display: none;">
+    <div class="change-theme" style="margin-top: -93.5px;">
+        <div class="change-theme-title">签到成功</div>
+        <div class="change-theme-main"><p>每日首次签到，赠送 <span class="val">50</span> 书币<br>请明日继续签到哦</p></div>
+        <div class="change-theme-bottom close-btn">我知道啦</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        var cookie = {
+            set: function (key, val, time) {
+                var date = new Date();
+                var expiresDays = time;
+                date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000);
+                document.cookie = key + "=" + val + ";expires=" + date.toGMTString();
+            },
+            get: function (key) {
+
+                var getCookie = document.cookie.replace(/[ ]/g, "");
+                var arrCookie = getCookie.split(";");
+                var tips;
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    if (key == arr[0]) {
+                        tips = arr[1];
+                        break;
+                    }
+                }
+                return tips;
+            },
+            delete: function (key) {
+                var date = new Date();
+                date.setTime(date.getTime() - 10000);
+                document.cookie = key + "=v; expires =" + date.toGMTString();
+            }
+        };
+//        var currentDateState = getTodayString();
+        //var btn = document.querySelector('.btn');
+        var am_toast_notice = document.querySelector('.change-theme-container');
+        var root = document.getElementById('root');
+        var menu_btn = root.querySelector('.menu-btn');
+        var openMenu = root.querySelector('.openMenu');
+
+        var sex_type = cookie.get("ieasynet_home_s");
+//        let current_date_state = cookie.get("free_current_date");
+
+        //btn.style.backgroundColor = '#366092';
+
+//        if (!current_date_state){
+//            current_date_state = currentDateState;
+//            cookie.set("free_current_date", current_date_state, 365);
+//            current_date_state = cookie.get("free_current_date");
+//        }
+       /**
+        if (sex_type == 3){
+            //女版
+            btn.style.backgroundColor = '#ff808f';
+        }
+        **/
+
+        root.querySelector('.nav-left').onclick = function () {
+            window.history.go(-1);
+        };
+
+        menu_btn.onclick = function () {
+            var open = menu_btn.className == 'menu-btn';
+            menu_btn.className = open ? 'menu-btn open' : 'menu-btn';
+
+            var i = openMenu.className == 'menu-modal-bg openMenu noMenu';
+            openMenu.className = i ? 'menu-modal-bg openMenu' : 'menu-modal-bg openMenu noMenu';
+        };
+
+        var Boolean = false;
+		/**
+        function modifyBtnTxt(txt) {
+            document.querySelector('.btn').innerText = txt;
+        }
+        **/
+
+        function queryNodeTxt(navTitle) {
+            document.querySelector('.change-theme-title').innerText = navTitle;
+        }
+
+        function click_dialog() {
+            document.querySelector('.change-theme-bottom').onclick = function () {
+                document.querySelector('.change-theme-container').style.display = 'none';
+            }
+        }
+
+        function showToastNotice(node, boolean) {
+            node.style.display = boolean;
+        }
+
+		/**
+//        if (current_date_state == currentDateState){
+//            let txt = '您今天已签到过,明天再来吧！';
+//            modifyBtnTxt(txt);
+//            btn.style.color = '#ccc';
+//        }else{
+            btn.onclick = function () {
+                checkin();
+            };
+//        }
+
+        var strToday = getTodayString();
+
+
+		
+        function checkin() {
+            var lastCheckinDate = window.localStorage.getItem('last_checkin_date');
+//            console.log(lastCheckinDate);
+//            console.log(strToday);
+            if (lastCheckinDate == strToday) {
+
+                if (!Boolean){
+                    var txt = '您今天已签到过,明天再来吧！';
+                    modifyBtnTxt(txt);
+                    btn.style.color = '#ccc';
+                    var boolean_ = 'block';
+                    var navTitle = '今天签到过啦';
+                    showToastNotice(am_toast_notice, boolean_);
+                    click_dialog();
+                    queryNodeTxt(navTitle);
+                }
+                Boolean = true;
+                return false;
+            }
+            $.ajax({
+                url: '/cms/document/addcore/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    usecenter: 1,
+                })
+            }).then(function (result) {
+
+                        var boolean_ = 'block';
+                        var navTitle = '签到成功';
+                        showToastNotice(am_toast_notice, boolean_);
+                        queryNodeTxt(navTitle);
+
+//                        current_date_state = currentDateState;
+//                        cookie.set("free_current_date", current_date_state, 365);
+//                        current_date_state = cookie.get("free_current_date");
+
+                        document.querySelector('.change-theme-bottom').onclick = function () {
+                            setCheckedIn();
+                            location.reload();
+                            document.querySelector('.change-theme-container').style.display = 'none';
+                            var txt = '您今天已签到过,明天再来吧！';
+                            modifyBtnTxt(txt);
+                        }
+                    })
+                    .fail(function (xhr) {
+                        var result = JSON.parse(xhr.responseText);
+                        // 如果是未关注用户, 第一天无需自动签到, 标记为已签到,以减少后续 API 请求
+                        // 如果是重复签到, 说明用户可能是在新设备访问, 补充标记
+                        if (result.code === 'not_subscribed' || result.code === 'already_checked_in') {
+                            setCheckedIn();
+                            var boolean_ = 'block';
+                            var navTitle = '关注后签到才送积分哦';
+                            showToastNotice(am_toast_notice, boolean_);
+                            queryNodeTxt(navTitle);
+                            click_dialog();
+                        }
+                    });
+        }
+        **/
+
+        function getTodayString() {
+            var date = new Date();
+            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        }
+
+        function setCheckedIn() {
+            window.localStorage.setItem('last_checkin_date', strToday);
+        }
+    })();
+
+
+</script>
+</body>
+</html>

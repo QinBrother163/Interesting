@@ -1,0 +1,93 @@
+.bookInfo {
+  position: relative; }
+  .bookInfo .info_wrap {
+    position: absolute;
+    bottom: -0.89rem;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 0.08rem;
+    -webkit-box-shadow: 0 0.05rem 0.2rem #d4d4d5;
+    box-shadow: 0 0.05rem 0.2rem #d4d4d5;
+    padding: 0.26rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+    .bookInfo .info_wrap .info_num, .bookInfo .info_wrap .info_btn {
+      text-align: center; }
+    .bookInfo .info_wrap .info_num li, .bookInfo .info_wrap .info_btn li {
+      font-size: .4rem;
+      color: #666;
+      display: inline-block;
+      width: 26%; }
+    .bookInfo .info_wrap .info_btn li {
+      font-size: .36rem; }
+    .bookInfo .info_wrap .info_num li:first-child {
+      border-right: 1px solid #eee; }
+    .bookInfo .info_wrap .info_num li:last-child {
+      border-left: 1px solid #eee; }
+    .bookInfo .info_wrap .info_num li:nth-child(2), .bookInfo .info_wrap .info_btn li:nth-child(2) {
+      width: 38%; }
+    .bookInfo .info_wrap .info_btn li:nth-child(2) span {
+      padding: .1rem .36rem;
+      color: #fff;
+      border-radius: .12rem; }
+
+.info_recommend {
+  margin-top: 1rem; }
+  .info_recommend .info_recommend_txt {
+    font-size: .32rem;
+    color: #666;
+    text-indent: 2em;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    margin-top: .35rem;
+    height: 1.09rem;
+    line-height: .55rem;
+    max-height: 100%; }
+
+.chapter_list_wrap div {
+  padding: .3rem 0;
+  font-size: .36rem;
+  color: #666; }
+
+.chapter_list_wrap div + div {
+  border-top: 1px solid #eee; }
+
+.userAwardLog {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center; }
+  .userAwardLog img {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    padding: .3rem 0;
+    margin-right: .3rem; }
+
+.nvaMenu {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #eee; }
+  .nvaMenu .item_list {
+    padding: .16rem 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: .36rem; }
+    .nvaMenu .item_list i {
+      font-size: .6rem; }
+  .nvaMenu .item_list:first-child, .nvaMenu .item_list:last-child {
+    width: 30%;
+    background: #fff; }
+  .nvaMenu .item_list:nth-child(2) {
+    width: 40%;
+    color: #fff; }
+
+/*# sourceMappingURL=bookInfo.css.map */
